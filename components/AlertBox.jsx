@@ -1,0 +1,49 @@
+import { useState } from "react";
+import { useRecoilState } from "recoil";
+import { alertState } from "../atoms/modalAtom";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
+import Slide from "@mui/material/Slide";
+
+export default function AlertBox() {
+	const [alert, setAlert] = useRecoilState(alertState);
+	const [hide, setHide] = useState(false);
+
+	const handleOpen = () => setHide(false);
+
+	const handleClose = (event, reason) => {
+		if (reason === "clickaway") {
+			return;
+		}
+
+		setAlert({
+			...alert,
+			open: false,
+		});
+
+		setHide(true);
+	};
+
+	function Transition(props) {
+		return <Slide {...props} direction={alert.transition || "left"} />;
+	}
+
+	return (
+		<Snackbar
+			// sx={{ display: hide ? "none" : "block" }}
+			anchorOrigin={{
+				vertical: alert.vertical || "top",
+				horizontal: alert.horizontal || "right",
+			}}
+			open={alert.open}
+			autoHideDuration={3000}
+			onClose={handleClose}
+			onOpen={handleOpen}
+			TransitionComponent={Transition}
+		>
+			<Alert open={alert.open} onClose={handleClose} severity={alert.severity} sx={alert.style}>
+				{alert.message}
+			</Alert>
+		</Snackbar>
+	);
+}

@@ -1,0 +1,27 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	min-height: 100vh;
+	width: 100%;
+	justify-content: center;
+
+	background: rgb(255, 255, 255);
+	background: linear-gradient(180deg, transparent 0%, rgb(22, 0, 46) 100%);
+}
+
+.imageBox {
+	margin-bottom: 2rem;
+}
+
+/* bg-[#18D860] text-white p-5 rounded-full */
+
+.signInButton {
+	background-color: rgb(95, 2, 142);
+	color: white;
+	border: none;
+	border-radius: 2rem;
+	cursor: pointer;
+
+	padding: 1.1rem 5rem;
+}

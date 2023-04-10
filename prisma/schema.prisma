@@ -1,0 +1,94 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String   @id
+  name          String
+  email         String   @unique
+  avatarUrl     String?
+  role          Role     @default(BASIC)
+  accountStatus Status   @default(ACTIVE)
+  rank          Rank     @default(SOUND_EXPLORER)
+  joinedAt      DateTime @default(now())
+  totalPoints   Int      @default(0)
+  weeklyPoints  Int?     @default(0)
+  likedSongs    Song[]   @relation("LikedSongs")
+
+  playgroups     Playgroup[] @relation("PlaygroupToUser")
+  AddedUserSongs UserSong[]  @relation("addedBy")
+  likedUserSongs UserSong[]  @relation("likedUserSongs")
+}
+
+// feature note** Let users add comments to userSong entries (a pice of their mind on why they added the song - intent)
+model UserSong {
+  id             String     @id @default(cuid())
+  songId         String
+  userId         String
+  playgroupId    String?
+  addedAt        DateTime   @default(now())
+  addedBy        User       @relation("addedBy", fields: [userId], references: [id])
+  songPopularity Int?
+  playgroup      Playgroup? @relation(fields: [playgroupId], references: [id])
+  addedSong      Song       @relation(fields: [songId], references: [id])
+  likes          User[]     @relation("likedUserSongs")
+
+  @@unique([songId, userId, playgroupId])
+}
+
+model Song {
+  id           String      @id
+  name         String
+  artists      Json
+  popularity   Float
+  previewUrl   String?
+  FirstAddedAt DateTime    @default(now())
+  likedById    String?
+  likedBy      User?       @relation("LikedSongs", fields: [likedById], references: [id])
+  UserSong     UserSong[]
+  playgroups   Playgroup[] @relation("PlaygroupToSong")
+}
+
+// feature note** there would be public and private Playgroups
+model Playgroup {
+  id          String     @id @default(cuid())
+  name        String
+  color       String?
+  groupImage  String
+  description String?
+  groupStatus Status     @default(ACTIVE)
+  dailyLimit  Int        @default(10)
+  UserSong    UserSong[]
+  songs       Song[]     @relation("PlaygroupToSong")
+  users       User[]     @relation("PlaygroupToUser")
+}
+
+enum Role {
+  BASIC
+  ADMIN
+}
+
+enum Status {
+  ACTIVE
+  SUSPENDED
+  ARCHIVED
+  DELETED
+}
+
+enum Rank {
+  SOUND_EXPLORER
+  RISING_CONTRIBUTOR
+  MUSIC_AFICIONADO
+  TUNE_TITAN
+  SOUND_MAESTRO
+}
+
+// ORDER OF IMPORTANCE FOR POINTS
+// Entry song(s) like(s)
+// Entry song(s) add
+// Playlist addition
