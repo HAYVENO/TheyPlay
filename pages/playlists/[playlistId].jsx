@@ -29,6 +29,7 @@ import {
 } from "../../atoms/trackAtom";
 import getUserSongs from "../../lib/getUserSongs";
 import getPlaygroup from "../../lib/getPlaygroups";
+import Layout from "../../components/Layout";
 
 const PlaylistPage = () => {
 	const router = useRouter();
@@ -116,90 +117,83 @@ const PlaylistPage = () => {
 	return (
 		<>
 			<Head>
-				<title> Playgroup | theyPlay </title>
+				<title>Playgroups | TheyPlay Music</title>
 			</Head>
-			<SkeletonTheme baseColor="#202020" highlightColor="#444">
-				<div className="home-container">
-					<Sidebar />
-					<div className="center">
-						{/* Playlist Head  */}
-						<div
-							style={{
-								animation: isPlaying ? "hue-animation 20s infinite" : "none",
-							}}
-							className={styles.playlistContainer}
-						>
-							<div className={styles.playlistHead}>
-								<div className={styles.headContentContainer}>
-									<Image
-										className={styles.playlistImage}
-										width={200}
-										height={200}
-										src={
-											currentPlaylist?.groupImage
-												? currentPlaylist?.groupImage
-												: SongImagePlaceholder
-										}
-										priority
-										alt="Playlist image"
-									/>
+			<main>
+				<div
+					style={{
+						animation: isPlaying ? "hue-animation 20s infinite" : "none",
+					}}
+					className={styles.playlistContainer}
+				>
+					<div className={styles.playlistHead}>
+						<div className={styles.headContentContainer}>
+							<Image
+								className={styles.playlistImage}
+								width={200}
+								height={200}
+								src={
+									currentPlaylist?.groupImage
+										? currentPlaylist?.groupImage
+										: SongImagePlaceholder
+								}
+								priority
+								alt="Playlist image"
+							/>
 
-									<div className={styles.playlistDetails}>
-										<p className={styles.playlistCategory}>By HAYVEN</p>
-										<h1 className={styles.playlistName}>{currentPlaylist?.name}</h1>
-										<p className={styles.playlistDescription}>{`${
-											tracks.length || " "
-										} tracks • ${currentPlaylist?.description || ""}`}</p>
-									</div>
-								</div>
-							</div>
-							{/* Content section  */}
-							<div className={styles.playlistContent}>
-								<div className={styles.playlistControl}>
-									<button className={classes(styles.playlistBtn, "btn")}>
-										{isPlaying ? (
-											<UseAnimations
-												animation={activity}
-												size={31.5}
-												fillColor="rgb(255 90 255)"
-												strokeColor="rgb(255 90 255)"
-												speed={0.5}
-											/>
-										) : (
-											<BsFillPlayCircleFill color="rgb(255 90 255)" size={58} />
-										)}
-									</button>
-								</div>
-								<div className={styles.songListContainer}>
-									<div className={classes(styles.listGrid, styles.listHead)}>
-										<p>#</p>
-										<p>Title</p>
-										<p>Added by</p>
-										<p>Popularity</p>
-										<p>Submitted</p>
-									</div>
-									<ul className={styles.songList}>
-										{/* ... TRACK LIST ...  */}
-										{tracks.map((track, index) => {
-											return (
-												<Track
-													key={index}
-													track={track}
-													theyTrack={theyTracks[index]}
-													index={index}
-													onClick={handleTrackPlay}
-													isCurrentTrack={isCurrentTrack}
-												/>
-											);
-										})}
-									</ul>
-								</div>
+							<div className={styles.playlistDetails}>
+								<p className={styles.playlistCategory}>By HAYVEN</p>
+								<h1 className={styles.playlistName}>{currentPlaylist?.name}</h1>
+								<p className={styles.playlistDescription}>{`${
+									tracks.length || " "
+								} tracks • ${currentPlaylist?.description || ""}`}</p>
 							</div>
 						</div>
 					</div>
-					<Player />
+					{/* Content section  */}
+					<div className={styles.playlistContent}>
+						<div className={styles.playlistControl}>
+							<button className={classes(styles.playlistBtn, "btn")}>
+								{isPlaying ? (
+									<UseAnimations
+										animation={activity}
+										size={31.5}
+										fillColor="rgb(255 90 255)"
+										strokeColor="rgb(255 90 255)"
+										speed={0.5}
+									/>
+								) : (
+									<BsFillPlayCircleFill color="rgb(255 90 255)" size={58} />
+								)}
+							</button>
+						</div>
+						<div className={styles.songListContainer}>
+							<div className={classes(styles.listGrid, styles.listHead)}>
+								<p>#</p>
+								<p>Title</p>
+								<p>Added by</p>
+								<p>Popularity</p>
+								<p>Submitted</p>
+							</div>
+							<ul className={styles.songList}>
+								{/* ... TRACK LIST ...  */}
+								{tracks.map((track, index) => {
+									return (
+										<Track
+											key={index}
+											track={track}
+											theyTrack={theyTracks[index]}
+											index={index}
+											onClick={handleTrackPlay}
+											isCurrentTrack={isCurrentTrack}
+										/>
+									);
+								})}
+							</ul>
+						</div>
+					</div>
 				</div>
-			</SkeletonTheme>
+			</main>
 		</>
 	);
 };
