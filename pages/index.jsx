@@ -1,5 +1,5 @@
 import Head from "next/head";
-
+import Layout from "../components/Layout";
 import Center from "../components/Center";
 import Sidebar from "../components/Sidebar";
 import Player from "../components/Player";
@@ -14,15 +14,8 @@ export default function Home({ playGroupsData }) {
 			<Head>
 				<title>TheyPlay | Group-controlled Music discovery experience</title>
 			</Head>
-
 			<main>
-				<div className="home-container">
-					<SkeletonTheme baseColor="#202020" highlightColor="#444">
-						<Sidebar />
-						<Center playGroupsData={playGroupsData} />
-						<Player />
-					</SkeletonTheme>
-				</div>
+				<Center playGroupsData={playGroupsData} />
 			</main>
 		</>
 	);
