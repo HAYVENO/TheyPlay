@@ -10,7 +10,7 @@ import clx from "classnames";
 
 const inter = Inter({ subsets: ["latin"] });
 
-const Layout = ({ children, pageTitle }) => {
+const Layout = ({ children }) => {
 	return (
 		<>
 			<div className={clx("home-container", inter.className)}>
