@@ -12,8 +12,8 @@ export default function SimpleBackdrop() {
 			<Backdrop
 				sx={{
 					color: "rgb(255, 180, 255)",
-					backgroundColor: "rgb(0, 0, 0, 0.6)",
-					backdropFilter: "blur(8px) saturate(0.6)",
+					backgroundColor: "rgb(0, 0, 0, 0.7)",
+					backdropFilter: "saturate(0.3)",
 					zIndex: (theme) => theme.zIndex.drawer + 1,
 				}}
 				open={openBackDrop}

@@ -9,8 +9,6 @@ export default function AlertBox() {
 	const [alert, setAlert] = useRecoilState(alertState);
 	const [hide, setHide] = useState(false);
 
-	const handleOpen = () => setHide(false);
-
 	const handleClose = (event, reason) => {
 		if (reason === "clickaway") {
 			return;
@@ -36,9 +34,8 @@ export default function AlertBox() {
 				horizontal: alert.horizontal || "right",
 			}}
 			open={alert.open}
-			autoHideDuration={3000}
+			autoHideDuration={4000}
 			onClose={handleClose}
-			onOpen={handleOpen}
 			TransitionComponent={Transition}
 		>
 			<Alert open={alert.open} onClose={handleClose} severity={alert.severity} sx={alert.style}>

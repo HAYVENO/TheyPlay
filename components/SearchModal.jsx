@@ -151,22 +151,35 @@ const SearchModal = () => {
 					},
 					body: JSON.stringify(data),
 				});
+
+				const { message } = await response.json();
+
 				console.log(response);
 
 				//close loading spinner and modals
 				setOpenBackdrop(false);
 
-				if (!response.ok && response.status === 400) {
-					throw new Error("You already added this song — please choose a different song. ");
-				}
+				console.log(response.message);
 
-				//pop up success alert
-				setAlert({
-					open: true,
-					message: "Congratulations! Song added successfully 🎉 ",
-					severity: "success",
-					style: successStyle,
-				});
+				if (response.status === 400) {
+					throw new Error(message);
+				}
+				if (response.status === 429) {
+					setAlert({
+						open: true,
+						message,
+						severity: "warning",
+						style: warningStyle,
+					});
+				}
+				if (response.ok) {
+					setAlert({
+						open: true,
+						message: "Congratulations! Song added successfully 🎉 ",
+						severity: "success",
+						style: successStyle,
+					});
+				}
 
 				//setCloseBackdrop
 				//setClose - Both - modals
@@ -234,7 +247,7 @@ const SearchModal = () => {
 							<input
 								className="search-field"
 								name="song"
-								placeholder="Search for song…"
+								placeholder="Step 1. Search for song…"
 								maxLength="64"
 								type="search"
 								spellCheck={false}
@@ -344,7 +357,7 @@ const SearchModal = () => {
 								style={{ fontSize: "1rem" }}
 								className="search-field"
 								name="playlist"
-								placeholder="Choose a Play Group"
+								placeholder="Step 2. Choose a Playgroup"
 								maxLength="64"
 								type="search"
 								spellCheck={false}

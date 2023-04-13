@@ -22,6 +22,9 @@ export default async function handler(req, res) {
 				},
 				likes: true,
 			},
+			orderBy: {
+				addedAt: "desc",
+			},
 		});
 
 		res.json(userSongs);

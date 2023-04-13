@@ -1,4 +1,5 @@
 import { prisma } from "../../server/db/client";
+import moment from "moment-timezone";
 
 const addSong = async function handler(req, res) {
 	if (req.method !== "POST") {
@@ -7,6 +8,43 @@ const addSong = async function handler(req, res) {
 
 	const entryData = req.body;
 	console.log(entryData.song.preview_url);
+
+	// check if the user has not passed the daily limit of the Playgroup
+	const { dailyLimit: playgroupDailyLimit } = await prisma.playgroup.findUnique({
+		where: {
+			id: entryData.playlist.id,
+		},
+		select: {
+			dailyLimit: true,
+		},
+	});
+
+	console.log(playgroupDailyLimit);
+
+	const serverTimeZone = "Africa/Lagos"; // replace with your server's time zone
+	const today = moment().tz(serverTimeZone).startOf("day").toDate();
+	const tomorrow = moment(today).add(1, "day").toDate();
+
+	const userSongsAddedToday = await prisma.userSong.count({
+		where: {
+			userId: entryData.user.username,
+			addedAt: {
+				gte: today,
+				lt: tomorrow,
+			},
+		},
+	});
+
+	console.log("🚀 ~ file: add-track.js:39 ~ addSong ~ userSongsAddedToday:", userSongsAddedToday);
+	console.log("🚀 ~ file: add-track.js:41 ~ addSong ~ dailyLimit:", playgroupDailyLimit);
+
+	//check to ensure songs the user added today are less than the P-dailyLimit
+	if (userSongsAddedToday > playgroupDailyLimit) {
+		const message = `You've reached the daily limit of this Playgroup — (${playgroupDailyLimit}). Please try again tomorrow.`;
+		return res.status(429).json({ message });
+	}
+
+	// check if song exists in the database
 	const existingSong = await prisma.song.findUnique({
 		where: { id: entryData.song.id },
 	});
@@ -41,7 +79,7 @@ const addSong = async function handler(req, res) {
 
 		if (existingUserSong)
 			return res.status(400).json({
-				message: "The song you selected is already in the Playgroup. Select another :)",
+				message: "You already added this song — please choose a different song. :)",
 			});
 
 		//create userSong object
@@ -57,7 +95,10 @@ const addSong = async function handler(req, res) {
 		res.json(createUserSong);
 	} catch (err) {
 		console.log(err);
-		res.status(400).json({ message: "You already added this song. Please add a new song" });
+		const statusCode = err.status || 500; // Use the status property of the error object if available, otherwise default to 500
+		res.status(statusCode).json({
+			message: "Oops! Something went wrong 🙁. Please try again!",
+		});
 	}
 };
 

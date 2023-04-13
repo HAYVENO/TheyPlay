@@ -518,9 +518,10 @@ main {
 
 /* SEARCH MODAL */
 .search-modal {
-	background-color: rgba(22, 15, 37, 0.957);
-	border: 1px solid rgb(49, 19, 76);
-	border-radius: 0.5rem;
+	background-color: rgba(17, 11, 29, 0.3);
+	backdrop-filter: blur(10px);
+	border: 1px solid rgba(116, 65, 160, 0.576);
+	border-radius: 3px;
 	width: 130%;
 
 	font-family: monospace;
@@ -566,7 +567,7 @@ main {
 	justify-content: space-between;
 	border: 0.1px solid transparent;
 
-	border-bottom: 0.1px solid rgba(255, 255, 255, 0.03);
+	border-bottom: 0.1px solid rgba(255, 255, 255, 0.071);
 	/* cursor: pointer; */
 	padding: 0.5rem;
 	padding: 0.8rem 1.5rem;
@@ -658,18 +659,15 @@ main {
 	font-family: monospace;
 	font-size: 1rem;
 	padding: 1.2rem 1.2rem;
-
-	background-color: #271a43f4;
-
-	border: 1px solid rgba(222, 216, 231, 0.238);
-	border-radius: 6px;
+	background-color: rgba(17, 11, 29, 0.3);
+	backdrop-filter: blur(10px);
+	border-bottom: 1px solid rgb(49, 19, 76);
 }
 
 .child__search-modal {
-	background-color: rgba(22, 15, 37, 0.957);
+	background-color: rgba(17, 11, 29, 0.3);
+	backdrop-filter: blur(10px);
 	border: 1px solid rgb(49, 19, 76);
-	border-radius: 0.5rem;
-	/* width: 130%; */
 
 	font-family: monospace;
 }
