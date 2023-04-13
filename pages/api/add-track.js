@@ -25,6 +25,7 @@ const addSong = async function handler(req, res) {
 	const today = moment().tz(serverTimeZone).startOf("day").toDate();
 	const tomorrow = moment(today).add(1, "day").toDate();
 
+	// strict check if the user added the song /today/
 	const userSongsAddedToday = await prisma.userSong.count({
 		where: {
 			userId: entryData.user.username,

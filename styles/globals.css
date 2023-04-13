@@ -520,7 +520,8 @@ main {
 .search-modal {
 	background-color: rgba(17, 11, 29, 0.3);
 	backdrop-filter: blur(10px);
-	border: 1px solid rgba(116, 65, 160, 0.576);
+	border: 1px solid rgba(116, 65, 160, 0.751);
+	box-shadow: 1px 2px 64px -12px rgba(0, 0, 0, 0.471);
 	border-radius: 3px;
 	width: 130%;
 
@@ -661,13 +662,14 @@ main {
 	padding: 1.2rem 1.2rem;
 	background-color: rgba(17, 11, 29, 0.3);
 	backdrop-filter: blur(10px);
-	border-bottom: 1px solid rgb(49, 19, 76);
+	border-bottom: 1px solid rgb(19, 22, 76);
 }
 
 .child__search-modal {
 	background-color: rgba(17, 11, 29, 0.3);
 	backdrop-filter: blur(10px);
-	border: 1px solid rgb(49, 19, 76);
+	border: 1px solid rgb(19, 22, 76);
+	box-shadow: 1px 2px 64px -12px rgba(0, 0, 0, 0.471);
 
 	font-family: monospace;
 }
