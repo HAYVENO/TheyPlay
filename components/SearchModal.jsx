@@ -9,11 +9,10 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { openBackDropState, openModalState, playgroupsState, alertState } from "../atoms/modalAtom";
 import { BsSearch, BsFillPlayFill, BsFillPauseFill } from "react-icons/bs";
 import { SlPlaylist } from "react-icons/sl";
-import { useRouter } from "next/router";
 import Image from "next/image";
-import { debounce, filter } from "lodash";
+import debounce from "lodash/debounce";
 import convertToFive from "../lib/converter";
-import SongImagePlaceholder from "../public/placeholder-playlist.jpg";
+// import SongImagePlaceholder from "../public/placeholder-playlist.jpg";
 import {
 	currentSongState,
 	isCurrentTrackState,
@@ -271,7 +270,10 @@ const SearchModal = () => {
 														className="track-image"
 														width={35}
 														height={35}
-														src={track?.album.images[0].url || SongImagePlaceholder}
+														src={
+															track?.album.images[0].url ||
+															"/placeholder-playlist.jpg"
+														}
 														alt="song"
 													/>
 													{/* Check if the current audio track has the same url as the /Current song/  */}

@@ -1,21 +1,13 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-	reactStrictMode: true,
+const withImages = require("next-images");
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+	enabled: process.env.ANALYZE === "true",
+});
 
-	images: {
-		remotePatterns: [
-			{
-				protocol: "https",
-				hostname: "mosaic.scdn.co",
-				port: "",
-			},
-			{
-				protocol: "https",
-				hostname: "i.scdn.co",
-				port: "",
-			},
-		],
-	},
-};
-
-module.exports = nextConfig;
+module.exports = withBundleAnalyzer(
+	withImages({
+		reactStrictMode: true,
+		images: {
+			domains: ["mosaic.scdn.co", "i.scdn.co"],
+		},
+	})
+);

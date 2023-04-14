@@ -1,5 +1,12 @@
 import { prisma } from "../../server/db/client";
-import moment from "moment-timezone";
+
+// dayjs
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 const addSong = async function handler(req, res) {
 	if (req.method !== "POST") {
@@ -22,8 +29,11 @@ const addSong = async function handler(req, res) {
 	console.log(playgroupDailyLimit);
 
 	const serverTimeZone = "Africa/Lagos"; // replace with your server's time zone
-	const today = moment().tz(serverTimeZone).startOf("day").toDate();
-	const tomorrow = moment(today).add(1, "day").toDate();
+	console.log("🚀 ~ file: add-track.js:35 ~ addSong ~ serverTimeZone:", serverTimeZone);
+	const today = dayjs().tz(serverTimeZone).startOf("day").toDate();
+	console.log("🚀 ~ file: add-track.js:37 ~ addSong ~ today:", today);
+	const tomorrow = dayjs(today).add(1, "day").toDate();
+	console.log("🚀 ~ file: add-track.js:39 ~ addSong ~ tomorrow:", tomorrow);
 
 	// strict check if the user added the song /today/
 	const userSongsAddedToday = await prisma.userSong.count({

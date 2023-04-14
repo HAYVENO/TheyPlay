@@ -1,21 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import Head from "next/head";
+import Image from "next/image";
+// import SongImagePlaceholder from "../../public/placeholder-playlist.jpg";
 import styles from "../../styles/playlistPage.module.css";
 import { BsFillPlayCircleFill } from "react-icons/bs";
 import classes from "classnames";
 import Track from "../../components/Track";
 import { useSession } from "next-auth/react";
 import useSpotify from "../../lib/useSpotify";
-import UseAnimations from "react-useanimations";
-import activity from "react-useanimations/lib/activity";
-import SearchModal from "../../components/SearchModal";
 
-import { SkeletonTheme } from "react-loading-skeleton";
-import Player from "../../components/Player";
-import Sidebar from "../../components/Sidebar";
-import Head from "next/head";
-import Image from "next/image";
-import SongImagePlaceholder from "../../public/placeholder-playlist.jpg";
 import { useRecoilState } from "recoil";
 import {
 	currentSongState,
@@ -29,7 +23,6 @@ import {
 } from "../../atoms/trackAtom";
 import getUserSongs from "../../lib/getUserSongs";
 import getPlaygroup from "../../lib/getPlaygroups";
-import Layout from "../../components/Layout";
 
 const PlaylistPage = () => {
 	const router = useRouter();
@@ -135,7 +128,7 @@ const PlaylistPage = () => {
 								src={
 									currentPlaylist?.groupImage
 										? currentPlaylist?.groupImage
-										: SongImagePlaceholder
+										: "/placeholder-playlist.jpg"
 								}
 								priority
 								alt="Playlist image"
@@ -154,17 +147,7 @@ const PlaylistPage = () => {
 					<div className={styles.playlistContent}>
 						<div className={styles.playlistControl}>
 							<button className={classes(styles.playlistBtn, "btn")}>
-								{isPlaying ? (
-									<UseAnimations
-										animation={activity}
-										size={31.5}
-										fillColor="rgb(255 90 255)"
-										strokeColor="rgb(255 90 255)"
-										speed={0.5}
-									/>
-								) : (
-									<BsFillPlayCircleFill color="rgb(255 90 255)" size={58} />
-								)}
+								<BsFillPlayCircleFill color="rgb(255 90 255)" size={58} />
 							</button>
 						</div>
 						<div className={styles.songListContainer}>

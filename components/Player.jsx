@@ -2,9 +2,8 @@ import React from "react";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
-import { debounce } from "lodash";
-import { useRouter } from "next/router";
-import SongImagePlaceholder from "../public/placeholder-playlist.jpg";
+import debounce from "lodash/debounce";
+// import SongImagePlaceholder from "../public/placeholder-playlist.jpg";
 import {
 	BsHeartFill,
 	BsHeart,
@@ -177,7 +176,7 @@ const Player = () => {
 						className="song-image"
 						width={75}
 						height={75}
-						src={liveTrack?.album?.images[0]?.url || SongImagePlaceholder}
+						src={liveTrack?.album?.images[0]?.url || "/placeholder-playlist.jpg"}
 						priority
 						alt="Song image"
 					/>

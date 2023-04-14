@@ -8,10 +8,10 @@ import convertToFive from "../lib/converter";
 import { useRecoilValue } from "recoil";
 import { liveTrackState, currentSongState } from "../atoms/trackAtom";
 
-import moment from "moment/min/moment-with-locales.min.js";
-import "moment/min/locales.min.js";
-
-moment.locale("en"); // Set the locale to English
+//dayjs
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+dayjs.extend(relativeTime);
 
 const Track = ({ track, theyTrack, index, onClick, isCurrentTrack }) => {
 	//global states
@@ -86,7 +86,7 @@ const Track = ({ track, theyTrack, index, onClick, isCurrentTrack }) => {
 						/>
 					</Box>
 				</div>
-				<p style={{ fontStyle: "italic" }}> {moment(theyTrack?.addedAt).fromNow()}</p>
+				<p style={{ fontStyle: "italic" }}> {dayjs(theyTrack?.addedAt).fromNow()}</p>
 			</div>
 		</li>
 	);

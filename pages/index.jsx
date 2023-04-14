@@ -8,27 +8,27 @@ import { SkeletonTheme } from "react-loading-skeleton";
 import { PrismaClient } from "@prisma/client";
 import playgroups from "./api/playgroups";
 
-export default function Home({ playGroupsData }) {
+export default function Home() {
 	return (
 		<>
 			<Head>
 				<title>TheyPlay | Group-controlled Music discovery experience</title>
 			</Head>
 			<main>
-				<Center playGroupsData={playGroupsData} />
+				<Center />
 			</main>
 		</>
 	);
 }
 
-export async function getServerSideProps() {
-	const prisma = new PrismaClient();
-	try {
-		const playGroupsData = await prisma.playgroup.findMany();
-		console.log(playGroupsData);
-		return { props: { playGroupsData } };
-	} catch (err) {
-		console.log(err);
-		return { props: { playGroupsData: [] } };
-	}
-}
+// export async function getServerSideProps() {
+// 	const prisma = new PrismaClient();
+// 	try {
+// 		const playGroupsData = await prisma.playgroup.findMany();
+// 		console.log(playGroupsData);
+// 		return { props: { playGroupsData } };
+// 	} catch (err) {
+// 		console.log(err);
+// 		return { props: { playGroupsData: [] } };
+// 	}
+// }

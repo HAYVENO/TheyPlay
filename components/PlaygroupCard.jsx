@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import SongImagePlaceholder from "../public/placeholder-playlist.jpg";
+// import SongImagePlaceholder from "../public/placeholder-playlist.jpg";
 
 const PlaygroupCard = ({ playlist: playgroup }) => {
 	return (
@@ -15,7 +15,7 @@ const PlaygroupCard = ({ playlist: playgroup }) => {
 					<Image
 						width={130}
 						height={130}
-						src={playgroup.groupImage ? playgroup.groupImage : SongImagePlaceholder}
+						src={playgroup.groupImage ? playgroup.groupImage : "/placeholder-playlist.jpg"}
 						className="playlist__image"
 						alt={playgroup.name}
 						priority
