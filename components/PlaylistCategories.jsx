@@ -1,8 +1,7 @@
 import React from "react";
 import PlaylistCard from "./PlaylistCard";
-import TrackCard from "./trackCard";
+import TrackCard from "./TrackCard";
 import PlaylistCardSkeleton from "./skeletons/PlaylistCardSkeleton";
-import { FaCommentsDollar } from "react-icons/fa";
 import PlaygroupCard from "./PlaygroupCard";
 
 const PlaylistCategories = ({ category, title, type, loading }) => {
