@@ -1,4 +1,3 @@
-import Head from "next/head";
 import Sidebar from "./Sidebar";
 import Player from "./Player";
 import { SkeletonTheme } from "react-loading-skeleton";

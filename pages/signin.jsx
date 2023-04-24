@@ -1,11 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "../styles/signIn.module.css";
 import logo from "../public/logo-test.svg";
 import { getProviders, signIn } from "next-auth/react";
 
-const SignIn = ({ providers }) => {
-	console.log("🚀 ~ file: signin.jsx:31 ~ getServerSideProps ~ providers", providers);
+export async function getServerSideProps() {
+	const providers = await getProviders();
+
+	console.log(providers);
+
+	return {
+		props: {
+			providers,
+		},
+	};
+}
+
+const SignIn = () => {
+	// console.log("🚀 ~ file: signin.jsx:31 ~ getServerSideProps ~ providers", providers);
+
+	const [providers, setProviders] = useState([]);
+
+	useEffect(() => {
+		async function getTheProviders() {
+			const providersList = await getProviders();
+			console.log(providersList);
+			setProviders(providersList);
+		}
+
+		getTheProviders();
+	}, []);
 
 	return (
 		<div className={styles.container}>
@@ -27,13 +51,3 @@ const SignIn = ({ providers }) => {
 };
 
 export default SignIn;
-
-export async function getServerSideProps() {
-	const providers = await getProviders();
-
-	return {
-		props: {
-			providers,
-		},
-	};
-}

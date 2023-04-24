@@ -8,7 +8,7 @@ import Layout from "../components/Layout";
 // If loading a variable font, no need to specify the font weight
 const inter = Inter({ subsets: ["latin"] });
 
-export default function MyApp({ Component, pageProps: { session, ...pageProps } }) {
+const MyApp = ({ Component, pageProps: { session, ...pageProps } }) => {
 	const router = useRouter();
 
 	// exclude app-wide layout for the routes contained in the array
@@ -26,4 +26,6 @@ export default function MyApp({ Component, pageProps: { session, ...pageProps } 
 			</SessionProvider>
 		</RecoilRoot>
 	);
-}
+};
+
+export default MyApp;
