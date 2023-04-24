@@ -12,7 +12,7 @@ export default function Home() {
 	return (
 		<>
 			<Head>
-				<title>TheyPlay | Group-controlled Music discovery experience</title>
+				<title>TheyPlay | Group-controlled Music discovery experienceX</title>
 			</Head>
 			<main>
 				<Center />
