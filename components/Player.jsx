@@ -44,7 +44,7 @@ const Player = () => {
 	const [alert, setAlert] = useRecoilState(alertState);
 	const [isLiked, setIsLiked] = useRecoilState(isLikeState);
 
-	//local state
+	//local states
 
 	const [isLoadingLike, setIsLoadingLike] = useState(false);
 
