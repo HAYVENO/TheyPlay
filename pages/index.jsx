@@ -21,14 +21,14 @@ export default function Home() {
 	);
 }
 
-export async function getServerSideProps() {
-	const prisma = new PrismaClient();
-	try {
-		const playGroupsData = await prisma.playgroup.findMany();
-		console.log(playGroupsData);
-		return { props: { playGroupsData } };
-	} catch (err) {
-		console.log(err);
-		return { props: { playGroupsData: [] } };
-	}
-}
+// export async function getServerSideProps() {
+// 	const prisma = new PrismaClient();
+// 	try {
+// 		const playGroupsData = await prisma.playgroup.findMany();
+// 		console.log(playGroupsData);
+// 		return { props: { playGroupsData } };
+// 	} catch (err) {
+// 		console.log(err);
+// 		return { props: { playGroupsData: [] } };
+// 	}
+// }
