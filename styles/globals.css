@@ -431,7 +431,7 @@ main {
 	margin: 0;
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-	grid-gap: 2.5rem 3rem;
+	grid-gap: 2rem;
 	padding: 0rem 2.5rem;
 	padding-bottom: 1rem;
 	width: auto;
