@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Rating from "@mui/material/Rating";
 import Modal from "@mui/material/Modal";
-import useSpotify from "../lib/useSpotify";
+import useSpotify from "../util/useSpotify";
 import { useSession } from "next-auth/react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { openBackDropState, openModalState, playgroupsState, alertState } from "../atoms/modalAtom";
@@ -11,7 +11,7 @@ import { BsSearch, BsFillPlayFill, BsFillPauseFill } from "react-icons/bs";
 import { SlPlaylist } from "react-icons/sl";
 import Image from "next/image";
 import debounce from "lodash/debounce";
-import convertToFive from "../lib/converter";
+import convertToFive from "../util/converter";
 // import SongImagePlaceholder from "../public/placeholder-playlist.jpg";
 import {
 	currentSongState,
@@ -21,7 +21,7 @@ import {
 	volumeState,
 } from "../atoms/trackAtom";
 
-import alertStyles from "../lib/alertStyles";
+import alertStyles from "../util/alertStyles";
 const { successStyle, errorStyle, warningStyle, infoStyle } = alertStyles;
 
 const style = {

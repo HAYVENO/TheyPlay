@@ -4,7 +4,7 @@ import styles from "../styles/playlistPage.module.css";
 // import reformatTime from "../lib/reformatTime";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
-import convertToFive from "../lib/converter";
+import convertToFive from "../util/converter";
 import { useRecoilValue } from "recoil";
 import { liveTrackState, currentSongState } from "../atoms/trackAtom";
 

@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 import spotifyProvider from "next-auth/providers/spotify";
-import spotifyApi, { LOGIN_URL } from "../../../lib/spotifyAccess";
+import spotifyApi, { LOGIN_URL } from "../../../util/spotifyAccess";
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 

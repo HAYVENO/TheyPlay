@@ -8,7 +8,7 @@ import { BsFillPlayCircleFill } from "react-icons/bs";
 import classes from "classnames";
 import Track from "../../components/Track";
 import { useSession } from "next-auth/react";
-import useSpotify from "../../lib/useSpotify";
+import useSpotify from "../../util/useSpotify";
 
 import { useRecoilState } from "recoil";
 import {
@@ -21,8 +21,10 @@ import {
 	theyTracksState,
 	isLikeState,
 } from "../../atoms/trackAtom";
-import getUserSongs from "../../lib/getUserSongs";
-import getPlaygroup from "../../lib/getPlaygroups";
+import getUserSongs from "../../util/getUserSongs";
+import getPlaygroup from "../../util/getPlaygroups";
+import getDominantColor from "../../util/getDominantColor";
+import rgbToHue from "../../util/rgbToHue";
 
 const PlaylistPage = () => {
 	const router = useRouter();
@@ -42,6 +44,31 @@ const PlaylistPage = () => {
 	const spotifyApi = useSpotify();
 	const { data: session, status } = useSession();
 	const [currentPlaylist, setCurrentPlaylist] = useState("");
+	const [themeColor, setThemeColor] = useState(null);
+
+	useEffect(() => {
+		//get theme color using Playgroup image's most dominant color
+		const imageUrl = currentPlaylist?.groupImage
+			? currentPlaylist.groupImage
+			: "/placeholder-playlist.jpg";
+
+		// async getDominantColor logic
+		getDominantColor(imageUrl)
+			.then((dominantColor) => {
+				console.log(imageUrl);
+				console.log(dominantColor);
+				return dominantColor;
+			})
+			.then((dominantColor) => rgbToHue(dominantColor))
+			.then((hue) => {
+				console.log(hue);
+				setThemeColor(hue);
+			})
+			.catch((error) => {
+				console.error(error);
+			});
+		//
+	}, [currentPlaylist]);
 
 	useEffect(() => {
 		if (spotifyApi.getAccessToken()) {
@@ -115,11 +142,17 @@ const PlaylistPage = () => {
 			<main>
 				<div
 					style={{
+						"--playlist-hue": themeColor,
 						animation: isPlaying ? "hue-animation 20s infinite" : "none",
 					}}
 					className={styles.playlistContainer}
 				>
-					<div className={styles.playlistHead}>
+					<div
+						className={styles.playlistHead}
+						style={{
+							"--playlist-hue": themeColor,
+						}}
+					>
 						<div className={styles.headContentContainer}>
 							<Image
 								className={styles.playlistImage}
@@ -147,7 +180,10 @@ const PlaylistPage = () => {
 					<div className={styles.playlistContent}>
 						<div className={styles.playlistControl}>
 							<button className={classes(styles.playlistBtn, "btn")}>
-								<BsFillPlayCircleFill color="rgb(255 90 255)" size={58} />
+								<BsFillPlayCircleFill
+									color={`hsl(${themeColor}, 100%, 67.65%)`}
+									size={58}
+								/>
 							</button>
 						</div>
 						<div className={styles.songListContainer}>

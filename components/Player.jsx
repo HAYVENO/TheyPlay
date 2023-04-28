@@ -28,7 +28,7 @@ import {
 	isLikeState,
 } from "../atoms/trackAtom";
 
-import alertStyles from "../lib/alertStyles";
+import alertStyles from "../util/alertStyles";
 
 const Player = () => {
 	const { data: session } = useSession();

@@ -444,9 +444,7 @@ main {
 	border-radius: 0.3rem;
 	padding-top: 15px;
 	overflow: hidden;
-	background-color: var(--color-primary);
-
-	border: 0.1px solid rgb(111, 111, 111);
+	background-color: hsla(316, 31%, 19%, 0.504);
 }
 
 .playlist__title {

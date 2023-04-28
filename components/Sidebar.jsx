@@ -6,7 +6,7 @@ import { signOut, useSession } from "next-auth/react";
 import { HiHome, HiSearch } from "react-icons/hi";
 import { BiLibrary, BiLogOutCircle } from "react-icons/bi";
 import { MdAdd } from "react-icons/md";
-import useSpotify from "../lib/useSpotify";
+import useSpotify from "../util/useSpotify";
 import { useRouter } from "next/router";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { isPlayingState } from "../atoms/trackAtom";

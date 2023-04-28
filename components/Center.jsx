@@ -1,6 +1,6 @@
 import React from "react";
 import { useSession } from "next-auth/react";
-import useSpotify from "../lib/useSpotify";
+import useSpotify from "../util/useSpotify";
 import { useEffect, useState } from "react";
 import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from "react-icons/bs";
 import { FaUserCircle } from "react-icons/fa";
