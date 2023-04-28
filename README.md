@@ -1,5 +1,14 @@
 # TheyPlay
 
+![TheyPlay Music App Teaser](https://res.cloudinary.com/detye5zx5/image/upload/v1682695340/TheyPlay-teaser-home_sc9wtl.png)
+[![Website qeep.vercel.app](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](http://qeep.vercel.app/)
+[![GitHub license](https://badgen.net/github/license/Naereen/Strapdown.js)](https://github.com/HAYVENO/theyPlay/blob/main/LICENSE)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/hayveno/theyPlay/graphs/commit-activity)
+[![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://GitHub.com/hayveno/theyPlay/issues/new)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+[![GitHub issues](https://img.shields.io/github/issues/Naereen/StrapDown.js.svg)](https://github.com/hayveno/theyPlay/issues/)
+[![Latest release](https://badgen.net/github/release/Naereen/Strapdown.js)](https://github.com/hayveno/theyPlay/releases)
+
 TheyPlay is a community-driven and group-controlled music discovery app designed to help you and your groups - be it family, friends, or colleagues - discover and enjoy music together.
 
 Please note that TheyPlay is still in alpha, which means that it's a work in progress and some features may not be fully developed yet. However, we're (myself and the contributors) constantly working to improve the app and would love your feedback to help shape its development.
