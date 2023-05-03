@@ -14,7 +14,7 @@ const addSong = async function handler(req, res) {
 	}
 
 	const entryData = req.body;
-	console.log(entryData.song.preview_url);
+	console.log("🚀 ~ file: add-track.js:17 ~ addSong ~ entryData:", entryData);
 
 	// check if the user has not passed the daily limit of the Playgroup
 	const { dailyLimit: playgroupDailyLimit } = await prisma.playgroup.findUnique({
@@ -28,17 +28,16 @@ const addSong = async function handler(req, res) {
 
 	console.log(playgroupDailyLimit);
 
-	const serverTimeZone = "Africa/Lagos"; // replace with your server's time zone
-	console.log("🚀 ~ file: add-track.js:35 ~ addSong ~ serverTimeZone:", serverTimeZone);
+	const serverTimeZone = "Africa/Lagos"; // using server's time
 	const today = dayjs().tz(serverTimeZone).startOf("day").toDate();
-	console.log("🚀 ~ file: add-track.js:37 ~ addSong ~ today:", today);
 	const tomorrow = dayjs(today).add(1, "day").toDate();
-	console.log("🚀 ~ file: add-track.js:39 ~ addSong ~ tomorrow:", tomorrow);
 
 	// strict check if the user added the song /today/
-	const userSongsAddedToday = await prisma.userSong.count({
+	// ?? bug was here
+	const userSongsAddedToPlaygroupToday = await prisma.userSong.count({
 		where: {
 			userId: entryData.user.username,
+			playgroupId: entryData.playlist.id,
 			addedAt: {
 				gte: today,
 				lt: tomorrow,
@@ -46,11 +45,14 @@ const addSong = async function handler(req, res) {
 		},
 	});
 
-	console.log("🚀 ~ file: add-track.js:39 ~ addSong ~ userSongsAddedToday:", userSongsAddedToday);
+	console.log(
+		"🚀 ~ file: add-track.js:39 ~ addSong ~ userSongsAddedToday:",
+		userSongsAddedToPlaygroupToday
+	);
 	console.log("🚀 ~ file: add-track.js:41 ~ addSong ~ dailyLimit:", playgroupDailyLimit);
 
 	//check to ensure songs the user added today are less than the P-dailyLimit
-	if (userSongsAddedToday > playgroupDailyLimit) {
+	if (userSongsAddedToPlaygroupToday >= playgroupDailyLimit) {
 		const message = `You've reached the daily limit of this Playgroup — (${playgroupDailyLimit}). Please try again tomorrow.`;
 		return res.status(429).json({ message });
 	}
