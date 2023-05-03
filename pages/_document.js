@@ -1,4 +1,5 @@
 import { Html, Head, Main, NextScript } from "next/document";
+import Script from "next/script";
 
 export default function Document() {
 	return (
@@ -35,6 +36,23 @@ export default function Document() {
 					content="https://res.cloudinary.com/detye5zx5/image/upload/v1682695340/TheyPlay-teaser-home_sc9wtl.png"
 				/>
 				<link rel="icon" href="/favicon.ico" />
+
+				{/* GOOGLE ANALYTICS */}
+				<Script
+					strategy="lazyOnload"
+					src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+				/>
+
+				<Script id="GA-script" strategy="lazyOnload">
+					{`
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+		  gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
+		  page_path: window.location.pathname,
+		  });
+	 `}
+				</Script>
 			</Head>
 			<body>
 				<Main />
