@@ -207,6 +207,7 @@ main {
 	border-radius: 0.25rem;
 	gap: 0.35rem;
 	height: 2.5rem;
+	font-weight: 500;
 	/* font-size: 1rem; */
 }
 
@@ -517,8 +518,8 @@ main {
 	text-overflow: ellipsis;
 	overflow: hidden;
 	margin: 0;
-	/* width: 100%; */
-	/* overflow: hidden; */
+	font-size: 1rem;
+	font-weight: 600;
 }
 
 .playlist__image {
