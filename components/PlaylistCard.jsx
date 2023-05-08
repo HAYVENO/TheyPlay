@@ -9,9 +9,10 @@ const PlaylistCard = ({ playlist }) => {
 			<Link href={`/playlists/${playlist.id}`} className="category__playlist-link">
 				<div className="playlist__card">
 					<h3 className="playlist__title">{playlist.name}</h3>
+
 					<Image
-						width={130}
-						height={130}
+						width={120}
+						height={120}
 						src={playlist.images[0] ? playlist.images[0].url : "/placeholder-playlist.jpg"}
 						className="playlist__image"
 						alt={playlist.name}

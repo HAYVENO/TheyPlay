@@ -1,5 +1,5 @@
 {
-	"cSpell.words": ["Bellion", "clickaway", "MACHALA", "Neue", "omahlay", "Wizkid"],
+	"cSpell.words": ["Bellion", "clickaway", "Frontenders", "MACHALA", "Neue", "omahlay", "Wizkid"],
 	"cSpell.ignoreWords": [
 		"'clex9nyai00017isaa9lj13p8'",
 		"317stts2iim4xivtp4slychksqqa",
@@ -7,5 +7,6 @@
 		"isaa",
 		"nyai",
 		"useanimations"
-	]
+	],
+	"dotenv.enableAutocloaking": false
 }

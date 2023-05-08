@@ -12,7 +12,7 @@ const inter = Inter({ subsets: ["latin"] });
 const Layout = ({ children }) => {
 	return (
 		<>
-			<div className={clx("home-container", inter.className)}>
+			<div className={clx("home-container dark-theme", inter.className)}>
 				<SkeletonTheme baseColor="#202020" highlightColor="#444">
 					<Sidebar />
 					<main className="center">{children}</main>
