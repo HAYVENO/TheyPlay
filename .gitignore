@@ -27,6 +27,7 @@ logs
 Thumbs.db
 
 # Editor files
+.vscode
 .vscode/
 *.swp
 *.swo
@@ -59,3 +60,6 @@ Thumbs.db
 /storybook-static/
 /storybook-build/
 /.out-tsc/
+
+# Ignore settings files
+settings.json

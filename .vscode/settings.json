@@ -7,10 +7,5 @@
 		"isaa",
 		"nyai",
 		"useanimations"
-	],
-<<<<<<< HEAD
-	"dotenv.enableAutocloaking": false
-=======
-	"dotenv.enableAutocloaking": true
->>>>>>> origin/main
+	]
 }
