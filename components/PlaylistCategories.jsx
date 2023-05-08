@@ -14,7 +14,7 @@ const PlaylistCategories = ({ category, title, type, loading }) => {
 			<ul className="category__playlists">
 				{/* PLAYLIST CARDS  */}
 				{loading ? (
-					<PlaylistCardSkeleton cards={3} />
+					<PlaylistCardSkeleton cards={5} />
 				) : (
 					category.map((item) => {
 						return (

@@ -1,3 +1,27 @@
+@import "@radix-ui/colors/gray.css";
+@import "@radix-ui/colors/grayDark.css";
+@import "@radix-ui/colors/grayDarkA.css";
+
+@import "@radix-ui/colors/purple.css";
+@import "@radix-ui/colors/purpleDark.css";
+@import "@radix-ui/colors/purpleDarkA.css";
+
+@import "@radix-ui/colors/mauve.css";
+@import "@radix-ui/colors/mauveDark.css";
+@import "@radix-ui/colors/mauveDarkA.css";
+
+@import "@radix-ui/colors/sand.css";
+@import "@radix-ui/colors/sandDark.css";
+@import "@radix-ui/colors/sandDarkA.css";
+
+@import "@radix-ui/colors/violet.css";
+@import "@radix-ui/colors/violetDark.css";
+@import "@radix-ui/colors/violetDarkA.css";
+
+@import "@radix-ui/colors/indigo.css";
+@import "@radix-ui/colors/indigoDark.css";
+@import "@radix-ui/colors/indigoDarkA.css";
+
 :root {
 	/* --black-lightness: 15%;
 	--dark-lightness: 44%;
@@ -15,14 +39,14 @@
 	--border-radius-3: 8px;
 
 	/* they play - COLORS  */
-	--color-text: rgba(255, 255, 255, 0.7);
+	--color-text: var(--mauve1);
 
 	--color-white: rgba(255, 255, 255, 1);
 
 	--color-dark: rgba(255, 255, 255, 0.3);
 	--color-dark-2: rgba(255, 255, 255, 0.15);
 	--color-dark-3: rgba(0, 0, 0, 0.15);
-	--color-primary: hsl(280, 94%, 37%);
+	--color-primary: hsl(288, 94%, 37%);
 
 	/* GENERAL TRANSITION VARIABLE */
 	--transition: all 300ms ease;
@@ -31,6 +55,7 @@
 	--border-line: 0.1px solid var(--color-dark-2);
 
 	/* primary-hue  */
+	--background: rgb(14, 14, 30);
 }
 
 /* @keyframes increase {
@@ -91,13 +116,15 @@ main {
 .sidebar {
 	font-family: inherit;
 	grid-column: 1/2;
-	background-color: black;
+	/* background-color: black; */
+	background-color: var(--violetA2);
+	background-color: var(--background);
 	padding-top: 1.5rem;
 	overflow: auto;
-	border-right: 0.1px solid var(--color-dark);
+	border-right: 0.1px solid var(--mauve9);
 	/* min-width: fit-content;
 	max-width: 14rem; */
-	background-image: linear-gradient(140deg, rgba(62, 3, 87, 0.708) 0, rgba(22, 0, 61, 0.405) 50vh);
+	/* background-image: linear-gradient(175deg, rgba(62, 3, 87, 0.708) 0, rgb(22 0 61 / 0%) 14vh); */
 }
 
 .sidebar::-webkit-scrollbar {
@@ -113,13 +140,13 @@ main {
 	grid-column: 1/-1;
 	grid-row: 2/ -1;
 	color: var(--color-text);
-	background-color: rgba(31, 31, 31, 0.402);
+	background-color: var(--background);
 	height: 4.5rem;
 	display: flex;
 	justify-content: space-between;
 	align-items: stretch;
 	padding: 0.4rem;
-	border-top: var(--border-line);
+	border-top: 0.1px solid var(--mauve8);
 }
 
 .center__heading {
@@ -142,7 +169,7 @@ main {
 /* SIDEBAR COMPONENTS  */
 
 .logo-box {
-	border-bottom: solid 0.1px hsla(280, 99%, 36%, 0.271);
+	/* border-bottom: solid 0.1px hsla(280, 99%, 36%, 0.271); */
 	flex: 1;
 	margin-bottom: 1.2rem;
 	padding: 0 1rem;
@@ -157,15 +184,30 @@ main {
 	padding: 0 1.5rem;
 }
 
+.sidebar-nav li {
+	font-size: 0.8rem;
+	background-color: none;
+	transition: background-color 0.3s ease-in-out;
+}
+
+.sidebar-nav li:hover {
+	background-color: var(--violet2);
+	border-radius: 4px;
+}
+
+.sidebar-nav svg {
+	height: 1.1rem;
+}
+
 .sidebar a {
 	text-decoration: none;
 	color: var(--color-text);
 	display: flex;
 	align-items: center;
 	border-radius: 0.25rem;
-
-	gap: 0.7rem;
+	gap: 0.35rem;
 	height: 2.5rem;
+	/* font-size: 1rem; */
 }
 
 .sidebar a:hover {
@@ -174,12 +216,12 @@ main {
 
 .line {
 	margin: 1.2rem 1.5rem;
-	border: 0.2px solid var(--color-dark);
+	border: 0.1px solid var(--mauve8);
 }
 
 .line-2 {
 	margin: 1.2rem 1.5rem;
-	border: 0.2px solid rgba(39, 39, 39, 0.441);
+	border: 0.1px solid var(--mauve3);
 }
 
 .sidebar__playlists {
@@ -357,7 +399,7 @@ main {
 
 /* CENTER  */
 .center {
-	background-color: rgb(0, 0, 0);
+	background-color: var(--background);
 	position: relative;
 	overflow: scroll;
 	color: var(--color-text);
@@ -382,18 +424,18 @@ main {
 }
 
 .center__heading {
-	position: sticky;
+	position: -webkit-sticky;
+	position: fixed;
 	top: 0;
 	z-index: 999;
-
 	display: flex;
 	padding: 1rem 2rem;
 	justify-content: space-between;
 	align-items: center;
-	line-height: 0;
-	border-bottom: var(--border-line);
-	background-color: rgb(30, 30, 30);
+	border-bottom: 0.1px solid var(--mauve9);
 	max-height: 64px;
+	width: -webkit-fill-available;
+	backdrop-filter: blur(30px);
 }
 
 .btn__container {
@@ -422,6 +464,10 @@ main {
 	border-radius: 50px;
 }
 
+.category:nth-of-type(1) {
+	margin-top: 80px;
+}
+
 .category__heading {
 	padding: 1.5rem 2rem;
 }
@@ -430,7 +476,7 @@ main {
 	min-height: 205px;
 	margin: 0;
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(186px, 200px));
 	grid-gap: 2rem;
 	padding: 0rem 2.5rem;
 	padding-bottom: 1rem;
@@ -439,12 +485,28 @@ main {
 
 .playlist__card {
 	position: relative;
-	/* width: 90%; */
 	height: 190px;
 	border-radius: 0.3rem;
 	padding-top: 15px;
 	overflow: hidden;
-	background-color: hsla(316, 31%, 19%, 0.504);
+	border: 1.2px solid var(--mauve3);
+	background: linear-gradient(90deg, rgba(43, 39, 90, 0.2) 2.81%, rgba(43, 39, 90, 0) 50%),
+		rgba(62, 72, 91, 0.2);
+
+	backdrop-filter: blur(10px);
+
+	/* slight rotation */
+	transform: rotate(-3deg);
+	transition: background 0.2s ease-out;
+}
+
+.playlist__card:hover {
+	background: linear-gradient(90deg, rgba(43, 39, 90, 0.6) 2.81%, rgba(43, 39, 90, 0) 50%),
+		rgba(62, 72, 91, 0.4);
+}
+
+.playlist__card:hover .playlist__image {
+	transform: scale(1.3);
 }
 
 .playlist__title {
@@ -460,6 +522,9 @@ main {
 }
 
 .playlist__image {
+	width: 120px;
+	height: 120px;
+	overflow: hidden;
 	position: absolute;
 	bottom: 0;
 	right: 0;
@@ -468,8 +533,16 @@ main {
 	opacity: 0.9;
 
 	background-color: rgba(65, 59, 59, 0.271);
-	border: 0.1px solid rgb(111, 111, 111);
+	/* border: 0.1px solid rgb(111, 111, 111); */
 	border-radius: 4px;
+	transition: all 0.2s ease-out;
+}
+
+.playlist__card:hover .playlist__image {
+	width: 120px;
+	height: 120px;
+	transform: rotate(345deg) translate(-5%, -5%) scale(1.05);
+	overflow: hidden;
 }
 
 /* skeleton  styling */
@@ -483,10 +556,11 @@ main {
 	flex-direction: column;
 	width: 100%;
 	padding: 0.5rem;
-	border: 0.1px solid rgba(128, 128, 128, 0.473);
+	border: 0.1px solid var(--mauve3);
 	border-radius: 0.7rem;
 	background-color: #3d3d3d35;
 	height: 190px;
+	transform: rotate(-3deg);
 }
 
 .title-skeleton {
@@ -520,7 +594,7 @@ main {
 .search-modal {
 	background-color: rgba(17, 11, 29, 0.3);
 	backdrop-filter: blur(10px);
-	border: 1px solid rgba(116, 65, 160, 0.751);
+	border: 1px solid var(--mauve8);
 	box-shadow: 1px 2px 64px -12px rgba(0, 0, 0, 0.471);
 	border-radius: 3px;
 	width: 130%;
@@ -668,7 +742,8 @@ main {
 .child__search-modal {
 	background-color: rgba(17, 11, 29, 0.3);
 	backdrop-filter: blur(10px);
-	border: 1px solid rgb(19, 22, 76);
+	border: 1px solid var(--mauve1);
+	border-radius: 4px;
 	box-shadow: 1px 2px 64px -12px rgba(0, 0, 0, 0.471);
 
 	font-family: monospace;

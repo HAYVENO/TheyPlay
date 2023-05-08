@@ -21,7 +21,8 @@
 		"**/*.tsx",
 		"pages/api/add-track.js",
 		"client.ts",
-		"server/db/client.js"
+		"server/db/client.js",
+		"components/emails/WeeklyMVPEmail.jsx"
 	],
 	"exclude": ["node_modules"]
 }

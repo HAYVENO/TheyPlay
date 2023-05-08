@@ -13,8 +13,8 @@ const PlaygroupCard = ({ playlist: playgroup }) => {
 				<div className="playlist__card">
 					<h3 className="playlist__title">{playgroup.name}</h3>
 					<Image
-						width={130}
-						height={130}
+						width={120}
+						height={120}
 						src={playgroup.groupImage ? playgroup.groupImage : "/placeholder-playlist.jpg"}
 						className="playlist__image"
 						alt={playgroup.name}

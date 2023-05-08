@@ -12,8 +12,8 @@ const TrackCard = ({ playlist: track }) => {
 					<h3 className="playlist__title">{track.name}</h3>
 					<Image
 						className="playlist__image"
-						width={150}
-						height={150}
+						width={120}
+						height={120}
 						alt={track.name}
 						src={track?.album?.images[0]?.url}
 						priority
