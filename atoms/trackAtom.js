@@ -27,7 +27,7 @@ export const liveTrackState = atom({
 
 export const volumeState = atom({
 	key: "volumeState",
-	default: 0,
+	default: 0.25,
 });
 
 export const theyTracksState = atom({

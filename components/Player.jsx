@@ -250,7 +250,7 @@ const Player = () => {
 						<Slider
 							size="small"
 							aria-label="track volume"
-							defaultValue={volume * 100}
+							defaultValue={volume * 80}
 							valueLabelDisplay="auto"
 							min={0}
 							max={100}
@@ -258,15 +258,6 @@ const Player = () => {
 							color="secondary"
 						/>
 					</Box>
-
-					{/* <input
-						type="range"
-						min={0}
-						max={100}
-						id="volumeBar"
-						onChange={(e) => debouncedShowVolume(e.target.value)}
-						name="volume"
-					/> */}
 
 					<button style={{ opacity: volume === 0 ? 0 : 100 }} className="btn">
 						{<BsVolumeUpFill size={24} />}
