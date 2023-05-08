@@ -7,5 +7,6 @@
 		"isaa",
 		"nyai",
 		"useanimations"
-	]
+	],
+	"dotenv.enableAutocloaking": true
 }
