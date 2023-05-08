@@ -45,6 +45,7 @@ const PlaylistPage = () => {
 	const { data: session, status } = useSession();
 	const [currentPlaylist, setCurrentPlaylist] = useState("");
 	const [themeColor, setThemeColor] = useState(null);
+	const [contributors, setContributors] = useState("");
 
 	useEffect(() => {
 		//get theme color using Playgroup image's most dominant color
@@ -92,6 +93,7 @@ const PlaylistPage = () => {
 							setTracks(data?.body?.tracks);
 						})
 					);
+				setContributors([...new Set(theyTracks.map((track) => track.userId))]);
 			} catch (err) {
 				console.log(err);
 			}
@@ -132,7 +134,7 @@ const PlaylistPage = () => {
 
 	console.log("🚀 ~ file: [playlistId].jsx:23 ~ PlaylistPage ~ playlist", currentPlaylist);
 	console.log("🚀 ~ file: [playlistId].jsx:23 ~ PlaylistPage ~ tracks", tracks);
-	console.log("🚀 ~ file: [playlistId].jsx:23 ~ PlaylistPage ~ theyTracks", theyTracks);
+	console.log("🚀 ~ file: [playlistId].jsx:23 ~ PlaylistPage ~ contributors", contributors);
 
 	return (
 		<>
@@ -168,7 +170,28 @@ const PlaylistPage = () => {
 							/>
 
 							<div className={styles.playlistDetails}>
-								<p className={styles.playlistCategory}>By HAYVEN</p>
+								{theyTracks.find((track) => track.playgroupId === playlistId)?.addedBy
+									?.name && (
+									<>
+										<p className={styles.playlistContributors}>
+											<span className={styles.playlistContributorsNames}>
+												{
+													theyTracks.find((track) => track.playgroupId === playlistId)
+														?.addedBy?.name
+												}
+											</span>{" "}
+											and{" "}
+											{[
+												...new Set(
+													theyTracks
+														.filter((track) => track.playgroupId === playlistId)
+														.map((track) => track.userId)
+												),
+											].length - 1}{" "}
+											other contributors.
+										</p>
+									</>
+								)}
 								<h1 className={styles.playlistName}>{currentPlaylist?.name}</h1>
 								<p className={styles.playlistDescription}>{`${
 									tracks.length || " "

@@ -99,7 +99,7 @@ const Sidebar = () => {
 					<li key={playlist.id} className="sidebar__playlist">
 						<Link
 							className={playlist.id === playlistId ? "sidebar__playlist-active" : ""}
-							style={{ color: playlist.id === playlistId ? "white" : "" }}
+							style={{ fontWeight: playlist.id === playlistId ? "700" : "400" }}
 							href={`/playlists/${playlist.id}`}
 						>
 							{playlist.name}

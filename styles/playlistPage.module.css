@@ -49,6 +49,17 @@
 	font-weight: bold;
 }
 
+.playlistContributors {
+	font-size: 0.7rem;
+	font-weight: 500;
+}
+
+.playlistContributorsNames {
+	font-size: 0.8rem;
+	font-weight: 600;
+	text-decoration: underline;
+}
+
 .playlistName {
 	font-size: 4rem;
 	padding-bottom: 1rem;
