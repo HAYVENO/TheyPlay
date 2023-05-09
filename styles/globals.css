@@ -72,7 +72,7 @@
 
 html {
 	box-sizing: border-box;
-	background-color: black;
+	background-color: var(--background);
 }
 
 body {
@@ -119,7 +119,7 @@ main {
 	/* background-color: black; */
 	background-color: var(--violetA2);
 	background-color: var(--background);
-	padding-top: 1.5rem;
+	padding-top: 1.2rem;
 	overflow: auto;
 	border-right: 0.1px solid var(--mauve9);
 	/* min-width: fit-content;
@@ -518,6 +518,7 @@ main {
 		rgba(64, 75, 95, 0.2);
 
 	backdrop-filter: blur(10px);
+	box-shadow: 0px 2px 6px rgb(3 2 34);
 
 	/* slight rotation */
 	transform: rotate(-3deg);
@@ -527,10 +528,6 @@ main {
 .playlist__card:hover {
 	background: linear-gradient(90deg, rgba(43, 39, 90, 0.6) 2.81%, rgba(43, 39, 90, 0) 50%),
 		rgba(62, 72, 91, 0.4);
-}
-
-.playlist__card:hover .playlist__image {
-	transform: scale(1.3);
 }
 
 .playlist__title {
@@ -565,7 +562,7 @@ main {
 .playlist__card:hover .playlist__image {
 	width: 120px;
 	height: 120px;
-	transform: rotate(345deg) translate(-5%, -5%) scale(1.05);
+	transform: rotate(345deg) translate(-5%, -5%) scale(1.2);
 	overflow: hidden;
 }
 
