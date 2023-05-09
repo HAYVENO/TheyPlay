@@ -215,7 +215,7 @@ const PlaylistPage = () => {
 									<Skeleton
 										className="my__custom-skeleton"
 										animation="wave"
-										sx={{ bgcolor: "#9797978c" }}
+										sx={{ bgcolor: "#9696968c" }}
 										width={300}
 										height={20}
 									/>
