@@ -173,7 +173,7 @@ const PlaylistPage = () => {
 
 							<div className={styles.playlistDetails}>
 								{theyTracks.find((track) => track.playgroupId === playlistId)?.addedBy
-									?.namex ? (
+									?.name ? (
 									<PlaylistContributors
 										theyTracks={theyTracks}
 										playlistId={playlistId}
