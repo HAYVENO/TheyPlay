@@ -158,18 +158,20 @@ const PlaylistPage = () => {
 						}}
 					>
 						<div className={styles.headContentContainer}>
-							<Image
-								className={styles.playlistImage}
-								width={200}
-								height={200}
-								src={
-									currentPlaylist?.groupImage
-										? currentPlaylist?.groupImage
-										: "/placeholder-playlist.jpg"
-								}
-								priority
-								alt="Playlist image"
-							/>
+							<div className={styles.playlistImageContainer}>
+								{currentPlaylist?.groupImage ? (
+									<Image
+										className={styles.playlistImage}
+										width={200}
+										height={200}
+										src={currentPlaylist?.groupImage}
+										priority
+										alt="Playlist image"
+									/>
+								) : (
+									""
+								)}{" "}
+							</div>
 
 							<div className={styles.playlistDetails}>
 								{theyTracks.find((track) => track.playgroupId === playlistId)?.addedBy
