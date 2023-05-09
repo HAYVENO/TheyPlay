@@ -515,7 +515,7 @@ main {
 	overflow: hidden;
 	border: 1.2px solid var(--mauve3);
 	background: linear-gradient(90deg, rgba(43, 39, 90, 0.2) 2.81%, rgba(43, 39, 90, 0) 50%),
-		rgba(62, 72, 91, 0.2);
+		rgba(64, 75, 95, 0.2);
 
 	backdrop-filter: blur(10px);
 
