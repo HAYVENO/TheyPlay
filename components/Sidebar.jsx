@@ -110,6 +110,7 @@ const Sidebar = () => {
 							/>
 					  ))}
 			</ul>
+			<div className="sidebar-footer"></div>
 		</nav>
 	);
 };

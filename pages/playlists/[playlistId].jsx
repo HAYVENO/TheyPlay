@@ -159,7 +159,7 @@ const PlaylistPage = () => {
 					>
 						<div className={styles.headContentContainer}>
 							<div className={styles.playlistImageContainer}>
-								{currentPlaylist?.groupImage ? (
+								{currentPlaylist.groupImage ? (
 									<Image
 										className={styles.playlistImage}
 										width={200}
@@ -168,9 +168,7 @@ const PlaylistPage = () => {
 										priority
 										alt="Playlist image"
 									/>
-								) : (
-									""
-								)}{" "}
+								) : null}{" "}
 							</div>
 
 							<div className={styles.playlistDetails}>
