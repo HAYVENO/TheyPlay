@@ -112,7 +112,7 @@
 }
 
 .listGrid:hover:not(.listHead) {
-	background-color: rgba(128, 128, 128, 0.11);
+	background-color: rgba(117, 117, 117, 0.11);
 	cursor: pointer;
 }
 
