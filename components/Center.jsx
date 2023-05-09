@@ -3,10 +3,11 @@ import { useSession } from "next-auth/react";
 import useSpotify from "../util/useSpotify";
 import { useEffect, useState } from "react";
 import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from "react-icons/bs";
+import { CgPlayListAdd } from "react-icons/cg";
 import { FaUserCircle } from "react-icons/fa";
 import PlaylistCategories from "./PlaylistCategories";
 import { useRecoilState, waitForAll, waitForAllSettled, waitForAny } from "recoil";
-import { playgroupsState } from "../atoms/modalAtom";
+import { openModalState, playgroupsState } from "../atoms/modalAtom";
 
 const Center = () => {
 	const spotifyApi = useSpotify();
@@ -14,6 +15,7 @@ const Center = () => {
 
 	//global states
 	const [playgroups, setPlaygroups] = useRecoilState(playgroupsState);
+	const [openModal, setOpenModal] = useRecoilState(openModalState);
 
 	//local states
 	const [playlists, setPlaylists] = useState([]);
@@ -53,13 +55,17 @@ const Center = () => {
 		}
 	}, [session, playgroups]);
 
+	const handleOpenModal = (e) => {
+		setOpenModal(true);
+	};
+
 	return (
 		<div className="center">
 			<header className="center__heading">
-				<div className="btn__container">
-					<BsFillArrowLeftCircleFill className="btn" size={28} />
-					<BsFillArrowRightCircleFill className="btn" size={28} />
-				</div>
+				<button className="btn__add-song" onClick={handleOpenModal}>
+					<CgPlayListAdd size={20} />
+					<span>Add music</span>
+				</button>
 				{status === "authenticated" && !isLoading && (
 					<div className="user__profile">
 						<div className="profile__image">

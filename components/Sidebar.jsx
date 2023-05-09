@@ -4,9 +4,11 @@ import Link from "next/link";
 import MyLogo from "../public/logo-test.svg";
 import Skeleton from "@mui/material/Skeleton";
 import { signOut, useSession } from "next-auth/react";
-import { HiHome, HiSearch } from "react-icons/hi";
+import { HiSearch } from "react-icons/hi";
+import { RxDashboard } from "react-icons/rx";
 import { BiLibrary, BiLogOutCircle } from "react-icons/bi";
-import { MdAdd } from "react-icons/md";
+import { MdOutlineAddCircleOutline } from "react-icons/md";
+
 import useSpotify from "../util/useSpotify";
 import { useRouter } from "next/router";
 import { useRecoilState, useRecoilValue } from "recoil";
@@ -14,26 +16,16 @@ import { isPlayingState } from "../atoms/trackAtom";
 import { openModalState, playgroupsState } from "../atoms/modalAtom";
 
 const Sidebar = () => {
-	//global states -
-	const isPlaying = useRecoilValue(isPlayingState);
-
 	const router = useRouter();
 	const { playlistId } = router.query;
 
+	//global states -
+	const isPlaying = useRecoilValue(isPlayingState);
 	const spotifyApi = useSpotify();
 	const { data: session } = useSession();
 	const [playlists, setPlaylists] = useState([]);
 	const [openModal, setOpenModal] = useRecoilState(openModalState);
 	const [playgroups, setPlaygroups] = useRecoilState(playgroupsState);
-
-	// useEffect(() => {
-	// get user playlists from Spotify
-	// 	if (spotifyApi.getAccessToken()) {
-	// 		spotifyApi.getUserPlaylists().then((data) => {
-	// 			setPlaylists(data?.body?.items);
-	// 		});
-	// 	}
-	// }, [spotifyApi, session]);
 
 	useEffect(() => {
 		try {
@@ -54,7 +46,7 @@ const Sidebar = () => {
 	// console.log("the query one", playlistId);
 
 	const handleOpenModal = (e) => {
-		event.preventDefault();
+		// event.preventDefault();
 		setOpenModal(true);
 	};
 
@@ -69,13 +61,13 @@ const Sidebar = () => {
 			<ul className="sidebar-nav">
 				<li>
 					<Link href="/">
-						<HiHome size={24} />
-						<span>Home</span>
+						<RxDashboard size={24} />
+						<span>Dashboard</span>
 					</Link>
 				</li>
 				<li>
 					<Link href="#" onClick={handleOpenModal}>
-						<MdAdd size={25} />
+						<MdOutlineAddCircleOutline size={24} />
 
 						<span>Add Song</span>
 					</Link>
@@ -83,7 +75,7 @@ const Sidebar = () => {
 				<li>
 					<Link href="#">
 						<BiLibrary size={24} />
-						<span>My Library</span>
+						<span>Liked songs</span>
 					</Link>
 				</li>
 				<li onClick={() => signOut()}>
@@ -101,7 +93,7 @@ const Sidebar = () => {
 							<li key={playlist.id} className="sidebar__playlist">
 								<Link
 									className={playlist.id === playlistId ? "sidebar__playlist-active" : ""}
-									style={{ fontWeight: playlist.id === playlistId ? "700" : "400" }}
+									style={{ fontWeight: playlist.id === playlistId ? "800" : "400" }}
 									href={`/playlists/${playlist.id}`}
 								>
 									{playlist.name}
