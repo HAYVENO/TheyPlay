@@ -194,11 +194,8 @@ const PlaylistPage = () => {
 									</Skeleton>
 								)}
 
-								{currentPlaylist?.name ? (
-									<h1 className={styles.playlistName}>
-										{/* {currentPlaylist.name} */}
-										TESTING
-									</h1>
+								{currentPlaylist?.namex ? (
+									<h1 className={styles.playlistName}>{currentPlaylist.name}</h1>
 								) : (
 									<Skeleton
 										className="my__custom-skeleton"
