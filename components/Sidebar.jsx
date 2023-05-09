@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import MyLogo from "../public/logo-test.svg";
+import Skeleton from "@mui/material/Skeleton";
 import { signOut, useSession } from "next-auth/react";
 import { HiHome, HiSearch } from "react-icons/hi";
 import { BiLibrary, BiLogOutCircle } from "react-icons/bi";
@@ -95,17 +96,27 @@ const Sidebar = () => {
 			<hr className="line" />
 			{/* side bar playlists  */}
 			<ul className="sidebar__playlists">
-				{playgroups.map((playlist, i) => (
-					<li key={playlist.id} className="sidebar__playlist">
-						<Link
-							className={playlist.id === playlistId ? "sidebar__playlist-active" : ""}
-							style={{ fontWeight: playlist.id === playlistId ? "700" : "400" }}
-							href={`/playlists/${playlist.id}`}
-						>
-							{playlist.name}
-						</Link>
-					</li>
-				))}
+				{playgroups.length > 0
+					? playgroups.map((playlist, i) => (
+							<li key={playlist.id} className="sidebar__playlist">
+								<Link
+									className={playlist.id === playlistId ? "sidebar__playlist-active" : ""}
+									style={{ fontWeight: playlist.id === playlistId ? "700" : "400" }}
+									href={`/playlists/${playlist.id}`}
+								>
+									{playlist.name}
+								</Link>
+							</li>
+					  ))
+					: Array.from({ length: 7 }).map((_, i) => (
+							<Skeleton
+								key={i}
+								variant="text"
+								width={150}
+								height={25}
+								sx={{ bgcolor: "#7372725e" }}
+							/>
+					  ))}
 			</ul>
 		</nav>
 	);

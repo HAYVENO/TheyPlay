@@ -548,6 +548,14 @@ main {
 
 /* skeleton  styling */
 
+.my__custom-skeleton::after {
+	background: linear-gradient(90deg, transparent, rgba(169, 169, 169, 0.596), transparent);
+	content: "";
+	position: absolute;
+	transform: translateX(-100%);
+	inset: 0px;
+}
+
 .card-skeleton {
 	position: relative;
 	overflow: hidden;

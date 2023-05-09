@@ -62,6 +62,7 @@
 
 .playlistName {
 	font-size: 4rem;
+	min-width: 500px;
 	padding-bottom: 1rem;
 	line-height: 0;
 }

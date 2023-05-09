@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import Image from "next/image";
 // import SongImagePlaceholder from "../../public/placeholder-playlist.jpg";
+import Skeleton from "@mui/material/Skeleton";
 import styles from "../../styles/playlistPage.module.css";
 import { BsFillPlayCircleFill } from "react-icons/bs";
 import classes from "classnames";
@@ -25,6 +26,7 @@ import getUserSongs from "../../util/getUserSongs";
 import getPlaygroup from "../../util/getPlaygroups";
 import getDominantColor from "../../util/getDominantColor";
 import rgbToHue from "../../util/rgbToHue";
+import PlaylistContributors from "../../components/playlistContributors";
 
 const PlaylistPage = () => {
 	const router = useRouter();
@@ -171,31 +173,53 @@ const PlaylistPage = () => {
 
 							<div className={styles.playlistDetails}>
 								{theyTracks.find((track) => track.playgroupId === playlistId)?.addedBy
-									?.name && (
-									<>
-										<p className={styles.playlistContributors}>
-											<span className={styles.playlistContributorsNames}>
-												{
-													theyTracks.find((track) => track.playgroupId === playlistId)
-														?.addedBy?.name
-												}
-											</span>{" "}
-											and{" "}
-											{[
-												...new Set(
-													theyTracks
-														.filter((track) => track.playgroupId === playlistId)
-														.map((track) => track.userId)
-												),
-											].length - 1}{" "}
-											other contributors.
-										</p>
-									</>
+									?.name ? (
+									<PlaylistContributors
+										theyTracks={theyTracks}
+										playlistId={playlistId}
+										styles={styles}
+									/>
+								) : (
+									<Skeleton
+										className="my__custom-skeleton"
+										animation="wave"
+										sx={{ bgcolor: " #9797978c" }}
+										// animation="wave"
+									>
+										<PlaylistContributors
+											theyTracks={theyTracks}
+											playlistId={playlistId}
+											styles={styles}
+										/>
+									</Skeleton>
 								)}
-								<h1 className={styles.playlistName}>{currentPlaylist?.name}</h1>
-								<p className={styles.playlistDescription}>{`${
-									tracks.length || " "
-								} tracks • ${currentPlaylist?.description || ""}`}</p>
+
+								{currentPlaylist?.name ? (
+									<h1 className={styles.playlistName}>{currentPlaylist.name}</h1>
+								) : (
+									<Skeleton
+										className="my__custom-skeleton"
+										animation="wave"
+										sx={{ bgcolor: "#75757547" }}
+										width={400}
+									>
+										<h1 className={styles.playlistName}></h1>
+									</Skeleton>
+								)}
+
+								{tracks?.length && currentPlaylist?.description ? (
+									<p className={styles.playlistDescription}>{`${
+										tracks.length || " "
+									} tracks • ${currentPlaylist?.description}`}</p>
+								) : (
+									<Skeleton
+										className="my__custom-skeleton"
+										animation="wave"
+										sx={{ bgcolor: "#9797978c" }}
+										width={300}
+										height={20}
+									/>
+								)}
 							</div>
 						</div>
 					</div>
