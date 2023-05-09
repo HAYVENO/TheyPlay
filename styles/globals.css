@@ -315,6 +315,30 @@ main {
 	font-size: 0.7rem;
 }
 
+.footer__image-preview {
+	visibility: hidden;
+	border: 1px solid var(--mauve7);
+	border-radius: 4px;
+	opacity: 0;
+	position: absolute;
+	bottom: 105%;
+	left: 63%;
+	transform: translate(-60%, 10px);
+	width: 150px;
+	height: 116px;
+	transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#yusuf-copy:hover {
+	color: #dae2ff;
+}
+
+#yusuf-copy:hover + .footer__image-preview {
+	visibility: visible;
+	opacity: 1;
+	transform: translate(-60%, -4px);
+}
+
 #yusuf-copy {
 	text-decoration: underline;
 	color: var(--mauveA12);

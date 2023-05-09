@@ -7,7 +7,7 @@ module.exports = withBundleAnalyzer(
 	withImages({
 		reactStrictMode: true,
 		images: {
-			domains: ["mosaic.scdn.co", "i.scdn.co"],
+			domains: ["mosaic.scdn.co", "i.scdn.co", "res.cloudinary.com"],
 		},
 	})
 );

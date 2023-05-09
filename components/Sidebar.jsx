@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
+// import Image from "next/image";
 import Link from "next/link";
 import MyLogo from "../public/logo-test.svg";
 import Skeleton from "@mui/material/Skeleton";
@@ -10,6 +10,10 @@ import { HiMail } from "react-icons/hi";
 import { RxDashboard } from "react-icons/rx";
 import { BiLibrary, BiLogOutCircle } from "react-icons/bi";
 import { MdOutlineAddCircleOutline } from "react-icons/md";
+
+// dynamic import for footer-preview-image
+import dynamic from "next/dynamic";
+const Image = dynamic(() => import("next/image"), { ssr: false });
 
 import useSpotify from "../util/useSpotify";
 import { useRouter } from "next/router";
@@ -115,9 +119,33 @@ const Sidebar = () => {
 			<div className="sidebar-footer">
 				<p style={{ margin: 0 }}>
 					Built by{" "}
-					<a id="yusuf-copy" href="https://twitter.com/hay_yusuf">
+					<a
+						id="yusuf-copy"
+						href="https://github.com/hayveno"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
 						Yusuf Abdulhafeez
 					</a>
+					{playgroups?.length > 0 ? (
+						<div className="footer__image-preview">
+							<Image
+								style={{ objectFit: "cover" }}
+								src="https://res.cloudinary.com/detye5zx5/image/upload/v1683667680/hayveno-github-profile_nxslwy.png"
+								alt="Yusuf Abdulhafeez link preview"
+								width={150}
+								height={116}
+								loading="lazy"
+							/>
+						</div>
+					) : (
+						<Skeleton
+							className="footer__image-preview "
+							variant="rectangular"
+							width={150}
+							height={116}
+						/>
+					)}
 				</p>
 				<div className="line-3"></div>
 				<div className="footer__socials-container">
