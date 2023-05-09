@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from "react-icons/bs";
 import { CgPlayListAdd } from "react-icons/cg";
 import { FaUserCircle } from "react-icons/fa";
+import Avatar from "@mui/material/Avatar";
+import getInitials from "../util/getInitials";
 import PlaylistCategories from "./PlaylistCategories";
 import { useRecoilState, waitForAll, waitForAllSettled, waitForAny } from "recoil";
 import { openModalState, playgroupsState } from "../atoms/modalAtom";
@@ -69,9 +71,19 @@ const Center = () => {
 				{status === "authenticated" && !isLoading && (
 					<div className="user__profile">
 						<div className="profile__image">
-							<FaUserCircle size={24} />
+							<Avatar
+								sx={{
+									backgroundColor: "#fff",
+									color: "#202020",
+									fontSize: "0.8rem",
+									width: 30,
+									height: 30,
+								}}
+							>
+								{getInitials(session.user.name)}
+							</Avatar>
 						</div>
-						<span className="profile__name">{session.user.name}</span>
+						<span className="profile__name">{session?.user?.name}</span>
 					</div>
 				)}
 			</header>
