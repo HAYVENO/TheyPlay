@@ -5,6 +5,8 @@ import MyLogo from "../public/logo-test.svg";
 import Skeleton from "@mui/material/Skeleton";
 import { signOut, useSession } from "next-auth/react";
 import { HiSearch } from "react-icons/hi";
+import { FaGithub, FaTwitter } from "react-icons/fa";
+import { HiMail } from "react-icons/hi";
 import { RxDashboard } from "react-icons/rx";
 import { BiLibrary, BiLogOutCircle } from "react-icons/bi";
 import { MdOutlineAddCircleOutline } from "react-icons/md";
@@ -110,7 +112,26 @@ const Sidebar = () => {
 							/>
 					  ))}
 			</ul>
-			<div className="sidebar-footer"></div>
+			<div className="sidebar-footer">
+				<p style={{ margin: 0 }}>
+					Built by{" "}
+					<a id="yusuf-copy" href="https://twitter.com/hay_yusuf">
+						Yusuf Abdulhafeez
+					</a>
+				</p>
+				<div className="line-3"></div>
+				<div className="footer__socials-container">
+					<a href="https://github.com/hayveno" target="_blank" rel="noopener noreferrer">
+						<FaGithub size={16} style={{ cursor: "pointer" }} />
+					</a>
+					<a href="mailto:haythepen@gmail.com" target="_blank" rel="noopener noreferrer">
+						<HiMail size={20} style={{ cursor: "pointer" }} />
+					</a>
+					<a href="https://twitter.com/hay_yusuf" target="_blank" rel="noopener noreferrer">
+						<FaTwitter size={16} style={{ cursor: "pointer" }} />
+					</a>
+				</div>
+			</div>
 		</nav>
 	);
 };

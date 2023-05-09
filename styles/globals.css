@@ -114,16 +114,14 @@ main {
 }
 
 .sidebar {
+	position: relative;
 	font-family: inherit;
 	grid-column: 1/2;
 	/* background-color: black; */
 	background-color: var(--violetA2);
 	background-color: var(--background);
 	padding-top: 1.2rem;
-	overflow: auto;
 	border-right: 0.1px solid var(--mauve9);
-	/* min-width: fit-content;
-	max-width: 14rem; */
 	/* background-image: linear-gradient(175deg, rgba(62, 3, 87, 0.708) 0, rgb(22 0 61 / 0%) 14vh); */
 }
 
@@ -300,13 +298,46 @@ main {
 	display: none;
 }
 
-/* .fader {
+.sidebar-footer {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	padding: 0.7rem;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	box-sizing: border-box;
+	background-color: rgb(94 94 94 / 20%);
+	color: rgba(245, 245, 245, 0.744);
 	position: absolute;
 	bottom: 0;
+	border-radius: 6px 6px 0 0;
+	font-size: 0.7rem;
+}
+
+#yusuf-copy {
+	text-decoration: underline;
+	color: var(--mauveA12);
+	display: inline;
+	font-weight: 400;
+}
+
+.line-3 {
+	border: 0.1px solid var(--mauveA4);
 	width: 100%;
-	height: 392px;
-	background: linear-gradient(180deg, #00000000 0%, #000000 100%);
-} */
+}
+
+.footer__socials-container {
+	/* margin: 0; */
+	display: flex;
+	gap: 0.5rem;
+	align-items: center;
+}
+
+.footer__socials-container a {
+	height: 1rem;
+	color: #ffffffc2;
+}
 
 /* PLAYER-BAR COMPONENTS  */
 
