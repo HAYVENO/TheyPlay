@@ -516,9 +516,9 @@ main {
 	border: 1.2px solid var(--mauve3);
 	background: linear-gradient(90deg, rgba(43, 39, 90, 0.2) 2.81%, rgba(43, 39, 90, 0) 50%),
 		rgba(64, 75, 95, 0.2);
-
 	backdrop-filter: blur(10px);
-	box-shadow: 0px 2px 6px rgb(3 2 34);
+
+	box-shadow: 1px 2px 6px rgb(3 2 34);
 
 	/* slight rotation */
 	transform: rotate(-3deg);
