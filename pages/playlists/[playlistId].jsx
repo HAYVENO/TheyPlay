@@ -173,7 +173,7 @@ const PlaylistPage = () => {
 
 							<div className={styles.playlistDetails}>
 								{theyTracks.find((track) => track.playgroupId === playlistId)?.addedBy
-									?.name ? (
+									?.namex ? (
 									<PlaylistContributors
 										theyTracks={theyTracks}
 										playlistId={playlistId}
@@ -183,8 +183,8 @@ const PlaylistPage = () => {
 									<Skeleton
 										className="my__custom-skeleton"
 										animation="wave"
+										width={200}
 										sx={{ bgcolor: " #9797978c" }}
-										// animation="wave"
 									>
 										<PlaylistContributors
 											theyTracks={theyTracks}

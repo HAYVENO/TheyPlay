@@ -307,7 +307,7 @@ main {
 	justify-content: center;
 	width: 100%;
 	box-sizing: border-box;
-	background-color: rgb(94 94 94 / 20%);
+	background-color: rgba(63, 65, 92, 0.221);
 	color: rgba(245, 245, 245, 0.744);
 	position: absolute;
 	bottom: 0;

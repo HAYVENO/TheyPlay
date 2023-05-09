@@ -13,7 +13,7 @@ const PlaylistContributors = ({ theyTracks, playlistId, styles }) => {
 				<span className={styles.playlistContributorsNames}>
 					{theyTracks.find((track) => track.playgroupId === playlistId)?.addedBy?.name}
 				</span>{" "}
-				and {contributors.length - 1} other contributor{contributors.length > 1 ? "" : "s"}.
+				and {contributors.length - 1} other contributor{contributors.length < 2 ? "" : "s"}.
 			</p>
 		</>
 	);
