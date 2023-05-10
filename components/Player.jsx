@@ -181,7 +181,7 @@ const Player = () => {
 						alt="Song image"
 					/>
 					<div>
-						<h3 style={{ color: "white" }}>{liveTrack?.name}</h3>
+						<h3 style={{ color: "white", fontWeight: "700" }}>{liveTrack?.name}</h3>
 						<p>
 							{liveTrack.artists &&
 								liveTrack?.artists

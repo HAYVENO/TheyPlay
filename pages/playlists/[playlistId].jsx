@@ -26,7 +26,7 @@ import getUserSongs from "../../util/getUserSongs";
 import getPlaygroup from "../../util/getPlaygroups";
 import getDominantColor from "../../util/getDominantColor";
 import rgbToHue from "../../util/rgbToHue";
-import PlaylistContributors from "../../components/playlistContributors";
+import PlaylistContributors from "../../components/util-components/playlistContributors";
 
 const PlaylistPage = () => {
 	const router = useRouter();

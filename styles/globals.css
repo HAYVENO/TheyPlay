@@ -329,10 +329,12 @@ main {
 	position: absolute;
 	bottom: 105%;
 	left: 63%;
-	transform: translate(-60%, 10px);
+	transform: translate(-60%, 10px) rotateX(60deg);
 	width: 150px;
 	height: 116px;
-	transition: opacity 0.3s ease, transform 0.3s ease;
+	transition: all 0.2s ease;
+
+	perspective: 1500px;
 }
 
 #yusuf-copy:hover {
@@ -342,7 +344,11 @@ main {
 #yusuf-copy:hover + .footer__image-preview {
 	visibility: visible;
 	opacity: 1;
-	transform: translate(-60%, -4px);
+	/* transform: translate(-60%, -4px); */
+	transform: translate(-60%, -4px) rotateX(0deg);
+	box-shadow: 2px 10px 30px hsla(0, 0%, 0%, 0.25);
+	border-radius: 0.25em;
+	/* transition: 0.3s; */
 }
 
 #yusuf-copy {
@@ -381,6 +387,7 @@ main {
 	display: flex;
 	align-items: center;
 	gap: 1.5rem;
+	box-shadow: 1px 1px 10px 0px #0302228f;
 }
 
 .left-bar-container h3 {
@@ -592,7 +599,7 @@ main {
 }
 
 .playlist__title {
-	color: #fff;
+	color: #dbdbdb;
 	/* font-size: 1.2rem; */
 	padding: 1rem 1.2rem;
 	white-space: nowrap;
@@ -601,6 +608,7 @@ main {
 	margin: 0;
 	font-size: 1rem;
 	font-weight: 600;
+	text-shadow: 3px 3px 4px rgb(0, 6, 31);
 }
 
 .playlist__image {
@@ -843,4 +851,33 @@ main {
 	box-shadow: var(--backlight2);
 
 	font-family: monospace;
+}
+
+/* Sign-in page style  */
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	min-height: 100vh;
+	width: 100%;
+	justify-content: center;
+
+	background: rgb(255, 255, 255);
+	background: linear-gradient(180deg, transparent 0%, rgba(22, 0, 46, 0.417) 100%);
+}
+
+.image-box {
+	margin-bottom: 2rem;
+}
+
+/* bg-[#18D860] text-white p-5 rounded-full */
+
+.sign-in-button {
+	background-color: rgb(95, 2, 142);
+	color: white;
+	border: none;
+	border-radius: 2rem;
+	cursor: pointer;
+
+	padding: 1.1rem 5rem;
 }

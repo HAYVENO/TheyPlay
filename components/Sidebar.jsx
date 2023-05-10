@@ -20,6 +20,7 @@ import { useRouter } from "next/router";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { isPlayingState } from "../atoms/trackAtom";
 import { openModalState, playgroupsState } from "../atoms/modalAtom";
+import LinkPreview from "./util-components/LinkPreview";
 
 const Sidebar = () => {
 	const router = useRouter();
@@ -128,16 +129,7 @@ const Sidebar = () => {
 						Yusuf Abdulhafeez
 					</a>
 					{playgroups?.length > 0 ? (
-						<div className="footer__image-preview">
-							<Image
-								style={{ objectFit: "cover" }}
-								src="https://res.cloudinary.com/detye5zx5/image/upload/v1683667680/hayveno-github-profile_nxslwy.png"
-								alt="Yusuf Abdulhafeez link preview"
-								width={150}
-								height={116}
-								loading="lazy"
-							/>
-						</div>
+						<LinkPreview imageUrl="https://res.cloudinary.com/detye5zx5/image/upload/v1683667680/hayveno-github-profile_nxslwy.png" />
 					) : (
 						<Skeleton
 							className="footer__image-preview "

@@ -3,7 +3,7 @@ import Player from "./Player";
 import { SkeletonTheme } from "react-loading-skeleton";
 import SearchModal from "./SearchModal";
 import SimpleBackdrop from "./SimpleBackDrop";
-import AlertBox from "./AlertBox";
+import AlertBox from "./util-components/AlertBox";
 import { Inter } from "@next/font/google";
 import clx from "classnames";
 
