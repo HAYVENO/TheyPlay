@@ -1,0 +1,32 @@
+<svg
+					class="svg_WDAo"
+					viewBox="0 0 1 1"
+					style="width: 100%; z-index: -1; position: absolute;"
+				>
+					<path
+						d="M0.3,0.5a0.2,0.45 0 1,0 0.4,0a0.2,0.45 0 1,0 -0.4,0"
+						fill="none"
+						stroke="var(--ifm-color-primary)"
+						stroke-linecap="round"
+						class="p_ZII8"
+						style="transform-origin: center center; transform: rotate(120deg); animation: 20s linear 0s infinite normal none running bganimation; stroke-dasharray: 0.423654, 1.69462;"
+					></path>
+					<path
+						d="M0.3,0.5a0.2,0.45 0 1,0 0.4,0a0.2,0.45 0 1,0 -0.4,0"
+						fill="none"
+						stroke="var(--ifm-color-primary)"
+						stroke-linecap="round"
+						stroke-width="0.035"
+						class="p_ZII8"
+						style="transform-origin: center center; transform: rotate(0deg); animation: 20s linear 0s infinite normal none running bganimation; stroke-dasharray: 0.423654, 1.69462;"
+					></path>
+					<path
+						d="M0.3,0.5a0.2,0.45 0 1,0 0.4,0a0.2,0.45 0 1,0 -0.4,0"
+						fill="none"
+						stroke="var(--ifm-color-primary)"
+						stroke-linecap="round"
+						stroke-width="0.035"
+						class="p_ZII8"
+						style="transform-origin: center center; transform: rotate(240deg); animation: 20s linear 0s infinite normal none running bganimation; stroke-dasharray: 0.423654, 1.69462;"
+					></path>
+				</svg>

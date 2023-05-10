@@ -18,7 +18,7 @@ const MyApp = ({ Component, pageProps: { session, ...pageProps } }) => {
 	return (
 		<RecoilRoot>
 			<SessionProvider session={session}>
-				{excludeLayout && <Component {...pageProps} />}
+				{excludeLayout && <Component {...pageProps} className={inter.className} />}
 				{!excludeLayout && (
 					<Layout className={inter.className}>
 						<Component {...pageProps} />
