@@ -38,6 +38,12 @@
 	--border-radius-2: 6px;
 	--border-radius-3: 8px;
 
+	--backlight: 0 0 20px 2px #8641b4, -15px 0 30px -15px #e98b39, 0 0 30px -15px #ff002f,
+		15px 0 30px -15px #5252d0;
+
+	--backlight2: 0 0 6px 2px #ff8c00, -15px 0 30px -15px #ff2d55, 0 0 30px -15px #007aff,
+		15px 0 30px -15px #4cd964;
+
 	/* they play - COLORS  */
 	--color-text: var(--mauve1);
 
@@ -208,7 +214,7 @@ main {
 .sidebar-nav li {
 	font-size: 0.8rem;
 	background-color: none;
-	transition: background-color 0.3s ease-in-out;
+	transition: background-color 0.2s ease;
 }
 
 .sidebar-nav li:hover {
@@ -573,7 +579,7 @@ main {
 		rgba(64, 75, 95, 0.2);
 	backdrop-filter: blur(10px);
 
-	box-shadow: 1px 2px 6px rgb(3 2 34);
+	box-shadow: 4px 5px 13px 0px #030222;
 
 	/* slight rotation */
 	transform: rotate(-3deg);
@@ -684,7 +690,8 @@ main {
 	background-color: rgba(17, 11, 29, 0.3);
 	backdrop-filter: blur(20px);
 	border: 1px solid var(--mauve8);
-	box-shadow: 1px 2px 64px -12px rgba(0, 0, 0, 0.471);
+	/* box-shadow: 1px 2px 64px -12px rgba(0, 0, 0, 0.471); */
+	box-shadow: var(--backlight);
 	border-radius: 3px;
 	width: 130%;
 
@@ -831,9 +838,9 @@ main {
 .child__search-modal {
 	background-color: rgba(17, 11, 29, 0.3);
 	backdrop-filter: blur(10px);
-	border: 1px solid var(--mauve1);
+	border: 1px solid var(--mauve5);
 	border-radius: 4px;
-	box-shadow: 1px 2px 64px -12px rgba(0, 0, 0, 0.471);
+	box-shadow: var(--backlight2);
 
 	font-family: monospace;
 }
