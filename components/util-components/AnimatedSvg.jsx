@@ -10,28 +10,28 @@ const AnimatedSvg = () => {
 			<path
 				d="M0.3,0.5a0.2,0.45 0 1,0 0.4,0a0.2,0.45 0 1,0 -0.4,0"
 				fill="none"
-				stroke="white"
+				stroke="#5373ff" //stroke color for first blob
 				strokeLinecap="round"
 				strokeWidth="0.035"
 				className="p_ZII8"
 				style={{
 					transformOrigin: "center center",
 					transform: "rotate(0deg)",
-					animation: "15s linear 0s infinite normal none running bganimation",
+					animation: "12s linear 0s infinite normal none running bganimation",
 					strokeDasharray: "0.423654, 1.69462",
 				}}
 			/>
 			<path
 				d="M0.3,0.5a0.2,0.45 0 1,0 0.4,0a0.2,0.45 0 1,0 -0.4,0"
 				fill="none"
-				stroke="white"
+				stroke="#ff53f6" //stroke color for second blob
 				strokeLinecap="round"
 				strokeWidth="0.035"
 				className="p_ZII8"
 				style={{
 					transformOrigin: "center center",
 					transform: "rotate(240deg)",
-					animation: "20s linear 0s infinite normal none running bganimation",
+					animation: "16s linear 0s infinite normal none running bganimation",
 					strokeDasharray: "0.423654, 1.69462",
 				}}
 			/>

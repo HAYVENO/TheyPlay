@@ -853,6 +853,83 @@ main {
 	font-family: monospace;
 }
 
+/* sign-up page  */
+
+.s-header {
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+		Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+	box-sizing: border-box;
+	position: fixed;
+	display: block;
+	width: 100vw;
+	top: 0;
+	color: white;
+	padding: 1rem 0;
+	background-color: rgba(1, 21, 76, 0.059);
+	/* border-bottom: 0.1px solid var(--mauve9); */
+	padding: 1rem 2rem;
+	position: fixed;
+}
+
+.s-header::after {
+	content: "";
+	margin-left: 2.6rem;
+	margin-right: 2.6rem;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	height: 1px;
+	background: rgba(255, 255, 255, 0.08);
+}
+
+.s-header-container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 1px 2rem;
+}
+
+.s-app-title {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	font-size: 1rem;
+}
+
+.s-app-title strong {
+	letter-spacing: 3px;
+	font-weight: 600;
+	font-size: 1.2rem;
+}
+
+.header-items {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 0.8rem;
+}
+
+.header-items .sign-in-text {
+	cursor: pointer;
+	text-decoration: underline;
+	font-weight: 700;
+	font-size: 1.2rem;
+	color: rgb(255, 255, 255);
+}
+
+.header-items .sign-up-text {
+	cursor: pointer;
+	text-decoration: underline;
+	font-weight: 700;
+	font-size: 1.1rem;
+	color: rgb(173, 173, 173);
+}
+
+.header-items .sign-in-text:hover {
+	color: rgb(253, 160, 255);
+}
+
 /* Sign-in page style  */
 .container {
 	box-sizing: border-box;
@@ -864,13 +941,26 @@ main {
 	align-items: center;
 	width: 100%;
 	justify-content: flex-start;
-	padding-top: 8rem;
+	padding-top: 9rem;
 
 	background-color: #02012827;
 
 	color: white;
 	height: 100vh;
 	overflow: hidden;
+}
+
+/* svg animation container */
+.hero-animation {
+	margin: 0;
+	max-width: 1200px;
+	height: 100%;
+	position: absolute;
+	bottom: 0;
+	width: 50%;
+	overflow: hidden;
+	filter: blur(30px);
+	z-index: -1;
 }
 
 .heading-container {
@@ -898,7 +988,7 @@ main {
 	flex-basis: 70%;
 	max-width: 70%;
 	margin-top: 1.5rem;
-	color: var(--mauve8);
+	color: var(--mauve7);
 	font-size: 1.4rem;
 	font-weight: 400;
 	line-height: 1.5;
@@ -914,8 +1004,14 @@ main {
 /* bg-[#18D860] text-white p-5 rounded-full */
 
 .sign-in-button {
-	margin-top: 1.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+	font-size: 1rem;
 	font-weight: 600;
+	margin-top: 1.5rem;
+	font-weight: 500;
 	background-color: rgb(2, 142, 70);
 	color: white;
 	border: none;
@@ -923,7 +1019,19 @@ main {
 	cursor: pointer;
 
 	padding: 1.1rem 5rem;
+	transition: all 0.4s ease;
 }
+
+.sign-in-button:hover {
+	background-color: rgb(20, 181, 98);
+	transform: scale(1.05);
+}
+
+.sign-in-button:active {
+	background-color: rgb(2, 142, 70);
+}
+
+/* ----  */
 
 /* bg animation  */
 @keyframes bganimation {
@@ -931,6 +1039,6 @@ main {
 		stroke-dashoffset: 0;
 	}
 	100% {
-		stroke-dashoffset: 2.118270261325792;
+		stroke-dashoffset: 2.11827;
 	}
 }
