@@ -1,9 +1,9 @@
 import React from "react";
 import Image from "next/image";
 
-const LinkPreview = ({ imageUrl }) => {
+const LinkPreview = ({ imageUrl, conf }) => {
 	return (
-		<div className="footer__image-preview">
+		<div className={`footer__image-preview ${conf}`}>
 			<Image
 				style={{ objectFit: "cover" }}
 				src={imageUrl}

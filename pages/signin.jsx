@@ -1,11 +1,14 @@
+/* eslint-disable react/no-unescaped-entities */
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import logoZero from "../public/logo-zero.svg";
 import { BsGithub } from "react-icons/bs";
-import { SlSocialSpotify } from "react-icons/sl";
+import { SlSocialSpotify, SlSocialTwitter } from "react-icons/sl";
 import { getProviders, signIn } from "next-auth/react";
 import AnimatedSvg from "../components/util-components/AnimatedSvg";
-
+import LinkPreview from "../components/util-components/LinkPreview";
+import Skeleton from "@mui/material/Skeleton";
+import Tooltip from "@mui/material/Tooltip";
 export async function getServerSideProps() {
 	const providers = await getProviders();
 
@@ -59,7 +62,26 @@ const SignIn = () => {
 							sign in
 						</strong>
 						<span style={{ fontSize: "2rem", fontWeight: "300" }}>|</span>
-						<strong className="sign-up-text">sign up?</strong>
+						<a
+							id="sign-up-link"
+							href="https://www.spotify.com/us/signup"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<Tooltip
+								arrow
+								placement="bottom-end"
+								title={
+									<span className="tooltip-title">
+										Don't have a Spotify account? Don't miss out. Sign up is free — takes
+										less than 30 seconds, and you get FREE access to Spotify's 80M songs.
+										(Click sign up)
+									</span>
+								}
+							>
+								<strong className="sign-up-text">sign up?</strong>
+							</Tooltip>
+						</a>
 						{/* <BsGithub size={24} /> */}
 					</div>
 				</nav>
@@ -89,6 +111,40 @@ const SignIn = () => {
 								</button>
 							</div>
 						))}
+						<footer className="s-footer">
+							<p style={{ margin: 0 }}>
+								Built with 🤍 by{" "}
+								<a
+									style={{ color: "white" }}
+									id="yusuf-copy"
+									href="https://github.com/hayveno"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									Yusuf Abdulhafeez
+								</a>
+								{providers ? (
+									<LinkPreview
+										conf="signin-conf"
+										imageUrl="https://res.cloudinary.com/detye5zx5/image/upload/v1683667680/hayveno-github-profile_nxslwy.png"
+									/>
+								) : (
+									<Skeleton
+										className="footer__image-preview "
+										variant="rectangular"
+										width={150}
+										height={116}
+									/>
+								)}
+							</p>
+							<a
+								href="https://github.com/hay_yusuf"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<SlSocialTwitter color="white" size={20} />
+							</a>
+						</footer>
 					</>
 				) : (
 					""

@@ -129,7 +129,10 @@ const Sidebar = () => {
 						Yusuf Abdulhafeez
 					</a>
 					{playgroups?.length > 0 ? (
-						<LinkPreview imageUrl="https://res.cloudinary.com/detye5zx5/image/upload/v1683667680/hayveno-github-profile_nxslwy.png" />
+						<LinkPreview
+							imageUrl="https://res.cloudinary.com/detye5zx5/image/upload/v1683667680/hayveno-github-profile_nxslwy.png"
+							conf="sidebar-conf"
+						/>
 					) : (
 						<Skeleton
 							className="footer__image-preview "
@@ -141,7 +144,11 @@ const Sidebar = () => {
 				</p>
 				<div className="line-3"></div>
 				<div className="footer__socials-container">
-					<a href="https://github.com/hayveno" target="_blank" rel="noopener noreferrer">
+					<a
+						href="https://github.com/HAYVENO/TheyPlay"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
 						<FaGithub size={16} style={{ cursor: "pointer" }} />
 					</a>
 					<a href="mailto:haythepen@gmail.com" target="_blank" rel="noopener noreferrer">
