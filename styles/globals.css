@@ -196,13 +196,18 @@ main {
 /* SIDEBAR COMPONENTS  */
 
 .logo-box {
-	/* border-bottom: solid 0.1px hsla(280, 99%, 36%, 0.271); */
+	color: white;
 	flex: 1;
 	margin-bottom: 1.2rem;
 	padding: 0 1rem;
 	padding-bottom: 0.4rem;
 	margin: 0 1rem;
-	width: 10rem;
+	/* width: 10rem; */
+}
+
+.logo-box svg {
+	fill: rgb(255, 249, 255);
+	stroke: rgb(144, 27, 153);
 }
 
 .sidebar-nav {
@@ -952,7 +957,7 @@ main {
 	color: rgb(214, 214, 214);
 	font-family: system-ui, -apple-system;
 	padding: 4px 8px;
-	font-size: 0.6rem;
+	font-size: 0.7rem;
 	/* max-width: 300px; */
 	margin: 0px;
 	overflow-wrap: break-word;
@@ -962,7 +967,11 @@ main {
 }
 
 .header-items .sign-in-text:hover {
-	color: rgb(253, 160, 255);
+	color: var(--violet8);
+}
+
+.header-items .sign-in-text:active {
+	color: var(--violet10);
 }
 
 /* Sign-in page style  */
@@ -1082,6 +1091,15 @@ main {
 	font-size: 1rem;
 
 	padding: 1.3rem 2rem;
+}
+
+.s-footer svg {
+	transition: all 0.4s ease;
+}
+
+.s-footer svg:hover {
+	transform: rotateZ(-30deg);
+	fill: rgb(255, 138, 255);
 }
 
 /* ----  */

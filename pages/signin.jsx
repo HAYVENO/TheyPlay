@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { useEffect, useState } from "react";
+import Head from "next/head";
 import Image from "next/image";
 import logoZero from "../public/logo-zero.svg";
 import { BsGithub } from "react-icons/bs";
@@ -38,6 +39,9 @@ const SignIn = () => {
 
 	return (
 		<>
+			<Head>
+				<title>Sign in - TheyPlay Music App</title>
+			</Head>
 			<header className="s-header">
 				<nav className="s-header-container">
 					<div className="s-app-title">
@@ -56,7 +60,7 @@ const SignIn = () => {
 					<div className="header-items">
 						<strong style={{ borderRight: "1px solid white" }}></strong>
 						<strong
-							onClick={() => signIn("spotify", { callbackUrl: "/" })} //hardcoded the spotify providerId here --
+							// onClick={() => signIn("spotify", { callbackUrl: "/" })} //hardcoded the spotify providerId here --
 							className="sign-in-text"
 						>
 							sign in
@@ -73,9 +77,14 @@ const SignIn = () => {
 								placement="bottom-end"
 								title={
 									<span className="tooltip-title">
-										Don't have a Spotify account? Don't miss out. Sign up is free — takes
-										less than 30 seconds, and you get FREE access to Spotify's 80M songs.
-										(Click sign up)
+										Don't have a Spotify account yet? Don't miss out. Sign up for free —
+										takes less than 30 seconds, and you get FREE access to Spotify's 80M
+										songs.
+										<br />
+										<br />
+										1. Click sign up (and follow the prompts).
+										<br />
+										2. Return to this page to sign in.
 									</span>
 								}
 							>
@@ -138,11 +147,11 @@ const SignIn = () => {
 								)}
 							</p>
 							<a
-								href="https://github.com/hay_yusuf"
+								href="https://twitter.com/hay_yusuf"
 								target="_blank"
 								rel="noopener noreferrer"
 							>
-								<SlSocialTwitter color="white" size={20} />
+								<SlSocialTwitter className="s-footer-bird" color="lightblue" size={20} />
 							</a>
 						</footer>
 					</>
