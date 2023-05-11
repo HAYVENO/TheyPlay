@@ -60,7 +60,7 @@ const SignIn = () => {
 					<div className="header-items">
 						<strong style={{ borderRight: "1px solid white" }}></strong>
 						<strong
-							// onClick={() => signIn("spotify", { callbackUrl: "/" })} //hardcoded the spotify providerId here --
+							onClick={() => signIn("spotify", { callbackUrl: "/" })} //hardcoded the spotify providerId here --
 							className="sign-in-text"
 						>
 							sign in

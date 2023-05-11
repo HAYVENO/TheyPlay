@@ -947,7 +947,7 @@ main {
 	text-decoration: underline;
 	font-weight: 700;
 	font-size: 1.1rem;
-	color: rgb(173, 173, 173);
+	color: rgb(195, 195, 195);
 }
 
 .tooltip-title {
@@ -967,11 +967,11 @@ main {
 }
 
 .header-items .sign-in-text:hover {
-	color: var(--violet8);
+	color: var(--purple4);
 }
 
 .header-items .sign-in-text:active {
-	color: var(--violet10);
+	color: var(--purple7);
 }
 
 /* Sign-in page style  */
