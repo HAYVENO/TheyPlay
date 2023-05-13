@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 // import Image from "next/image";
 import Link from "next/link";
-import MyLogo from "../public/logo-test.svg";
+import logoZero from "../public/logo-zero.svg";
 import Skeleton from "@mui/material/Skeleton";
 import { signOut, useSession } from "next-auth/react";
 import { HiSearch } from "react-icons/hi";
@@ -64,16 +64,13 @@ const Sidebar = () => {
 		>
 			<div className="logo-box">
 				<div className="s-app-title">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						viewBox="0 0 24 24"
-						id="logo"
-						fill="white"
-						width={30}
-						height={30}
-					>
-						<path d="M6.61659 4.35541c.2273-.1352.50901-.14069.74141-.01445l9 4.88889c.2299.1249.3782.36062.3911.62197.0129.26138-.1113.51058-.3278.65758l-8.99999 6.1111c-.22977.156-.52696.1723-.77239.0423-.24543-.1301-.39892-.3851-.39892-.6628v-11c0-.26447.13929-.50939.36659-.64459zM12 18.25c-.4142 0-.75.3358-.75.75 0 .4142.3358.75.75.75h5c.4142 0 .75-.3358.75-.75 0-.4142-.3358-.75-.75-.75h-5z"></path>
-					</svg>
+					<Image
+						style={{ marginRight: "4px" }}
+						src={logoZero}
+						alt="TheyPlay-Logo"
+						width={32}
+						height={32}
+					/>
 					<strong>TheyPlay</strong>
 				</div>
 			</div>

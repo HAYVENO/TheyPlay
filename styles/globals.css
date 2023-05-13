@@ -411,7 +411,9 @@ main {
 	display: flex;
 	align-items: center;
 	gap: 1.5rem;
-	box-shadow: 1px 1px 10px 0px #0302228f;
+	border: 0.1px solid #29294d82;
+	border-radius: 6px;
+	box-shadow: 1px 1px 10px 0 #0302228f;
 }
 
 .left-bar-container h3 {

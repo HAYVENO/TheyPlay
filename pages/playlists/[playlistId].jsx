@@ -124,7 +124,7 @@ const PlaylistPage = () => {
 				theyTracks[currentSongIndex]?.addedSong?.previewUrl
 		);
 		console.log(theyTracks[currentSongIndex]?.addedSong?.previewUrl);
-		console.log(theyTracks);
+		console.log(tracks);
 		audio.play();
 		audio.volume = volume;
 		audio.loop = true;
