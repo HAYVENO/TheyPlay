@@ -1018,7 +1018,7 @@ main {
 }
 
 .heading-primary {
-	font-size: 4.2rem;
+	font-size: 4rem;
 	text-shadow: 2px 6px 16px black;
 	margin-bottom: 0;
 	text-align: center;
@@ -1055,9 +1055,8 @@ main {
 	justify-content: center;
 	gap: 1rem;
 	font-size: 1rem;
-	font-weight: 600;
 	margin-top: 1.5rem;
-	font-weight: 500;
+	font-weight: 600;
 	background-color: rgb(2, 142, 70);
 	color: white;
 	border: none;
@@ -1105,6 +1104,57 @@ main {
 }
 
 /* ----  */
+
+/* Words rotator  */
+.rotator-container {
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	font-size: 4rem;
+	/* line-height: 0; */
+}
+
+.words {
+	box-sizing: content-box;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+
+	overflow: hidden;
+	height: 70px;
+}
+.words span {
+	display: block;
+	height: 100%;
+	color: #75abfb;
+	animation: spin_words 6s infinite;
+}
+@keyframes spin_words {
+	10% {
+		transform: translateY(-112%);
+	}
+	25% {
+		transform: translateY(-100%);
+	}
+	35% {
+		transform: translateY(-212%);
+	}
+	50% {
+		transform: translateY(-200%);
+	}
+	60% {
+		transform: translateY(-312%);
+	}
+	75% {
+		transform: translateY(-300%);
+	}
+	85% {
+		transform: translateY(-412%);
+	}
+	100% {
+		transform: translateY(-400%);
+	}
+}
 
 /* bg animation  */
 @keyframes bganimation {

@@ -10,6 +10,9 @@ import AnimatedSvg from "../components/util-components/AnimatedSvg";
 import LinkPreview from "../components/util-components/LinkPreview";
 import Skeleton from "@mui/material/Skeleton";
 import Tooltip from "@mui/material/Tooltip";
+import "animate.css";
+import WordsRotator from "../components/util-components/WordsRotator";
+
 export async function getServerSideProps() {
 	const providers = await getProviders();
 
@@ -100,10 +103,14 @@ const SignIn = () => {
 				{providers.length !== 0 ? (
 					<>
 						<div className="heading-container">
-							<h1 className="heading-primary">
-								Discover and Share only the Best Songs of Life with <span>family</span>.{" "}
+							<h1 className="heading-primary  ">
+								Discover and Share only the Best Songs of Life with{" "}
+								<div className="rotator-container">
+									<WordsRotator texts={["family", "friends", "colleagues", "everyone!"]} />
+								</div>{" "}
 							</h1>
-							<h2 className="heading-secondary">
+
+							<h2 className="heading-secondary   animate__animated animate__fadeIn ">
 								Build your perfect music catalogue with those that matter — play what they
 								decide and decide what They play ♫
 							</h2>
@@ -111,7 +118,7 @@ const SignIn = () => {
 						{Object.values(providers).map((provider) => (
 							<div key={provider.name}>
 								<button
-									className="sign-in-button rippleBtn"
+									className="sign-in-button animate__animated animate__bounceIn animate__delay-1s "
 									onClick={() => signIn(provider.id, { callbackUrl: "/" })}
 								>
 									Continue with {provider.name} <SlSocialSpotify size={18} />
@@ -119,7 +126,7 @@ const SignIn = () => {
 							</div>
 						))}
 						<footer className="s-footer">
-							<p style={{ margin: 0 }}>
+							<div style={{ margin: 0 }}>
 								Built with 🤍 by{" "}
 								<a
 									style={{ color: "white" }}
@@ -143,7 +150,7 @@ const SignIn = () => {
 										height={116}
 									/>
 								)}
-							</p>
+							</div>
 							<a
 								href="https://twitter.com/hay_yusuf"
 								target="_blank"
