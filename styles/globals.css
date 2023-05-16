@@ -594,7 +594,7 @@ main {
 	min-height: 205px;
 	margin: 0;
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(186px, 200px));
+	grid-template-columns: repeat(auto-fit, minmax(186px, 190px));
 	grid-gap: 2rem;
 	padding: 0rem 2.5rem;
 	padding-bottom: 1rem;
@@ -644,7 +644,7 @@ main {
 	position: absolute;
 	bottom: 0;
 	right: 0;
-	transform: rotate(324deg) translate(-5%, -5%);
+	transform: translate(-5%, -5%);
 	object-fit: cover;
 	opacity: 0.9;
 
@@ -652,13 +652,74 @@ main {
 	/* border: 0.1px solid rgb(111, 111, 111); */
 	border-radius: 4px;
 	transition: all 0.2s ease-out;
+	box-shadow: 0px 0px 12px #00000070;
+}
+
+.playlist__image-container {
+	position: relative;
+	overflow: hidden;
 }
 
 .playlist__card:hover .playlist__image {
 	width: 120px;
 	height: 120px;
-	transform: rotate(345deg) translate(-5%, -5%) scale(1.2);
+	filter: brightness(0.5);
+
 	overflow: hidden;
+}
+
+.popover-btn {
+}
+
+.playlist__card .popover-btn {
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: none;
+	position: absolute;
+	left: 80%;
+	bottom: -2%;
+	opacity: 0;
+	transition: all 0.1s ease-out;
+	z-index: 9;
+	background-color: rgba(71, 78, 97, 0.438);
+	border-radius: 50%;
+	padding: 5px;
+}
+
+.playlist__card:hover .popover-btn {
+	opacity: 1;
+	bottom: 8%;
+	left: 80%;
+	z-index: 9;
+}
+
+.popover-btn:hover {
+	background-color: rgba(71, 78, 97, 0.81);
+}
+
+.ATP-btn {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.5rem;
+	cursor: pointer;
+	font-family: "inter", sans-serif;
+	position: absolute;
+	width: max-content;
+	padding: 0.4rem 0.6rem;
+	font-weight: 500;
+	font-size: 0.8rem;
+	background-color: rgba(76, 70, 92, 0.497);
+	border: 1px solid rgba(115, 114, 114, 0.972);
+	border-radius: 4px;
+	backdrop-filter: blur(50px);
+	color: rgb(215, 215, 215);
+}
+
+.ATP-btn:hover {
+	background-color: rgba(154, 154, 154, 0.483);
 }
 
 /* skeleton  styling */

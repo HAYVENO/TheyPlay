@@ -9,7 +9,8 @@ import Avatar from "@mui/material/Avatar";
 import getInitials from "../util/getInitials";
 import PlaylistCategories from "./PlaylistCategories";
 import { useRecoilState, waitForAll, waitForAllSettled, waitForAny } from "recoil";
-import { openModalState, playgroupsState } from "../atoms/modalAtom";
+import { openModalState, openChildModalState, playgroupsState } from "../atoms/modalAtom";
+import { topTracksState } from "../atoms/trackAtom";
 
 const Center = () => {
 	const spotifyApi = useSpotify();
@@ -18,11 +19,13 @@ const Center = () => {
 	//global states
 	const [playgroups, setPlaygroups] = useRecoilState(playgroupsState);
 	const [openModal, setOpenModal] = useRecoilState(openModalState);
+	const [openChildModal, setOpenChildModal] = useRecoilState(openChildModalState);
+	const [topTracks, setTopTracks] = useRecoilState(topTracksState);
 
 	//local states
 	const [playlists, setPlaylists] = useState([]);
 	const [topArtists, setTopArtists] = useState([]);
-	const [topTracks, setTopTracks] = useState([]);
+	// const [topTracks, setTopTracks] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
@@ -35,7 +38,7 @@ const Center = () => {
 
 						spotifyApi.getUserPlaylists(),
 						spotifyApi.getMyTopArtists(),
-						spotifyApi.getMyTopTracks(),
+						spotifyApi.getMyTopTracks({ limit: 15 }),
 					]).then(([playlistsData, topArtistsData, topTracksData]) => {
 						console.log(playgroups);
 						console.log(playlistsData?.body?.items);
@@ -60,6 +63,8 @@ const Center = () => {
 	const handleOpenModal = (e) => {
 		setOpenModal(true);
 	};
+
+	console.log(openChildModal);
 
 	return (
 		<div className="center">
@@ -88,12 +93,20 @@ const Center = () => {
 				)}
 			</header>
 			{/* {PLAYLIST CATEGORIES  } */}
+
 			<PlaylistCategories
 				key={1}
 				type="playgroup"
 				loading={isLoading}
 				category={playgroups}
 				title="WHAT THEY PLAY"
+			/>
+			<PlaylistCategories
+				key={4}
+				type="track"
+				loading={isLoading}
+				category={topTracks}
+				title="YOUR TOP TRACKS"
 			/>
 			<PlaylistCategories
 				key={2}
@@ -108,13 +121,6 @@ const Center = () => {
 				loading={isLoading}
 				category={topArtists}
 				title="YOUR TOP ARTISTS"
-			/>
-			<PlaylistCategories
-				key={4}
-				type="track"
-				loading={isLoading}
-				category={topTracks}
-				title="YOUR TOP TRACKS"
 			/>
 		</div>
 	);

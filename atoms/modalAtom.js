@@ -5,6 +5,11 @@ export const openModalState = atom({
 	default: false,
 });
 
+export const openChildModalState = atom({
+	key: "openChildModalState",
+	default: false,
+});
+
 export const playgroupsState = atom({
 	key: "playgroupsState",
 	default: [],

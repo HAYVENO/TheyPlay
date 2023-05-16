@@ -24,10 +24,10 @@ const Track = ({ track, theyTrack, index, onClick, isCurrentTrack }) => {
 	const handlePlay = () => {
 		onClick(index);
 		setCurrentIndex(index);
-		console.log(track);
-		console.log(currentSong?.src);
-		console.log(liveTrack?.preview_url);
-		console.log(theyTrack?.addedSong?.previewUrl);
+		// console.log(track);
+		// console.log(currentSong?.src);
+		// console.log(liveTrack?.preview_url);
+		// console.log(theyTrack?.addedSong?.previewUrl);
 	};
 
 	return (

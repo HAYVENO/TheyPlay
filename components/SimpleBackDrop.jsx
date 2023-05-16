@@ -1,5 +1,4 @@
 import Backdrop from "@mui/material/Backdrop";
-// import CircularProgress from "@mui/material/CircularProgress";
 import { useRecoilValue } from "recoil";
 import { openBackDropState } from "../atoms/modalAtom";
 import PropagateLoader from "react-spinners/PropagateLoader";

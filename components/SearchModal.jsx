@@ -6,18 +6,25 @@ import Modal from "@mui/material/Modal";
 import useSpotify from "../util/useSpotify";
 import { useSession } from "next-auth/react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { openBackDropState, openModalState, playgroupsState, alertState } from "../atoms/modalAtom";
+import {
+	openBackDropState,
+	openModalState,
+	playgroupsState,
+	alertState,
+	openChildModalState,
+} from "../atoms/modalAtom";
 import { BsSearch, BsFillPlayFill, BsFillPauseFill } from "react-icons/bs";
 import { SlPlaylist } from "react-icons/sl";
 import Image from "next/image";
 import debounce from "lodash/debounce";
 import convertToFive from "../util/converter";
-// import SongImagePlaceholder from "../public/placeholder-playlist.jpg";
+import { useRouter } from "next/router";
 import {
 	currentSongState,
 	isCurrentTrackState,
 	isPlayingState,
 	liveTrackState,
+	topTracksState,
 	volumeState,
 } from "../atoms/trackAtom";
 
@@ -42,6 +49,7 @@ const childStyle = {
 
 const SearchModal = () => {
 	const { data: session } = useSession();
+	const router = useRouter();
 
 	//global states
 	const [isPlaying, setIsPlaying] = useRecoilState(isPlayingState);
@@ -53,10 +61,12 @@ const SearchModal = () => {
 	const playGroups = useRecoilValue(playgroupsState);
 	const [openBackDrop, setOpenBackdrop] = useRecoilState(openBackDropState);
 	const [alert, setAlert] = useRecoilState(alertState);
+	const [openChildModal, setOpenChildModal] = useRecoilState(openChildModalState);
+	const [topTracks, setTopTracks] = useRecoilState(topTracksState);
 
 	//local states
 	const [searchedTracks, setSearchedTracks] = useState([]);
-	const [openChildModal, setOpenChildModal] = useState(false);
+	// const [openChildModal, setOpenChildModal] = useState(false);
 	const [filteredPlayGroups, setFilteredPlayGroups] = useState([]);
 	const [entryData, setEntryData] = useState({ song: {}, playlist: {}, user: {} });
 
@@ -68,6 +78,7 @@ const SearchModal = () => {
 	const handleClose = () => setOpenModal(false);
 	const spotifyApi = useSpotify();
 
+	// On-change Song search -- Step 1.
 	const handleSearch = debounce((e) => {
 		const searchValue = e.target.value;
 		console.log(
@@ -89,12 +100,9 @@ const SearchModal = () => {
 		console.log("Searched tracks --", searchedTracks);
 	}, 200);
 
-	// Handle the opening the child modal and rendering of all /play-groups/
+	// Handle the opening the child modal and rendering of all /playgroups/
 	const handleOpenChildModal = (index) => {
 		setOpenChildModal(true);
-		const hayvenId = "317stts2iim4xivtp4slychksqqa";
-
-		console.log(playGroups);
 
 		const addedTrack = searchedTracks[index];
 		console.log("🚀 ~ file: SearchModal.jsx:104 ~ handleOpenChildModal ~ addedTrack", addedTrack);
@@ -104,7 +112,7 @@ const SearchModal = () => {
 
 	// when all parameters are submitted --
 
-	// handle playlist search - filtering process -- onChange
+	// handle Playgroup search -- onChange - filtering process
 	const handlePlaygroupSearch = debounce((e) => {
 		const searchValue = e.target.value;
 		console.log("🚀 ~ file: SearchModal.jsx:39 ~ handleSearch ~ searchValue", searchValue);
@@ -120,6 +128,7 @@ const SearchModal = () => {
 		console.log("final result playgroups", filteredPlayGroups);
 	}, 200);
 
+	// handles Playgroup /Playlist addition -- On Select
 	const handleEntrySubmission = (index) => {
 		//FINAL - set the entry state and submit the entry to the server
 		let addedPlaylist = filteredPlayGroups[index];
@@ -128,10 +137,21 @@ const SearchModal = () => {
 			addedPlaylist
 		);
 
-		// console.log("the added playlist", addedPlaylist);
-		// Note - set state is an async process so it doesn't update immediately - A callback or useEffect will suffice
-		setEntryData((prevEntry) => ({ ...prevEntry, playlist: addedPlaylist }));
-		//submit song on the backend
+		// get the chosen song from the current path on the URL
+		const chosenSongId = router.asPath.substring(2);
+		console.log(chosenSongId);
+
+		console.log(entryData);
+		console.log(topTracks[0]?.id);
+		const chosenSong = topTracks.find((track) => track.id === chosenSongId);
+		console.log(chosenSong);
+
+		// Note - set state is an async process so it doesn't update immediately - I will use a useEffect to handle that
+
+		// check if its coming from the Homepage's Top Tracks suggestions. If not, then it's from Add music
+		if (Object.keys(entryData.song).length === 0 && Object.keys(entryData.song).length === 0) {
+			setEntryData(() => ({ song: chosenSong, playlist: addedPlaylist, user: session.user }));
+		} else setEntryData((prevEntry) => ({ ...prevEntry, playlist: addedPlaylist }));
 	};
 
 	const addTrackToPlaylist = useCallback(

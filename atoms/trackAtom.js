@@ -35,6 +35,11 @@ export const theyTracksState = atom({
 	default: [],
 });
 
+export const topTracksState = atom({
+	key: "topTracksState",
+	default: [],
+});
+
 export const isLikeState = atom({
 	key: "isLikeState",
 	default: false,
