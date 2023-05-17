@@ -62,7 +62,7 @@ const SearchModal = () => {
 	const [openBackDrop, setOpenBackdrop] = useRecoilState(openBackDropState);
 	const [alert, setAlert] = useRecoilState(alertState);
 	const [openChildModal, setOpenChildModal] = useRecoilState(openChildModalState);
-	const [topTracks, setTopTracks] = useRecoilState(topTracksState);
+	const topTracks = useRecoilValue(topTracksState);
 
 	//local states
 	const [searchedTracks, setSearchedTracks] = useState([]);
@@ -161,6 +161,9 @@ const SearchModal = () => {
 				setOpenModal(false);
 				setOpenChildModal(false);
 			}, 250);
+
+			// delay 2 seconds
+			await new Promise((resolve) => setTimeout(resolve, 2000));
 
 			try {
 				const response = await fetch("/api/add-track", {

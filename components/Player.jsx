@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
-import debounce from "lodash/debounce";
+import debounce from "lodash/debounce"; //3.4KB
 // import SongImagePlaceholder from "../public/placeholder-playlist.jpg";
 import {
 	BsHeartFill,

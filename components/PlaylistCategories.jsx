@@ -5,6 +5,7 @@ import PlaylistCardSkeleton from "./skeletons/PlaylistCardSkeleton";
 import PlaygroupCard from "./PlaygroupCard";
 
 const PlaylistCategories = ({ category, title, type, loading }) => {
+	console.log(category);
 	return (
 		<div className="category">
 			<div className="category__heading">
@@ -16,7 +17,7 @@ const PlaylistCategories = ({ category, title, type, loading }) => {
 				{loading ? (
 					<PlaylistCardSkeleton cards={5} />
 				) : (
-					category.map((item) => {
+					category?.map((item) => {
 						return (
 							(type === "playgroup" && <PlaygroupCard key={item.id} playlist={item} />) ||
 							(type === "playlist" && <PlaylistCard key={item.id} playlist={item} />) ||

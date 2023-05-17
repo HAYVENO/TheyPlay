@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import * as Popover from "@radix-ui/react-popover";
 import { BsThreeDots } from "react-icons/bs";
-import { RiSendPlaneFill } from "react-icons/ri";
+import { CgPlayListAdd } from "react-icons/cg";
 import { openChildModalState } from "../atoms/modalAtom";
 
 const TrackCard = ({ playlist: track }) => {
@@ -37,7 +37,7 @@ const TrackCard = ({ playlist: track }) => {
 							<Popover.Content>
 								<button className="ATP-btn" onClick={() => handleOpenChildModal(track.id)}>
 									<span>Add to a playgroup</span>
-									<RiSendPlaneFill />
+									<CgPlayListAdd size={18} />
 								</button>
 							</Popover.Content>
 						</Popover.Portal>

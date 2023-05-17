@@ -6,6 +6,7 @@ import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from "react-ico
 import { CgPlayListAdd } from "react-icons/cg";
 import { FaUserCircle } from "react-icons/fa";
 import Avatar from "@mui/material/Avatar";
+import shuffle from "lodash/shuffle";
 import getInitials from "../util/getInitials";
 import PlaylistCategories from "./PlaylistCategories";
 import { useRecoilState, waitForAll, waitForAllSettled, waitForAny } from "recoil";
@@ -38,20 +39,24 @@ const Center = () => {
 
 						spotifyApi.getUserPlaylists(),
 						spotifyApi.getMyTopArtists(),
-						spotifyApi.getMyTopTracks({ limit: 15 }),
+						spotifyApi?.getMyTopTracks({ limit: 50 }),
 					]).then(([playlistsData, topArtistsData, topTracksData]) => {
 						console.log(playgroups);
-						console.log(playlistsData?.body?.items);
+						// shuffle the Suggested Top Tracks
+						const shuffledTopTracks = shuffle(topTracksData?.body?.items);
+						setTopTracks(shuffledTopTracks.slice(0, 20));
 						setPlaylists(playlistsData?.body?.items);
 						setTopArtists(topArtistsData?.body?.items.slice(0, 10));
-						setTopTracks(topTracksData?.body?.items.slice(0, 10));
 						setIsLoading(false); // set isLoading to false after all the API calls are finished
 					});
 			} catch (err) {
 				console.log("🚀 ~ file: center.jsx:39 ~ useEffect ~ err", err);
 			}
 		}
-	}, [spotifyApi, session, playgroups]);
+	}, [spotifyApi, session, setTopTracks, playgroups]);
+
+	console.log(shuffle(topTracks));
+	console.log(topArtists);
 
 	useEffect(() => {
 		if (session) {
@@ -93,7 +98,6 @@ const Center = () => {
 				)}
 			</header>
 			{/* {PLAYLIST CATEGORIES  } */}
-
 			<PlaylistCategories
 				key={1}
 				type="playgroup"
@@ -101,6 +105,7 @@ const Center = () => {
 				category={playgroups}
 				title="WHAT THEY PLAY"
 			/>
+			{/* Shuffle the Suggested Top Tracks for the Tracks category */}
 			<PlaylistCategories
 				key={4}
 				type="track"

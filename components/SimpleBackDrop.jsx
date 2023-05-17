@@ -1,7 +1,7 @@
 import Backdrop from "@mui/material/Backdrop";
 import { useRecoilValue } from "recoil";
 import { openBackDropState } from "../atoms/modalAtom";
-import PropagateLoader from "react-spinners/PropagateLoader";
+import ScaleLoader from "react-spinners/ScaleLoader";
 
 export default function SimpleBackdrop() {
 	const openBackDrop = useRecoilValue(openBackDropState);
@@ -19,7 +19,7 @@ export default function SimpleBackdrop() {
 			>
 				{/* <CircularProgress color="inherit" /> */}
 
-				<PropagateLoader color="rgb(255, 180, 255)" />
+				<ScaleLoader color="lightblue" />
 			</Backdrop>
 		</div>
 	);
