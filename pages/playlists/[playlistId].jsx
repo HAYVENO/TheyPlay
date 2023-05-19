@@ -5,7 +5,7 @@ import Image from "next/image";
 // import SongImagePlaceholder from "../../public/placeholder-playlist.jpg";
 import Skeleton from "@mui/material/Skeleton";
 import styles from "../../styles/playlistPage.module.css";
-import { BsFillPlayCircleFill } from "react-icons/bs";
+import { BsFillPlayCircleFill, BsSpotify } from "react-icons/bs";
 import classes from "classnames";
 import Track from "../../components/Track";
 import { useSession } from "next-auth/react";
@@ -58,8 +58,6 @@ const PlaylistPage = () => {
 		// async getDominantColor logic
 		getDominantColor(imageUrl)
 			.then((dominantColor) => {
-				console.log(imageUrl);
-				console.log(dominantColor);
 				return dominantColor;
 			})
 			.then((dominantColor) => rgbToHue(dominantColor))
@@ -134,9 +132,22 @@ const PlaylistPage = () => {
 		setLiveTrack(tracks[currentSongIndex]);
 	};
 
-	console.log("🚀 ~ file: [playlistId].jsx:23 ~ PlaylistPage ~ playlist", currentPlaylist);
+	const handleAddToSpotify = () => {
+		// handle the process
+
+		// define the parameters
+		const title = `${currentPlaylist.name} - TheyPlay ✨`;
+		const description =
+			"A Playlist of songs from the /Frontenders/ group on TheyPlay. This list was curated on /DateTime/";
+		const playgroupTracksURIs = tracks.map((track) => track.uri);
+
+		console.log(playgroupTracksURIs);
+
+		console.log(currentPlaylist);
+	};
+
 	console.log("🚀 ~ file: [playlistId].jsx:23 ~ PlaylistPage ~ tracks", tracks);
-	console.log("🚀 ~ file: [playlistId].jsx:23 ~ PlaylistPage ~ contributors", contributors);
+	console.log("🚀 ~ file: [playlistId].jsx:23 ~ PlaylistPage ~ theyTracks", theyTracks);
 
 	return (
 		<>
@@ -226,11 +237,22 @@ const PlaylistPage = () => {
 					{/* Content section  */}
 					<div className={styles.playlistContent}>
 						<div className={styles.playlistControl}>
-							<button className={classes(styles.playlistBtn, "btn")}>
+							{/* <button className={classes(styles.playlistBtn, "btn")}>
 								<BsFillPlayCircleFill
 									color={`hsl(${themeColor}, 100%, 67.65%)`}
 									size={58}
 								/>
+							</button> */}
+							<button
+								onClick={handleAddToSpotify}
+								style={{
+									border: `1px solid hsla(${themeColor}, 100%, 66%, 0.2)`,
+									backgroundColor: `hsla(${themeColor}, 100%, 66%, 0.08)`,
+								}}
+								className={classes(styles.addToSpotifyBtn)}
+							>
+								<span>Add to Spotify</span>
+								<BsSpotify size={18} />
 							</button>
 						</div>
 						<div className={styles.songListContainer}>

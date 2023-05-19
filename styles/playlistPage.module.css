@@ -101,6 +101,26 @@
 	border-radius: 50%;
 }
 
+.addToSpotifyBtn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	border: none;
+	gap: 0.8rem;
+	/* border: 1px solid hsla(278, 100%, 66%, 0.42); */
+	color: rgb(220, 220, 220);
+	padding: 0.9rem 1.7rem;
+	border-radius: 8px;
+	font-weight: 500;
+	font-size: 0.9rem;
+	transition: all 0.2s ease-out;
+}
+
+.addToSpotifyBtn:hover {
+	background-color: rgba(255, 255, 255, 0.256);
+}
+
 .songListContainer {
 	padding: 1rem 2rem;
 	min-height: 60vh;

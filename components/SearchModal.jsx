@@ -148,7 +148,7 @@ const SearchModal = () => {
 
 		// Note - set state is an async process so it doesn't update immediately - I will use a useEffect to handle that
 
-		// check if its coming from the Homepage's Top Tracks suggestions. If not, then it's from Add music
+		// check if its coming from the Homepage's Top Tracks suggestions (half-way through). If not, then it's from Add music (scratch) - treat accordingly
 		if (Object.keys(entryData.song).length === 0 && Object.keys(entryData.song).length === 0) {
 			setEntryData(() => ({ song: chosenSong, playlist: addedPlaylist, user: session.user }));
 		} else setEntryData((prevEntry) => ({ ...prevEntry, playlist: addedPlaylist }));
@@ -162,7 +162,7 @@ const SearchModal = () => {
 				setOpenChildModal(false);
 			}, 250);
 
-			// delay 2 seconds
+			// delay 2 seconds - prevent api misuse :)
 			await new Promise((resolve) => setTimeout(resolve, 2000));
 
 			try {

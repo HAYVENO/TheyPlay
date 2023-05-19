@@ -28,6 +28,7 @@ const SignIn = () => {
 	// console.log("🚀 ~ file: signin.jsx:31 ~ getServerSideProps ~ providers", providers);
 
 	const [providers, setProviders] = useState([]);
+	const [showTooltip, setShowTooltip] = useState(false);
 
 	useEffect(() => {
 		async function getTheProviders() {
@@ -37,6 +38,21 @@ const SignIn = () => {
 		}
 
 		getTheProviders();
+
+		// Tooltip timer function
+		const showTimer = setTimeout(() => {
+			setShowTooltip(true);
+			const hideTimer = setTimeout(() => {
+				setShowTooltip(false);
+			}, 7000);
+			return () => {
+				clearTimeout(hideTimer);
+			};
+		}, 8000);
+
+		return () => {
+			clearTimeout(showTimer);
+		};
 	}, []);
 	console.log(providers);
 
@@ -75,19 +91,22 @@ const SignIn = () => {
 						>
 							<Tooltip
 								arrow
+								open={showTooltip}
 								placement="bottom-end"
 								title={
 									<span className="tooltip-title">
-										Don't have a Spotify account yet? Don't miss out. Sign up for free —
-										takes less than 30 seconds, and you get FREE access to Spotify's 80M
-										songs.
+										You don't have a Spotify account yet? Don't miss out. Sign up for free
+										— takes <b>less than 20 seconds</b>, and you get FREE access to
+										Spotify's 80M songs. <b>No credit card required.</b>
 										<br />
 										<br />
-										1. Click sign up (and follow the prompts).
+										1. <b>Click sign up</b> (and follow the prompts).
 										<br />
 										2. Return to this page to sign in.
 									</span>
 								}
+								onMouseEnter={() => setShowTooltip(true)}
+								onMouseLeave={() => setShowTooltip(false)}
 							>
 								<strong className="sign-up-text">sign up?</strong>
 							</Tooltip>
