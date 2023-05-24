@@ -20,10 +20,10 @@ model User {
   weeklyPoints  Int?     @default(0)
   likedSongs    Song[]   @relation("LikedSongs")
 
-  playgroups      Playgroup[]             @relation("PlaygroupToUser")
-  AddedUserSongs  UserSong[]              @relation("addedBy")
-  likedUserSongs  UserSong[]              @relation("likedUserSongs")
-  addedPlaygroups AddedPlaygroupSpotify[] @relation("addedPlaygroupsSpotify")
+  playgroups             Playgroup[]             @relation("PlaygroupToUser")
+  AddedUserSongs         UserSong[]              @relation("addedBy")
+  likedUserSongs         UserSong[]              @relation("likedUserSongs")
+  addedPlaygroupsSpotify AddedPlaygroupSpotify[] @relation("addedPlaygroupsSpotify")
 }
 
 model AddedPlaygroupSpotify {

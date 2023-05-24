@@ -1,3 +1,4 @@
+import { test } from "node:test";
 import { prisma } from "../../server/db/client";
 
 export default async function handler(req, res) {
@@ -17,9 +18,17 @@ export default async function handler(req, res) {
 					id: userId,
 				},
 				include: {
-					addedPlaygroups: true,
+					addedPlaygroupsSpotify: true,
 				},
 			});
+
+			const testing = await prisma.user.findUnique({
+				where: {
+					id: userId,
+				},
+			});
+
+			console.log("testing user ---", testing);
 
 			console.log("requested user----", user);
 			res.status(200).json(user);
