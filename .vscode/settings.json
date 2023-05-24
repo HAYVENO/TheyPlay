@@ -17,5 +17,5 @@
 		"nyai",
 		"useanimations"
 	],
-	"dotenv.enableAutocloaking": true
+	"dotenv.enableAutocloaking": false
 }
