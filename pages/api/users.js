@@ -16,8 +16,7 @@ export default async function handler(req, res) {
 				id: userId,
 			},
 			include: {
-				songs: true,
-				addedUserSongs: true,
+				AddedUserSongs: true,
 			},
 		});
 
