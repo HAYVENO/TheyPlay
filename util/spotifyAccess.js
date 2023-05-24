@@ -11,7 +11,11 @@ const scopes = [
 	"user-modify-playback-state",
 	"user-read-currently-playing",
 	"user-read-recently-played",
-	// "user-follow-read",
+	"playlist-modify-public",
+	"playlist-modify-private",
+	"user-library-modify",
+	"user-follow-read",
+	"ugc-image-upload",
 ].join(",");
 
 const params = {

@@ -37,6 +37,7 @@
 	border-radius: 3px;
 	width: 200px;
 	height: 200px;
+	background-color: #3a393926;
 }
 
 .playlistImage {
@@ -114,6 +115,7 @@
 	border-radius: 8px;
 	font-weight: 500;
 	font-size: 0.9rem;
+	text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.444);
 	transition: all 0.2s ease-out;
 }
 

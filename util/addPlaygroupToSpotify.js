@@ -1,27 +1,29 @@
-const addPlaygroupToSpotify = ({ title, description, playgroupTracksURIs }) => {
+const addPlaygroupToSpotify = async (
+	title,
+	description,
+	playgroupTracksURIs,
+	imageUrl,
 	spotifyApi
-		.createPlaylist("My playlist", {
-			description: "My description",
+) => {
+	try {
+		// Step 1: Create the playlist
+		const playlistData = await spotifyApi.createPlaylist(title, {
+			description: description,
 			public: true,
-		})
-		.then(function (playlistData) {
-			const playlistId = playlistData.id;
-			console.log("Created playlist!");
-
-			const trackUris = [
-				"spotify:track:4iV5W9uYEdYUVa79Axb7Rh",
-				"spotify:track:1301WleyT98MSxVHPZCA6M",
-				// Add more track URIs here
-			];
-
-			return spotifyApi.addTracksToPlaylist(playlistId, trackUris);
-		})
-		.then(function () {
-			console.log("Added tracks to playlist!");
-		})
-		.catch(function (err) {
-			console.log("Something went wrong!", err);
 		});
+		const playlistId = playlistData.body.id;
+		console.log(playlistData);
+
+		// Step 2: Add tracks to the playlist
+		await spotifyApi.addTracksToPlaylist(playlistId, playgroupTracksURIs);
+		console.log("Added tracks to playlist successfully ✨");
+
+		// Step 3: Upload the playlist cover image IF there's a Playgroup Image ???
+
+		return playlistId;
+	} catch (err) {
+		console.log("An error occurred:", err);
+	}
 };
 
 export default addPlaygroupToSpotify;

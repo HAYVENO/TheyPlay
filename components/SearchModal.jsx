@@ -181,7 +181,7 @@ const SearchModal = () => {
 				//close loading spinner and modals
 				setOpenBackdrop(false);
 
-				console.log(response.message);
+				console.log(response?.message);
 
 				if (response.status === 400) {
 					throw new Error(message);

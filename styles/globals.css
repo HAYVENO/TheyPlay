@@ -452,7 +452,6 @@ main {
 	object-fit: cover;
 	border-radius: 0.3rem;
 	transform: rotate(-20deg);
-	filter: saturate(0);
 }
 
 /* Center  */

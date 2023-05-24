@@ -127,7 +127,7 @@ const Sidebar = () => {
 					  ))}
 			</ul>
 			<div className="sidebar-footer">
-				<p style={{ margin: 0 }}>
+				<div style={{ margin: 0 }}>
 					Built by{" "}
 					<a
 						id="yusuf-copy"
@@ -150,7 +150,7 @@ const Sidebar = () => {
 							height={116}
 						/>
 					)}
-				</p>
+				</div>
 				<div className="line-3"></div>
 				<div className="footer__socials-container">
 					<a

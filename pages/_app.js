@@ -7,6 +7,9 @@ import Layout from "../components/Layout";
 import { Analytics } from "@vercel/analytics/react";
 import "../styles/nprogress-bar.css";
 import NProgress from "nprogress";
+import { QueryClient, QueryClientProvider } from "react-query";
+
+const queryClient = new QueryClient();
 
 // If loading a variable font, no need to specify the font weight
 const inter = Inter({ subsets: ["latin"] });
@@ -25,13 +28,15 @@ const MyApp = ({ Component, pageProps: { session, ...pageProps } }) => {
 	return (
 		<RecoilRoot>
 			<SessionProvider session={session}>
-				{excludeLayout && <Component {...pageProps} className={inter.className} />}
-				{!excludeLayout && (
-					<Layout className={inter.className}>
-						<Component {...pageProps} />
-						<Analytics />
-					</Layout>
-				)}
+				<QueryClientProvider client={queryClient}>
+					{excludeLayout && <Component {...pageProps} className={inter.className} />}
+					{!excludeLayout && (
+						<Layout className={inter.className}>
+							<Component {...pageProps} />
+							<Analytics />
+						</Layout>
+					)}
+				</QueryClientProvider>
 			</SessionProvider>
 		</RecoilRoot>
 	);

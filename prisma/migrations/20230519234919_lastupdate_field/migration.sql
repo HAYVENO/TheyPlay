@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "AddedPlaygroupSpotify" ADD COLUMN     "lastUpdate" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP;

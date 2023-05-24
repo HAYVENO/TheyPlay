@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import Image from "next/image";
@@ -10,6 +10,7 @@ import classes from "classnames";
 import Track from "../../components/Track";
 import { useSession } from "next-auth/react";
 import useSpotify from "../../util/useSpotify";
+import dayjs from "dayjs";
 
 import { useRecoilState } from "recoil";
 import {
@@ -23,13 +24,24 @@ import {
 	isLikeState,
 } from "../../atoms/trackAtom";
 import getUserSongs from "../../util/getUserSongs";
-import getPlaygroup from "../../util/getPlaygroups";
+import usePlaygroup from "../../hooks/usePlaygroup";
 import getDominantColor from "../../util/getDominantColor";
 import rgbToHue from "../../util/rgbToHue";
 import PlaylistContributors from "../../components/util-components/playlistContributors";
+import addPlaygroupToSpotify from "../../util/addPlaygroupToSpotify";
+import createAddedPlaygroup from "../../util/createAddedPlaygroup";
+import { openBackDropState, alertState } from "../../atoms/modalAtom";
+import alertStyles from "../../util/alertStyles";
+import { useQueryClient, useQuery } from "react-query";
+import useUser from "../../hooks/useUser";
+import updatePlaylistOnSpotify from "../../util/updatePlaygroupOnSpotify";
+
+const { successStyle, errorStyle, warningStyle, infoStyle } = alertStyles;
 
 const PlaylistPage = () => {
+	// URL queries
 	const router = useRouter();
+	const { playlistId } = router.query;
 
 	//global states -
 	const [isPlaying, setIsPlaying] = useRecoilState(isPlayingState);
@@ -40,17 +52,24 @@ const PlaylistPage = () => {
 	const [volume, setVolume] = useRecoilState(volumeState);
 	const [theyTracks, setTheyTracks] = useRecoilState(theyTracksState);
 	const [isLiked, setIsLiked] = useRecoilState(isLikeState);
+	const [openBackDrop, setOpenBackdrop] = useRecoilState(openBackDropState);
+	const [alert, setAlert] = useRecoilState(alertState);
 
 	//local states -
-	const { playlistId } = router.query;
-	const spotifyApi = useSpotify();
-	const { data: session, status } = useSession();
 	const [currentPlaylist, setCurrentPlaylist] = useState("");
 	const [themeColor, setThemeColor] = useState(null);
 	const [contributors, setContributors] = useState("");
 
+	// Custom hooks
+	const { data: session, status } = useSession();
+	const currentPlaygroup = usePlaygroup(playlistId);
+	const { data: currentUser, refetch: refetchUserData } = useUser(session?.user?.username);
+	console.log(currentUser);
+	const queryClient = useQueryClient();
+	const spotifyApi = useSpotify();
+
+	//get theme color using Playgroup image's most dominant color
 	useEffect(() => {
-		//get theme color using Playgroup image's most dominant color
 		const imageUrl = currentPlaylist?.groupImage
 			? currentPlaylist.groupImage
 			: "/placeholder-playlist.jpg";
@@ -75,10 +94,9 @@ const PlaylistPage = () => {
 		if (spotifyApi.getAccessToken()) {
 			try {
 				//get playgroup details
-				getPlaygroup(playlistId).then((currentPlaygroup) =>
-					setCurrentPlaylist(currentPlaygroup)
-				);
-
+				if (currentPlaygroup) {
+					setCurrentPlaylist(currentPlaygroup);
+				}
 				//get playgroup's userSong entries
 				getUserSongs(playlistId)
 					.then((retrievedUserSongs) => {
@@ -98,7 +116,7 @@ const PlaylistPage = () => {
 				console.log(err);
 			}
 		}
-	}, [spotifyApi, session, playlistId, setTracks, setTheyTracks, isLiked]);
+	}, [spotifyApi, session, playlistId, setTracks, setTheyTracks, isLiked, currentPlaygroup]);
 
 	const handleTrackPlay = (currentSongIndex) => {
 		//check if the track's preview is available
@@ -132,18 +150,94 @@ const PlaylistPage = () => {
 		setLiveTrack(tracks[currentSongIndex]);
 	};
 
-	const handleAddToSpotify = () => {
-		// handle the process
+	console.log(currentUser);
 
-		// define the parameters
-		const title = `${currentPlaylist.name} - TheyPlay ✨`;
-		const description =
-			"A Playlist of songs from the /Frontenders/ group on TheyPlay. This list was curated on /DateTime/";
-		const playgroupTracksURIs = tracks.map((track) => track.uri);
+	//check if the user has already saved the Playgroup in the past
 
-		console.log(playgroupTracksURIs);
+	const isAddedPlaygroup = useMemo(() => {
+		console.log(
+			currentUser?.addedPlaygroups?.find(
+				(addedPlaygroup) => addedPlaygroup?.playgroupId === currentPlaygroup?.id
+			)
+		);
+		return currentUser?.addedPlaygroups.find(
+			(addedPlaygroup) => addedPlaygroup?.playgroupId === currentPlaygroup?.id
+		);
+	}, [currentUser, currentPlaygroup]);
 
-		console.log(currentPlaylist);
+	// Rest of your component code...
+
+	const handleAddToSpotify = async () => {
+		try {
+			setOpenBackdrop(true);
+
+			// define the Playlist parameters
+			const userId = currentUser?.id;
+			const title = `${currentPlaylist?.name} - TheyPlay ✨`;
+			const formattedDate = dayjs().format("MMMM D, YYYY h:mm A");
+			const description = `Songs from the ${currentPlaylist?.name} Playgroup on TheyPlay Music app ✨. This list was last updated on ${formattedDate}.`;
+			const playgroupTracksURIs = tracks.map((track) => track.uri);
+			const imageUrl = currentPlaylist?.groupImage;
+
+			//  UPDATE the Added Playgroup, not Add if the user already added the playgroup in the past.
+			if (isAddedPlaygroup) {
+				const { playlistId } = isAddedPlaygroup;
+				console.log(playlistId);
+				await updatePlaylistOnSpotify(
+					playlistId,
+					playgroupTracksURIs,
+					spotifyApi,
+					userId,
+					description
+				);
+
+				setAlert({
+					open: true,
+					message: `${currentPlaylist.name} Playgroup is now up-to-date on your Spotify 🎉 `,
+					severity: "success",
+					style: successStyle,
+				});
+			} else {
+				// function to add Playgroup to spotify then return the playlist ID
+				const playlistId = await addPlaygroupToSpotify(
+					title,
+					description,
+					playgroupTracksURIs,
+					imageUrl,
+					spotifyApi
+				);
+
+				// Record the Added Playgroup log to the backend𝌏
+				const playgroupId = currentPlaylist?.id;
+				const userId = session?.user?.username;
+				const playgroupName = currentPlaylist?.name;
+				await createAddedPlaygroup(playgroupId, userId, playlistId, playgroupName);
+
+				//Refetch the Playgroup data
+				refetchUserData();
+
+				console.log(currentPlaylist);
+				console.log(currentUser);
+
+				//alert the user on success
+				setAlert({
+					open: true,
+					message: `${currentPlaylist.name} Playgroup added to your Spotify successfully 🎉 `,
+					severity: "success",
+					style: successStyle,
+				});
+			}
+		} catch (err) {
+			console.log(err);
+			setAlert({
+				open: true,
+				message: `Something went wrong somewhere. If this persists, please reach out ✉️`,
+				severity: "error",
+				style: errorStyle,
+			});
+		}
+		setOpenBackdrop(false);
+		console.log("playlist created, and recorded");
 	};
 
 	console.log("🚀 ~ file: [playlistId].jsx:23 ~ PlaylistPage ~ tracks", tracks);
@@ -251,13 +345,13 @@ const PlaylistPage = () => {
 								}}
 								className={classes(styles.addToSpotifyBtn)}
 							>
-								<span>Add to Spotify</span>
+								<span>{isAddedPlaygroup ? "Update on Spotify" : "Add to Spotify"}</span>
 								<BsSpotify size={18} />
 							</button>
 						</div>
 						<div className={styles.songListContainer}>
 							<div className={classes(styles.listGrid, styles.listHead)}>
-								<p>#</p>
+								<p>S/N</p>
 								<p>Title</p>
 								<p>Added by</p>
 								<p>Popularity</p>
