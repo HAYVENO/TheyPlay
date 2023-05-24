@@ -150,7 +150,7 @@ const PlaylistPage = () => {
 		setLiveTrack(tracks[currentSongIndex]);
 	};
 
-	console.log(currentUser);
+	console.log("currentUser --------", currentUser);
 
 	//check if the user has already saved the Playgroup in the past
 
