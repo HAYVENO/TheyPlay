@@ -11,6 +11,13 @@ export default async function handler(req, res) {
 	// console.log(userId);
 
 	if (userId) {
+		const testing = await prisma.user.findUnique({
+			where: {
+				id: userId,
+			},
+		});
+
+		console.log("testing user ---", testing);
 		try {
 			// Find the unique user's data
 			const user = await prisma.user.findUnique({
@@ -21,14 +28,6 @@ export default async function handler(req, res) {
 					addedPlaygroupsSpotify: true,
 				},
 			});
-
-			const testing = await prisma.user.findUnique({
-				where: {
-					id: userId,
-				},
-			});
-
-			console.log("testing user ---", testing);
 
 			console.log("requested user----", user);
 			res.status(200).json(user);
