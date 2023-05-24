@@ -15,6 +15,7 @@ export default async function handler(req, res) {
 			where: {
 				id: userId,
 			},
+			include: {},
 		});
 
 		console.log("testing user ---", testing);
