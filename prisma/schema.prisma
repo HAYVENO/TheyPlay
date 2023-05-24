@@ -23,14 +23,14 @@ model User {
   playgroups      Playgroup[]             @relation("PlaygroupToUser")
   AddedUserSongs  UserSong[]              @relation("addedBy")
   likedUserSongs  UserSong[]              @relation("likedUserSongs")
-  addedPlaygroups AddedPlaygroupSpotify[] @relation("addedPlaygroups")
+  addedPlaygroups AddedPlaygroupSpotify[] @relation("addedPlaygroupsSpotify")
 }
 
 model AddedPlaygroupSpotify {
   id            String    @id @default(uuid())
   playgroup     Playgroup @relation(fields: [playgroupId], references: [id])
   playgroupId   String
-  addedBy       User      @relation("addedPlaygroups", fields: [userId], references: [id])
+  addedBy       User      @relation("addedPlaygroupsSpotify", fields: [userId], references: [id])
   userId        String
   playlistId    String
   playgroupName String
@@ -98,6 +98,7 @@ enum Rank {
   SOUND_EXPLORER
   RISING_CONTRIBUTOR
   MUSIC_AFICIONADO
+  BIG_SOUND
   TUNE_TITAN
   SOUND_MAESTRO
 }
