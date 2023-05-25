@@ -1,4 +1,3 @@
-import { test } from "node:test";
 import { prisma } from "../../server/db/client";
 
 export default async function handler(req, res) {
@@ -11,12 +10,13 @@ export default async function handler(req, res) {
 	// console.log(userId);
 
 	if (userId) {
+		console.log("testing user--------- ---");
 		const testing = await prisma.user.findUnique({
 			where: {
 				id: userId,
 			},
 			include: {
-				AddedUserSongs: true,
+				addedPlaygroupsSpotify: true,
 			},
 		});
 

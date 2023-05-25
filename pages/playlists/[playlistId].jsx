@@ -156,11 +156,11 @@ const PlaylistPage = () => {
 
 	const isAddedPlaygroup = useMemo(() => {
 		console.log(
-			currentUser?.addedPlaygroups?.find(
+			currentUser?.addedPlaygroupsSpotify?.find(
 				(addedPlaygroup) => addedPlaygroup?.playgroupId === currentPlaygroup?.id
 			)
 		);
-		return currentUser?.addedPlaygroups.find(
+		return currentUser?.addedPlaygroupsSpotify?.find(
 			(addedPlaygroup) => addedPlaygroup?.playgroupId === currentPlaygroup?.id
 		);
 	}, [currentUser, currentPlaygroup]);
