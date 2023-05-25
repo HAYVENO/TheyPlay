@@ -111,6 +111,7 @@
 	gap: 0.8rem;
 	/* border: 1px solid hsla(278, 100%, 66%, 0.42); */
 	color: rgb(220, 220, 220);
+	background-color: rgba(255, 255, 255, 0.037);
 	padding: 0.9rem 1.7rem;
 	border-radius: 8px;
 	font-weight: 500;
