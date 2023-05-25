@@ -7,6 +7,8 @@ const usePlaygroup = (playlistId) => {
 			throw new Error("Failed to fetch playgroup");
 		}
 		const currentPlaygroup = await resp.json();
+		console.log("🚀 ~ file: usePlaygroup.js:10 ~ ~ currentPlaygroup:", currentPlaygroup);
+
 		return currentPlaygroup;
 	});
 

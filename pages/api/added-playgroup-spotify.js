@@ -8,6 +8,7 @@ export default async function handler(req, res) {
 	console.log(req.body);
 	const { playgroupId, userId, playlistId, playgroupName } = req.body;
 
+	// THE UPDATE PLAYLIST LOGIC
 	if (req.method === "PUT") {
 		const { playlistId, userId } = req.query;
 		console.log(userId);
@@ -31,8 +32,9 @@ export default async function handler(req, res) {
 		}
 	}
 
+	//THE ADD PLAYLIST LOGIC
 	try {
-		const addedPlaygroupSpotify = await prisma.addedPlaygroupSpotify.create({
+		const addedPlaygroupsSpotify = await prisma.addedPlaygroupsSpotify.create({
 			data: {
 				playlistId,
 				playgroupId,
@@ -41,9 +43,10 @@ export default async function handler(req, res) {
 			},
 		});
 
-		res.status(201).json({ addedPlaygroupSpotify });
+		console.log(addedPlaygroupsSpotify);
+		res.status(201).json({ addedPlaygroupsSpotify });
 	} catch (error) {
-		console.log("Failed to create AddedPlaygroupSpotify:", error);
-		res.status(500).json({ message: "Failed to create AddedPlaygroupSpotify" });
+		console.log("Failed to create AddedPlaygroupsSpotify:", error);
+		res.status(500).json({ message: "Failed to create AddedPlaygroupsSpotify" });
 	}
 }

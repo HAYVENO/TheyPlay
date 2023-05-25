@@ -69,16 +69,17 @@ model Song {
 
 // feature note** there would be public and private Playgroups
 model Playgroup {
-  id                     String                   @id @default(cuid())
-  name                   String
-  color                  String?
-  groupImage             String
-  description            String?
-  groupStatus            Status                   @default(ACTIVE)
-  dailyLimit             Int                      @default(10)
-  UserSong               UserSong[]
-  songs                  Song[]                   @relation("PlaygroupToSong")
-  users                  User[]                   @relation("PlaygroupToUser")
+  id          String     @id @default(cuid())
+  name        String
+  color       String?
+  groupImage  String
+  description String?
+  groupStatus Status     @default(ACTIVE)
+  dailyLimit  Int        @default(10)
+  UserSong    UserSong[]
+  songs       Song[]     @relation("PlaygroupToSong")
+  users       User[]     @relation("PlaygroupToUser")
+
   AddedPlaygroupsSpotify AddedPlaygroupsSpotify[]
 }
 
