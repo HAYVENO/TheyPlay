@@ -12,6 +12,7 @@ import { useSession } from "next-auth/react";
 import useSpotify from "../../util/useSpotify";
 import dayjs from "dayjs";
 
+
 import { useRecoilState } from "recoil";
 import {
 	currentSongState,
@@ -117,6 +118,33 @@ const PlaylistPage = () => {
 			}
 		}
 	}, [spotifyApi, session, playlistId, setTracks, setTheyTracks, isLiked, currentPlaygroup]);
+
+	// STILL WRITING ----?----
+	const handlePlayAllTracks = () => {
+		if (tracks.length === 0) {
+			console.log("No tracks available");
+			return;
+		}
+
+		let currentSongIndex = 0;
+
+		const playNextTrack = () => {
+			if (currentSongIndex >= tracks.length) {
+				console.log("All tracks played");
+				return;
+			}
+
+			handleTrackPlay(currentSongIndex);
+
+			const currentAudio = currentSong;
+			currentAudio.addEventListener("ended", () => {
+				currentSongIndex++;
+				playNextTrack();
+			});
+		};
+
+		playNextTrack();
+	};
 
 	const handleTrackPlay = (currentSongIndex) => {
 		//check if the track's preview is available

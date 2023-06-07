@@ -102,7 +102,7 @@ const SignIn = () => {
 										<br />
 										1. <b>Click sign up</b> (and follow the prompts).
 										<br />
-										2. Return to this page to sign in.
+										2. <b>Return to this page</b> to sign in.
 									</span>
 								}
 								onMouseEnter={() => setShowTooltip(true)}
