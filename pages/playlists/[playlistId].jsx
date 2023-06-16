@@ -12,7 +12,6 @@ import { useSession } from "next-auth/react";
 import useSpotify from "../../util/useSpotify";
 import dayjs from "dayjs";
 
-
 import { useRecoilState } from "recoil";
 import {
 	currentSongState,
@@ -313,12 +312,7 @@ const PlaylistPage = () => {
 										styles={styles}
 									/>
 								) : (
-									<Skeleton
-										className="my__custom-skeleton"
-										animation="wave"
-										width={200}
-										sx={{ bgcolor: " #9797978c" }}
-									>
+									<Skeleton className="my__custom-skeleton" animation="wave" width={200}>
 										<PlaylistContributors
 											theyTracks={theyTracks}
 											playlistId={playlistId}
@@ -330,12 +324,7 @@ const PlaylistPage = () => {
 								{currentPlaylist?.name ? (
 									<h1 className={styles.playlistName}>{currentPlaylist.name}</h1>
 								) : (
-									<Skeleton
-										className="my__custom-skeleton"
-										animation="wave"
-										sx={{ bgcolor: "#75757547" }}
-										width={400}
-									>
+									<Skeleton className="my__custom-skeleton" animation="wave" width={400}>
 										<h1 className={styles.playlistName}></h1>
 									</Skeleton>
 								)}
@@ -348,7 +337,6 @@ const PlaylistPage = () => {
 									<Skeleton
 										className="my__custom-skeleton"
 										animation="wave"
-										sx={{ bgcolor: "#9696968c" }}
 										width={300}
 										height={20}
 									/>

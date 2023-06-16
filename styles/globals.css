@@ -620,8 +620,8 @@ main {
 }
 
 .playlist__card:hover {
-	background: linear-gradient(90deg, rgba(43, 39, 90, 0.6) 2.81%, rgba(43, 39, 90, 0) 50%),
-		rgba(62, 72, 91, 0.4);
+	background: linear-gradient(90deg, rgba(43, 39, 90, 0.377) 2.81%, rgba(43, 39, 90, 0) 50%),
+		rgba(51, 66, 94, 0.4);
 }
 
 .playlist__title {
@@ -680,7 +680,7 @@ main {
 	opacity: 0;
 	transition: all 0.1s ease-out;
 	z-index: 9;
-	background-color: rgba(71, 78, 97, 0.438);
+	background-color: rgba(71, 78, 97, 0.625);
 	border-radius: 50%;
 	padding: 5px;
 }
@@ -723,13 +723,19 @@ main {
 	background-color: rgba(154, 154, 154, 0.483);
 }
 
-/* skeleton  styling */
+/* skeleton  styling MUI*/
+
+.my__custom-skeleton {
+	/* skeleton background color */
+	background-color: #75757531;
+}
 
 .my__custom-skeleton::after {
+	/* skeleton wave color */
 	background: linear-gradient(
 		90deg,
 		transparent,
-		rgba(170, 166, 166, 0.819),
+		rgba(170, 166, 166, 0.613),
 		transparent
 	) !important;
 	content: "";
