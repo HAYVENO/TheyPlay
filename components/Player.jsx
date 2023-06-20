@@ -66,9 +66,10 @@ const Player = () => {
 
 		//set the volume - and convert the value from percentage to fraction
 		currentSong.volume = value / 100;
-		setVolume(value / 100);
 		console.log(currentSong.volume);
-	}, 50);
+		setVolume(currentSong.volume);
+		console.log(currentSong.volume);
+	}, 100);
 
 	const handlePlayNext = () => {
 		// Play next song logic
@@ -256,16 +257,16 @@ const Player = () => {
 			<div className="player__right">
 				<div className="volume-control-container">
 					<button className="btn">
-						{volume === 0 ? <BsVolumeMuteFill size={24} /> : <BsVolumeDownFill size={24} />}
+						{volume < 0.01 ? <BsVolumeMuteFill size={24} /> : <BsVolumeDownFill size={24} />}
 					</button>
 					<Box width={150}>
 						{volume && (
 							<Slider
 								size="small"
 								aria-label="track volume"
-								defaultValue={1}
-								valueLabelDisplay="auto"
-								min={0}
+								defaultValue={0.3 * 100}
+								valueLabelDisplay={volume < 0.2 ? "off" : "auto"}
+								min={isPlaying ? 0.01 : 0} // Im getting a UI bug at 0
 								max={100}
 								onChange={(e) => debouncedHandleVolume(e.target.value)}
 								color="secondary"
@@ -273,7 +274,7 @@ const Player = () => {
 						)}
 					</Box>
 
-					<button style={{ opacity: volume === 0 ? 0 : 100 }} className="btn">
+					<button style={{ opacity: volume < 0.01 ? 0 : 1 }} className="btn">
 						{<BsVolumeUpFill size={24} />}
 					</button>
 				</div>

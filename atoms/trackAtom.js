@@ -2,7 +2,7 @@ import { atom } from "recoil";
 
 export const volumeState = atom({
 	key: "volumeState",
-	default: 0.03,
+	default: 0.3,
 });
 
 export const currentSongState = atom({
