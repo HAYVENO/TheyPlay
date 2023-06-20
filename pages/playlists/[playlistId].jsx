@@ -59,6 +59,8 @@ const PlaylistPage = () => {
 	const [currentPlaylist, setCurrentPlaylist] = useState("");
 	const [themeColor, setThemeColor] = useState(null);
 	const [contributors, setContributors] = useState("");
+	const [currentSongNumber, setCurrentSongNumber] = useState(0);
+	const [livePlaygroup, setLivePlaygroup] = useState("");
 
 	// Custom hooks
 	const { data: session, status } = useSession();
@@ -118,46 +120,60 @@ const PlaylistPage = () => {
 		}
 	}, [spotifyApi, session, playlistId, setTracks, setTheyTracks, isLiked, currentPlaygroup]);
 
-	// STILL WRITING ----?----
-	const handlePlayAllTracks = () => {
-		if (tracks.length === 0) {
+	// PLAY NEXT TRACK EFFECT
+	useEffect(() => {
+		if (currentSongNumber >= tracks?.length) {
+			currentSong?.pause();
+			setIsPlaying(false);
+			return;
+		}
+
+		if (currentSong)
+			currentSong.onended = function () {
+				console.log("Audio playback has ended");
+				console.log(currentSongNumber);
+				handleTrackPlay(currentSongNumber + 1);
+				console.log(currentSongNumber);
+			};
+
+		console.log(
+			"🚀 ~ file: [playlistId].jsx:137 ~ useEffect ~ currentSongNumber:",
+			currentSongNumber
+		);
+	}, [currentSong, currentSongNumber]);
+
+	const handleAllTracksPlay = () => {
+		if (tracks?.length === 0) {
 			console.log("No tracks available");
 			return;
 		}
 
-		let currentSongIndex = 0;
-
-		const playNextTrack = () => {
-			if (currentSongIndex >= tracks.length) {
-				console.log("All tracks played");
-				return;
-			}
-
-			handleTrackPlay(currentSongIndex);
-
-			const currentAudio = currentSong;
-			currentAudio.addEventListener("ended", () => {
-				currentSongIndex++;
-				playNextTrack();
-			});
-		};
-
-		playNextTrack();
+		// Play the first track of the Playgroup (and go from there)
+		handleTrackPlay(0);
 	};
 
 	const handleTrackPlay = (currentSongIndex) => {
-		//check if the track's preview is available
+		if (currentSongIndex >= tracks?.length) {
+			console.log("way too long");
+			return;
+		}
+		//check if the track's preview sound is available
 		if (
 			!tracks[currentSongIndex]?.preview_url &&
 			!theyTracks[currentSongIndex]?.addedSong?.previewUrl
 		) {
-			console.log("Track's short not available");
-			return;
+			setAlert({
+				open: true,
+				message: `${tracks[currentSongIndex]?.album?.name}'s audio is not available at this moment`,
+				severity: "warning",
+				style: warningStyle,
+			});
+
+			currentSongIndex = currentSongIndex + 1;
 		}
 
-		setIsCurrentTrack(currentSongIndex);
-
 		if (isPlaying) {
+			console.log(currentSong);
 			currentSong.pause();
 		}
 
@@ -170,11 +186,13 @@ const PlaylistPage = () => {
 		console.log(tracks);
 		audio.play();
 		audio.volume = volume;
-		audio.loop = true;
+		// audio.loop = true;
+
 		setIsPlaying(true);
 		setCurrentSong(audio);
 		setIsCurrentTrack(currentSongIndex);
 		setLiveTrack(tracks[currentSongIndex]);
+		setCurrentSongNumber(currentSongIndex);
 	};
 
 	console.log("currentUser --------", currentUser);
@@ -279,7 +297,7 @@ const PlaylistPage = () => {
 				<div
 					style={{
 						"--playlist-hue": themeColor,
-						animation: isPlaying ? "hue-animation 20s infinite" : "none",
+						animation: isPlaying ? "hue-animation 40s infinite" : "none",
 					}}
 					className={styles.playlistContainer}
 				>
@@ -304,7 +322,7 @@ const PlaylistPage = () => {
 							</div>
 
 							<div className={styles.playlistDetails}>
-								{theyTracks.find((track) => track.playgroupId === playlistId)?.addedBy
+								{theyTracks?.find((track) => track.playgroupId === playlistId)?.addedBy
 									?.name ? (
 									<PlaylistContributors
 										theyTracks={theyTracks}
@@ -347,12 +365,15 @@ const PlaylistPage = () => {
 					{/* Content section  */}
 					<div className={styles.playlistContent}>
 						<div className={styles.playlistControl}>
-							{/* <button className={classes(styles.playlistBtn, "btn")}>
+							<button
+								onClick={handleAllTracksPlay}
+								className={classes(styles.playlistPlayBtn, "btn")}
+							>
 								<BsFillPlayCircleFill
 									color={`hsl(${themeColor}, 100%, 67.65%)`}
-									size={58}
+									size={60}
 								/>
-							</button> */}
+							</button>
 							<button
 								onClick={handleAddToSpotify}
 								style={{

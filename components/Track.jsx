@@ -24,10 +24,6 @@ const Track = ({ track, theyTrack, index, onClick, isCurrentTrack }) => {
 	const handlePlay = () => {
 		onClick(index);
 		setCurrentIndex(index);
-		// console.log(track);
-		// console.log(currentSong?.src);
-		// console.log(liveTrack?.preview_url);
-		// console.log(theyTrack?.addedSong?.previewUrl);
 	};
 
 	return (
@@ -62,11 +58,11 @@ const Track = ({ track, theyTrack, index, onClick, isCurrentTrack }) => {
 							// style={{ color: track.preview_url ? "white" : "#ffffff69" }}
 							className={styles.songTitle}
 						>
-							{track.name}
+							{track?.name}
 						</p>
 						<p className={styles.songArtist}>
-							{track.artists
-								.map((artist) => artist.name)
+							{track?.artists
+								.map((artist) => artist?.name)
 								.slice(0, 3)
 								.join(", ")}
 						</p>
@@ -81,7 +77,7 @@ const Track = ({ track, theyTrack, index, onClick, isCurrentTrack }) => {
 							sx={{ color: "#d662ff", stroke: "#0000007a" }}
 							precision={0.5}
 							name="read-only"
-							value={convertToFive(track.popularity)}
+							value={convertToFive(track?.popularity)}
 							readOnly
 						/>
 					</Box>

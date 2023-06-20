@@ -772,21 +772,6 @@ main {
 	transform: rotate(324deg) translate(-5%, -5%);
 }
 
-/* Animations  */
-@keyframes hue-animation {
-	0% {
-		filter: hue-rotate(0deg);
-	}
-
-	50% {
-		filter: hue-rotate(359deg);
-	}
-
-	100% {
-		filter: hue-rotate(0deg);
-	}
-}
-
 /* SEARCH MODAL */
 .search-modal {
 	background-color: rgba(17, 11, 29, 0.3);
@@ -1198,6 +1183,22 @@ main {
 	color: #75abfb;
 	animation: spin_words 6s infinite;
 }
+
+/* Animations  */
+@keyframes hue-animation {
+	0% {
+		filter: hue-rotate(0deg);
+	}
+
+	50% {
+		filter: hue-rotate(359deg);
+	}
+
+	100% {
+		filter: hue-rotate(0deg);
+	}
+}
+
 @keyframes spin_words {
 	10% {
 		transform: translateY(-112%);

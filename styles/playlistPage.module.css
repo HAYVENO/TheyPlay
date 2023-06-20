@@ -98,8 +98,9 @@
 	/* border: 1px solid green; */
 }
 
-.playlistBtn {
+.playlistPlayBtn {
 	border-radius: 50%;
+	margin-right: 2rem;
 }
 
 .addToSpotifyBtn {

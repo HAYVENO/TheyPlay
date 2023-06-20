@@ -60,7 +60,7 @@ const Player = () => {
 		);
 	}, [session, theyTracks, currentSongIndex, setIsLiked]);
 
-	const debouncedShowVolume = debounce((value) => {
+	const debouncedHandleVolume = debounce((value) => {
 		if (!currentSong) return;
 
 		//set the volume - and convert the value from percentage to fraction
@@ -89,11 +89,11 @@ const Player = () => {
 	console.log(theyTracks);
 
 	const handleLikeAndDislike = async () => {
-		console.log(theyTracks[currentSongIndex]?.likes);
-		console.log(
-			theyTracks[currentSongIndex]?.likes.some((like) => like.id === session.user.username)
-		);
-		console.log(theyTracks[currentSongIndex]?.id);
+		// console.log(theyTracks[currentSongIndex]?.likes);
+		// console.log(
+		// 	theyTracks[currentSongIndex]?.likes.some((like) => like.id === session.user.username)
+		// );
+		// console.log(theyTracks[currentSongIndex]?.id);
 
 		// Check if the song is not already liked by the user - /db_persisted_like/ -- like if it's not liked yet
 		const like = !theyTracks[currentSongIndex]?.likes?.some(
@@ -183,9 +183,9 @@ const Player = () => {
 					<div>
 						<h3 style={{ color: "white", fontWeight: "700" }}>{liveTrack?.name}</h3>
 						<p>
-							{liveTrack.artists &&
+							{liveTrack?.artists &&
 								liveTrack?.artists
-									.map((artist) => artist.name)
+									.map((artist) => artist?.name)
 									.slice(0, 3)
 									.join(", ")}
 						</p>
@@ -247,16 +247,18 @@ const Player = () => {
 						{volume === 0 ? <BsVolumeMuteFill size={24} /> : <BsVolumeDownFill size={24} />}
 					</button>
 					<Box width={150}>
-						<Slider
-							size="small"
-							aria-label="track volume"
-							defaultValue={volume * 80}
-							valueLabelDisplay="auto"
-							min={0}
-							max={100}
-							onChange={(e) => debouncedShowVolume(e.target.value)}
-							color="secondary"
-						/>
+						{volume && (
+							<Slider
+								size="small"
+								aria-label="track volume"
+								defaultValue={1}
+								valueLabelDisplay="auto"
+								min={0}
+								max={100}
+								onChange={(e) => debouncedHandleVolume(e.target.value)}
+								color="secondary"
+							/>
+						)}
 					</Box>
 
 					<button style={{ opacity: volume === 0 ? 0 : 100 }} className="btn">
