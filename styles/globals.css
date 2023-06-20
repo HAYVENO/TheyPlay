@@ -603,13 +603,13 @@ main {
 
 .playlist__card {
 	position: relative;
-	height: 190px;
-	border-radius: 0.3rem;
+	height: 180px;
+	border-radius: 0.5rem;
 	padding-top: 15px;
 	overflow: hidden;
 	border: 1.2px solid var(--mauve3);
-	background: linear-gradient(90deg, rgba(43, 39, 90, 0.2) 2.81%, rgba(43, 39, 90, 0) 50%),
-		rgba(64, 75, 95, 0.2);
+	background: linear-gradient(90deg, rgba(43, 39, 90, 0.1) 2.81%, rgba(43, 39, 90, 0) 50%),
+		rgba(64, 75, 95, 0.1);
 	backdrop-filter: blur(10px);
 
 	box-shadow: 4px 5px 13px 0px #030222;
@@ -620,14 +620,14 @@ main {
 }
 
 .playlist__card:hover {
-	background: linear-gradient(90deg, rgba(43, 39, 90, 0.377) 2.81%, rgba(43, 39, 90, 0) 50%),
-		rgba(51, 66, 94, 0.4);
+	background: linear-gradient(90deg, rgba(40, 36, 68, 0.2) 2.81%, rgba(31, 28, 66, 0) 50%),
+		rgba(41, 54, 77, 0.27);
 }
 
 .playlist__title {
 	color: #dbdbdb;
 	/* font-size: 1.2rem; */
-	padding: 1rem 1.2rem;
+	padding: 1rem 1rem;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	overflow: hidden;
@@ -747,7 +747,7 @@ main {
 .card-skeleton {
 	position: relative;
 	overflow: hidden;
-	border-radius: 0.3rem;
+	border-radius: 0.5rem;
 	padding-top: 15px;
 	display: flex;
 	flex-direction: column;
@@ -756,7 +756,7 @@ main {
 	border: 0.1px solid var(--mauve3);
 	border-radius: 0.7rem;
 	background-color: #3d3d3d35;
-	height: 190px;
+	height: 180px;
 	transform: rotate(-3deg);
 }
 

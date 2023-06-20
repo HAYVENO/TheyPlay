@@ -22,6 +22,7 @@ import {
 	volumeState,
 	theyTracksState,
 	isLikeState,
+	currentSongNumberState,
 } from "../../atoms/trackAtom";
 import getUserSongs from "../../util/getUserSongs";
 import usePlaygroup from "../../hooks/usePlaygroup";
@@ -53,14 +54,15 @@ const PlaylistPage = () => {
 	const [theyTracks, setTheyTracks] = useRecoilState(theyTracksState);
 	const [isLiked, setIsLiked] = useRecoilState(isLikeState);
 	const [openBackDrop, setOpenBackdrop] = useRecoilState(openBackDropState);
+	const [currentSongNumber, setCurrentSongNumber] = useRecoilState(currentSongNumberState);
 	const [alert, setAlert] = useRecoilState(alertState);
 
 	//local states -
 	const [currentPlaylist, setCurrentPlaylist] = useState("");
 	const [themeColor, setThemeColor] = useState(null);
 	const [contributors, setContributors] = useState("");
-	const [currentSongNumber, setCurrentSongNumber] = useState(0);
 	const [livePlaygroup, setLivePlaygroup] = useState("");
+	// const [currentSongNumber, setCurrentSongNumber] = useState(0);
 
 	// Custom hooks
 	const { data: session, status } = useSession();
@@ -120,7 +122,7 @@ const PlaylistPage = () => {
 		}
 	}, [spotifyApi, session, playlistId, setTracks, setTheyTracks, isLiked, currentPlaygroup]);
 
-	// PLAY NEXT TRACK EFFECT
+	// ON TRACK END EFFECT
 	useEffect(() => {
 		if (currentSongNumber >= tracks?.length) {
 			currentSong?.pause();
@@ -131,7 +133,7 @@ const PlaylistPage = () => {
 		if (currentSong)
 			currentSong.onended = function () {
 				console.log("Audio playback has ended");
-				console.log(currentSongNumber);
+
 				handleTrackPlay(currentSongNumber + 1);
 				console.log(currentSongNumber);
 			};
@@ -141,6 +143,16 @@ const PlaylistPage = () => {
 			currentSongNumber
 		);
 	}, [currentSong, currentSongNumber]);
+
+	// PLAY NEXT TRACK EFFECT
+	useEffect(() => {
+		if (currentSongNumber >= tracks?.length || currentSongNumber < 0) {
+			setIsPlaying(false);
+			return;
+		}
+		console.log("handle play skip");
+		handleTrackPlay(currentSongNumber);
+	}, [currentSongNumber]);
 
 	const handleAllTracksPlay = () => {
 		if (tracks?.length === 0) {
@@ -152,6 +164,7 @@ const PlaylistPage = () => {
 		handleTrackPlay(0);
 	};
 
+	// TODO: Handle next and Previous Play for when user leaves the current PlayGroup view
 	const handleTrackPlay = (currentSongIndex) => {
 		if (currentSongIndex >= tracks?.length) {
 			console.log("way too long");
@@ -164,7 +177,7 @@ const PlaylistPage = () => {
 		) {
 			setAlert({
 				open: true,
-				message: `${tracks[currentSongIndex]?.album?.name}'s audio is not available at this moment`,
+				message: `${tracks[currentSongIndex]?.album?.name}'s audio is not available at this moment 😕`,
 				severity: "warning",
 				style: warningStyle,
 			});

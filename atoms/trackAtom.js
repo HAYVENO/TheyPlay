@@ -1,5 +1,10 @@
 import { atom } from "recoil";
 
+export const volumeState = atom({
+	key: "volumeState",
+	default: 0.03,
+});
+
 export const currentSongState = atom({
 	key: "currentSongState", // unique ID (with respect to other atoms/selectors)
 	default: null, // default value (aka initial value)
@@ -25,11 +30,6 @@ export const liveTrackState = atom({
 	default: {},
 });
 
-export const volumeState = atom({
-	key: "volumeState",
-	default: 0.03,
-});
-
 export const theyTracksState = atom({
 	key: "theyTracksState",
 	default: [],
@@ -38,6 +38,11 @@ export const theyTracksState = atom({
 export const topTracksState = atom({
 	key: "topTracksState",
 	default: [],
+});
+
+export const currentSongNumberState = atom({
+	key: "currentSongNumberState",
+	default: 0,
 });
 
 export const isLikeState = atom({

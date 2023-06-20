@@ -26,6 +26,7 @@ import {
 	liveTrackState,
 	volumeState,
 	isLikeState,
+	currentSongNumberState,
 } from "../atoms/trackAtom";
 
 import alertStyles from "../util/alertStyles";
@@ -43,9 +44,9 @@ const Player = () => {
 	const [volume, setVolume] = useRecoilState(volumeState);
 	const [alert, setAlert] = useRecoilState(alertState);
 	const [isLiked, setIsLiked] = useRecoilState(isLikeState);
+	const [currentSongNumber, setCurrentSongNumber] = useRecoilState(currentSongNumberState);
 
 	//local states
-
 	const [isLoadingLike, setIsLoadingLike] = useState(false);
 
 	// useEffect for every time a new song is mounted on the Player
@@ -68,6 +69,17 @@ const Player = () => {
 		setVolume(value / 100);
 		console.log(currentSong.volume);
 	}, 50);
+
+	const handlePlayNext = () => {
+		// Play next song logic
+		setCurrentSongNumber((prevNumber) => prevNumber + 1);
+		console.log(currentSongNumber);
+	};
+
+	const handlePlayPrevious = () => {
+		// Play Previous song logic
+		setCurrentSongNumber((prevNumber) => prevNumber - 1);
+	};
 
 	const handlePauseAndPlay = () => {
 		// console.log("current SONG", currentSong);
@@ -211,7 +223,7 @@ const Player = () => {
 						<button className="btn">
 							<BsShuffle size={16} />
 						</button>
-						<button className="btn">
+						<button onClick={handlePlayPrevious} className="btn">
 							<TbPlayerSkipBack size={24} />
 						</button>
 						<button className="btn" onClick={handlePauseAndPlay}>
@@ -221,7 +233,7 @@ const Player = () => {
 								<BsFillPlayCircleFill color="white" size={38} />
 							)}
 						</button>
-						<button className="btn">
+						<button onClick={handlePlayNext} className="btn">
 							<TbPlayerSkipForward size={24} />
 						</button>
 						<button className="btn">
