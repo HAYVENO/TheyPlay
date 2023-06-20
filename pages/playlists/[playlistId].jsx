@@ -148,6 +148,7 @@ const PlaylistPage = () => {
 	useEffect(() => {
 		if (currentSongNumber >= tracks?.length || currentSongNumber < 0) {
 			setIsPlaying(false);
+
 			return;
 		}
 		console.log("handle play skip");
