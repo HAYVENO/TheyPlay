@@ -5,6 +5,11 @@ export const volumeState = atom({
 	default: 0.3,
 });
 
+export const isOnRepeatState = atom({
+	key: "isOnRepeatState",
+	default: false,
+});
+
 export const currentSongState = atom({
 	key: "currentSongState", // unique ID (with respect to other atoms/selectors)
 	default: null, // default value (aka initial value)

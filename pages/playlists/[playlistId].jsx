@@ -12,7 +12,7 @@ import { useSession } from "next-auth/react";
 import useSpotify from "../../util/useSpotify";
 import dayjs from "dayjs";
 
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import {
 	currentSongState,
 	isCurrentTrackState,
@@ -23,6 +23,7 @@ import {
 	theyTracksState,
 	isLikeState,
 	currentSongNumberState,
+	isOnRepeatState,
 } from "../../atoms/trackAtom";
 import getUserSongs from "../../util/getUserSongs";
 import usePlaygroup from "../../hooks/usePlaygroup";
@@ -50,12 +51,13 @@ const PlaylistPage = () => {
 	const [isCurrentTrack, setIsCurrentTrack] = useRecoilState(isCurrentTrackState);
 	const [tracks, setTracks] = useRecoilState(tracksState);
 	const [liveTrack, setLiveTrack] = useRecoilState(liveTrackState);
-	const [volume, setVolume] = useRecoilState(volumeState);
+	const volume = useRecoilValue(volumeState);
 	const [theyTracks, setTheyTracks] = useRecoilState(theyTracksState);
-	const [isLiked, setIsLiked] = useRecoilState(isLikeState);
+	const isLiked = useRecoilValue(isLikeState);
 	const [openBackDrop, setOpenBackdrop] = useRecoilState(openBackDropState);
 	const [currentSongNumber, setCurrentSongNumber] = useRecoilState(currentSongNumberState);
 	const [alert, setAlert] = useRecoilState(alertState);
+	const isOnRepeat = useRecoilValue(isOnRepeatState);
 
 	//local states -
 	const [currentPlaylist, setCurrentPlaylist] = useState("");
@@ -203,7 +205,6 @@ const PlaylistPage = () => {
 		audio.volume = ((volume + 0.1) * 0.7).toFixed(2);
 		console.log(audio.volume);
 		// I'm getting a UI bug at 0
-		// audio.loop = true;
 
 		setIsPlaying(true);
 		setCurrentSong(audio);

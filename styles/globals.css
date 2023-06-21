@@ -445,6 +445,10 @@ main {
 	transform: scale(0.9);
 }
 
+.btn:focus {
+	outline: none;
+}
+
 .song-image {
 	display: inline;
 	width: 3.5rem;
@@ -977,9 +981,9 @@ main {
 }
 
 .s-app-title strong {
-	letter-spacing: 3px;
+	letter-spacing: 4px;
 	font-weight: 600;
-	font-size: 1.2rem;
+	font-size: 1rem;
 	text-shadow: 2px 2px 2px rgb(0 0 0);
 }
 

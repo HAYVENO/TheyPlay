@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSession } from "next-auth/react";
 import debounce from "lodash/debounce"; //3.4KB
 // import SongImagePlaceholder from "../public/placeholder-playlist.jpg";
@@ -12,7 +12,9 @@ import {
 	BsVolumeMuteFill,
 } from "react-icons/bs";
 import { TbPlayerSkipBack, TbPlayerSkipForward } from "react-icons/tb";
-import { BsFillPlayCircleFill, BsShuffle, BsArrowRepeat, BsVolumeDownFill } from "react-icons/bs";
+import { BsFillPlayCircleFill, BsShuffle, BsVolumeDownFill } from "react-icons/bs";
+
+import { TbRepeat, TbRepeatOnce } from "react-icons/tb";
 
 import Slider from "@mui/material/Slider";
 import Box from "@mui/material/Box";
@@ -27,6 +29,7 @@ import {
 	volumeState,
 	isLikeState,
 	currentSongNumberState,
+	isOnRepeatState,
 } from "../atoms/trackAtom";
 
 import alertStyles from "../util/alertStyles";
@@ -45,9 +48,27 @@ const Player = () => {
 	const [alert, setAlert] = useRecoilState(alertState);
 	const [isLiked, setIsLiked] = useRecoilState(isLikeState);
 	const [currentSongNumber, setCurrentSongNumber] = useRecoilState(currentSongNumberState);
+	const [isOnRepeat, setIsOnRepeat] = useRecoilState(isOnRepeatState);
 
 	//local states
 	const [isLoadingLike, setIsLoadingLike] = useState(false);
+	const playPauseButtonRef = useRef(null);
+
+	// Handle Keypress
+	useEffect(() => {
+		const handleKeyPress = (e) => {
+			if (e.code === "Space") {
+				e.preventDefault();
+				playPauseButtonRef?.current.click();
+			}
+		};
+
+		document.addEventListener("keydown", handleKeyPress);
+
+		return () => {
+			document.removeEventListener("keydown", handleKeyPress);
+		};
+	}, []);
 
 	// useEffect for every time a new song is mounted on the Player
 	useEffect(() => {
@@ -96,6 +117,20 @@ const Player = () => {
 			setIsPlaying(true);
 
 			return;
+		}
+	};
+
+	const handleRepeat = () => {
+		if (!currentSong) {
+			return;
+		}
+
+		if (isOnRepeat) {
+			currentSong.loop = false;
+			setIsOnRepeat(false);
+		} else {
+			currentSong.loop = true;
+			setIsOnRepeat(true);
 		}
 	};
 
@@ -222,12 +257,12 @@ const Player = () => {
 				<div className="player__controls-container">
 					<div className="now__playing-controls">
 						<button className="btn">
-							<BsShuffle size={16} />
+							<BsShuffle size={16} style={{ opacity: "0.6" }} />
 						</button>
 						<button onClick={handlePlayPrevious} className="btn">
 							<TbPlayerSkipBack size={24} />
 						</button>
-						<button className="btn" onClick={handlePauseAndPlay}>
+						<button ref={playPauseButtonRef} className="btn" onClick={handlePauseAndPlay}>
 							{isPlaying ? (
 								<BsPauseCircleFill color="white" size={38} />
 							) : (
@@ -237,8 +272,12 @@ const Player = () => {
 						<button onClick={handlePlayNext} className="btn">
 							<TbPlayerSkipForward size={24} />
 						</button>
-						<button className="btn">
-							<BsArrowRepeat size={16} />
+						<button
+							onClick={handleRepeat}
+							className="btn"
+							style={{ opacity: currentSong ? "1" : "0.6" }}
+						>
+							{isOnRepeat ? <TbRepeatOnce size={17} /> : <TbRepeat size={17} />}
 						</button>
 					</div>
 					{/* <div className="time__bar-container">
@@ -266,7 +305,7 @@ const Player = () => {
 								aria-label="track volume"
 								defaultValue={0.3 * 100}
 								valueLabelDisplay={volume < 0.2 ? "off" : "auto"}
-								min={isPlaying ? 0.01 : 0} // Im getting a UI bug at 0
+								min={isPlaying ? 0.01 : 0} // I'm getting a UI bug at 0
 								max={100}
 								onChange={(e) => debouncedHandleVolume(e.target.value)}
 								color="secondary"
