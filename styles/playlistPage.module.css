@@ -99,11 +99,26 @@
 }
 
 .playlistPlayBtn {
-	border-radius: 50%;
-	margin-right: 2rem;
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	border: none;
+	gap: 0.4rem;
+	/* border: 1px solid hsla(278, 100%, 66%, 0.42); */
+	color: rgb(220, 220, 220);
+	background-color: rgba(255, 255, 255, 0.037);
+	border-radius: 8px;
+	font-weight: 500;
+	font-size: 0.9rem;
+	margin-right: 1.4rem;
+	padding: 0.7rem 1.7rem;
+	min-width: 150px;
 }
 
 .addToSpotifyBtn {
+	box-sizing: border-box;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -113,16 +128,12 @@
 	/* border: 1px solid hsla(278, 100%, 66%, 0.42); */
 	color: rgb(220, 220, 220);
 	background-color: rgba(255, 255, 255, 0.037);
-	padding: 0.9rem 1.7rem;
+	padding: 0.7rem 1.7rem;
 	border-radius: 8px;
 	font-weight: 500;
 	font-size: 0.9rem;
-	text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.444);
+	/* text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.444); */
 	transition: all 0.2s ease-out;
-}
-
-.addToSpotifyBtn:hover {
-	background-color: rgba(255, 255, 255, 0.256);
 }
 
 .songListContainer {
@@ -133,7 +144,10 @@
 
 .listGrid {
 	display: grid;
-	grid-template-columns: [SN] 20px [title] 5fr [item1] 3fr [item2] 3fr [last] minmax(120px, 1fr);
+	grid-template-columns: [SN] 20px [title] 5fr [item1] 3fr [item2] 3fr [last] minmax(
+			120px,
+			1fr
+		);
 	gap: 1rem;
 	color: var(--color-text);
 	align-items: center;

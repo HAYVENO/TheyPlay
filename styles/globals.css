@@ -38,11 +38,11 @@
 	--border-radius-2: 6px;
 	--border-radius-3: 8px;
 
-	--backlight: 0 0 20px 2px #8641b4, -15px 0 30px -15px #e98b39, 0 0 30px -15px #ff002f,
-		15px 0 30px -15px #5252d0;
+	--backlight: 0 0 20px 2px #8641b4, -15px 0 30px -15px #e98b39,
+		0 0 30px -15px #ff002f, 15px 0 30px -15px #5252d0;
 
-	--backlight2: 0 0 6px 2px #ff8c00, -15px 0 30px -15px #ff2d55, 0 0 30px -15px #007aff,
-		15px 0 30px -15px #4cd964;
+	--backlight2: 0 0 6px 2px #ff8c00, -15px 0 30px -15px #ff2d55,
+		0 0 30px -15px #007aff, 15px 0 30px -15px #4cd964;
 
 	/* they play - COLORS  */
 	--color-text: var(--mauve1);
@@ -594,6 +594,10 @@ main {
 	padding: 1.5rem 2rem;
 }
 
+.category__title {
+	text-shadow: 4px 4px #01011f;
+}
+
 .category__playlists {
 	min-height: 205px;
 	margin: 0;
@@ -612,7 +616,11 @@ main {
 	padding-top: 15px;
 	overflow: hidden;
 	border: 1.2px solid var(--mauve3);
-	background: linear-gradient(90deg, rgba(43, 39, 90, 0.1) 2.81%, rgba(43, 39, 90, 0) 50%),
+	background: linear-gradient(
+			90deg,
+			rgba(43, 39, 90, 0.1) 2.81%,
+			rgba(43, 39, 90, 0) 50%
+		),
 		rgba(64, 75, 95, 0.1);
 	backdrop-filter: blur(10px);
 
@@ -624,7 +632,11 @@ main {
 }
 
 .playlist__card:hover {
-	background: linear-gradient(90deg, rgba(40, 36, 68, 0.2) 2.81%, rgba(31, 28, 66, 0) 50%),
+	background: linear-gradient(
+			90deg,
+			rgba(40, 36, 68, 0.2) 2.81%,
+			rgba(31, 28, 66, 0) 50%
+		),
 		rgba(41, 54, 77, 0.27);
 }
 
@@ -719,7 +731,7 @@ main {
 	background-color: rgba(76, 70, 92, 0.497);
 	border: 1px solid rgba(115, 114, 114, 0.972);
 	border-radius: 4px;
-	backdrop-filter: blur(50px);
+	backdrop-filter: blur(15px);
 	color: rgb(215, 215, 215);
 }
 
@@ -939,8 +951,8 @@ main {
 /* sign-up page  */
 
 .s-header {
-	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
-		Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+		Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 	box-sizing: border-box;
 	position: fixed;
 	display: block;
@@ -1037,8 +1049,8 @@ main {
 /* Sign-in page style  */
 .container {
 	box-sizing: border-box;
-	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
-		Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+		Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 	font-weight: 700;
 	display: flex;
 	flex-direction: column;

@@ -5,7 +5,12 @@ import Image from "next/image";
 // import SongImagePlaceholder from "../../public/placeholder-playlist.jpg";
 import Skeleton from "@mui/material/Skeleton";
 import styles from "../../styles/playlistPage.module.css";
-import { BsFillPlayCircleFill, BsSpotify } from "react-icons/bs";
+import {
+	BsFillPlayCircleFill,
+	BsPause,
+	BsPlayFill,
+	BsSpotify,
+} from "react-icons/bs";
 import classes from "classnames";
 import Track from "../../components/Track";
 import { useSession } from "next-auth/react";
@@ -48,14 +53,17 @@ const PlaylistPage = () => {
 	//global states -
 	const [isPlaying, setIsPlaying] = useRecoilState(isPlayingState);
 	const [currentSong, setCurrentSong] = useRecoilState(currentSongState);
-	const [isCurrentTrack, setIsCurrentTrack] = useRecoilState(isCurrentTrackState);
+	const [isCurrentTrack, setIsCurrentTrack] =
+		useRecoilState(isCurrentTrackState);
 	const [tracks, setTracks] = useRecoilState(tracksState);
 	const [liveTrack, setLiveTrack] = useRecoilState(liveTrackState);
 	const volume = useRecoilValue(volumeState);
 	const [theyTracks, setTheyTracks] = useRecoilState(theyTracksState);
 	const isLiked = useRecoilValue(isLikeState);
 	const [openBackDrop, setOpenBackdrop] = useRecoilState(openBackDropState);
-	const [currentSongNumber, setCurrentSongNumber] = useRecoilState(currentSongNumberState);
+	const [currentSongNumber, setCurrentSongNumber] = useRecoilState(
+		currentSongNumberState
+	);
 	const [alert, setAlert] = useRecoilState(alertState);
 	const isOnRepeat = useRecoilValue(isOnRepeatState);
 
@@ -69,7 +77,9 @@ const PlaylistPage = () => {
 	// Custom hooks
 	const { data: session, status } = useSession();
 	const currentPlaygroup = usePlaygroup(playlistId);
-	const { data: currentUser, refetch: refetchUserData } = useUser(session?.user?.username);
+	const { data: currentUser, refetch: refetchUserData } = useUser(
+		session?.user?.username
+	);
 	console.log(currentUser);
 	const queryClient = useQueryClient();
 	const spotifyApi = useSpotify();
@@ -110,19 +120,31 @@ const PlaylistPage = () => {
 						setTheyTracks(retrievedUserSongs);
 						return retrievedUserSongs;
 					})
-					.then((retrievedUserSongs) => retrievedUserSongs.map((entry) => entry.songId))
+					.then((retrievedUserSongs) =>
+						retrievedUserSongs.map((entry) => entry.songId)
+					)
 					.then((songIds) =>
 						spotifyApi.getTracks(songIds).then((data) => {
 							console.log(data?.body?.tracks);
 							setTracks(data?.body?.tracks);
 						})
 					);
-				setContributors([...new Set(theyTracks.map((track) => track.userId))]);
+				setContributors([
+					...new Set(theyTracks.map((track) => track.userId)),
+				]);
 			} catch (err) {
 				console.log(err);
 			}
 		}
-	}, [spotifyApi, session, playlistId, setTracks, setTheyTracks, isLiked, currentPlaygroup]);
+	}, [
+		spotifyApi,
+		session,
+		playlistId,
+		setTracks,
+		setTheyTracks,
+		isLiked,
+		currentPlaygroup,
+	]);
 
 	// ON TRACK END EFFECT
 	useEffect(() => {
@@ -158,6 +180,12 @@ const PlaylistPage = () => {
 	}, [currentSongNumber]);
 
 	const handleAllTracksPlay = () => {
+		if (isPlaying) {
+			currentSong?.pause();
+			setIsPlaying(false);
+			return;
+		}
+
 		if (tracks?.length === 0) {
 			console.log("No tracks available");
 			return;
@@ -220,11 +248,13 @@ const PlaylistPage = () => {
 	const isAddedPlaygroup = useMemo(() => {
 		console.log(
 			currentUser?.addedPlaygroupsSpotify?.find(
-				(addedPlaygroup) => addedPlaygroup?.playgroupId === currentPlaygroup?.id
+				(addedPlaygroup) =>
+					addedPlaygroup?.playgroupId === currentPlaygroup?.id
 			)
 		);
 		return currentUser?.addedPlaygroupsSpotify?.find(
-			(addedPlaygroup) => addedPlaygroup?.playgroupId === currentPlaygroup?.id
+			(addedPlaygroup) =>
+				addedPlaygroup?.playgroupId === currentPlaygroup?.id
 		);
 	}, [currentUser, currentPlaygroup]);
 
@@ -274,7 +304,12 @@ const PlaylistPage = () => {
 				const playgroupId = currentPlaylist?.id;
 				const userId = session?.user?.username;
 				const playgroupName = currentPlaylist?.name;
-				await createAddedPlaygroup(playgroupId, userId, playlistId, playgroupName);
+				await createAddedPlaygroup(
+					playgroupId,
+					userId,
+					playlistId,
+					playgroupName
+				);
 
 				//Refetch the Playgroup data
 				refetchUserData();
@@ -303,8 +338,14 @@ const PlaylistPage = () => {
 		console.log("playlist created, and recorded");
 	};
 
-	console.log("🚀 ~ file: [playlistId].jsx:23 ~ PlaylistPage ~ tracks", tracks);
-	console.log("🚀 ~ file: [playlistId].jsx:23 ~ PlaylistPage ~ theyTracks", theyTracks);
+	console.log(
+		"🚀 ~ file: [playlistId].jsx:23 ~ PlaylistPage ~ tracks",
+		tracks
+	);
+	console.log(
+		"🚀 ~ file: [playlistId].jsx:23 ~ PlaylistPage ~ theyTracks",
+		theyTracks
+	);
 
 	return (
 		<>
@@ -340,15 +381,20 @@ const PlaylistPage = () => {
 							</div>
 
 							<div className={styles.playlistDetails}>
-								{theyTracks?.find((track) => track.playgroupId === playlistId)?.addedBy
-									?.name ? (
+								{theyTracks?.find(
+									(track) => track.playgroupId === playlistId
+								)?.addedBy?.name ? (
 									<PlaylistContributors
 										theyTracks={theyTracks}
 										playlistId={playlistId}
 										styles={styles}
 									/>
 								) : (
-									<Skeleton className="my__custom-skeleton" animation="wave" width={200}>
+									<Skeleton
+										className="my__custom-skeleton"
+										animation="wave"
+										width={200}
+									>
 										<PlaylistContributors
 											theyTracks={theyTracks}
 											playlistId={playlistId}
@@ -358,9 +404,15 @@ const PlaylistPage = () => {
 								)}
 
 								{currentPlaylist?.name ? (
-									<h1 className={styles.playlistName}>{currentPlaylist.name}</h1>
+									<h1 className={styles.playlistName}>
+										{currentPlaylist.name}
+									</h1>
 								) : (
-									<Skeleton className="my__custom-skeleton" animation="wave" width={400}>
+									<Skeleton
+										className="my__custom-skeleton"
+										animation="wave"
+										width={400}
+									>
 										<h1 className={styles.playlistName}></h1>
 									</Skeleton>
 								)}
@@ -385,22 +437,35 @@ const PlaylistPage = () => {
 						<div className={styles.playlistControl}>
 							<button
 								onClick={handleAllTracksPlay}
-								className={classes(styles.playlistPlayBtn, "btn")}
+								className={styles.playlistPlayBtn}
+								style={{
+									border: `1px solid hsla(${themeColor}, 100%, 66%, 0)`,
+									backgroundColor: `hsla(${themeColor}, 100%, 66%, 0.3)`,
+								}}
 							>
-								<BsFillPlayCircleFill
-									color={`hsl(${themeColor}, 100%, 67.65%)`}
-									size={60}
-								/>
+								{isPlaying ? (
+									<>
+										Playing <BsPause size={18} />
+									</>
+								) : (
+									<>
+										Play All <BsPlayFill size={18} />
+									</>
+								)}
 							</button>
 							<button
 								onClick={handleAddToSpotify}
 								style={{
-									border: `1px solid hsla(${themeColor}, 100%, 66%, 0.2)`,
-									backgroundColor: `hsla(${themeColor}, 100%, 66%, 0.08)`,
+									border: `.1px solid hsla(${themeColor}, 100%, 66%, 0.4)`,
+									backgroundColor: `hsla(${themeColor}, 100%, 66%, 0.04)`,
 								}}
 								className={classes(styles.addToSpotifyBtn)}
 							>
-								<span>{isAddedPlaygroup ? "Update on Spotify" : "Add to Spotify"}</span>
+								<span>
+									{isAddedPlaygroup
+										? "Update on Spotify"
+										: "Add to Spotify"}
+								</span>
 								<BsSpotify size={18} />
 							</button>
 						</div>
