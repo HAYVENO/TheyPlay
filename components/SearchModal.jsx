@@ -54,21 +54,27 @@ const SearchModal = () => {
 	//global states
 	const [isPlaying, setIsPlaying] = useRecoilState(isPlayingState);
 	const [currentSong, setCurrentSong] = useRecoilState(currentSongState);
-	const [isCurrentTrack, setIsCurrentTrack] = useRecoilState(isCurrentTrackState);
+	const [isCurrentTrack, setIsCurrentTrack] =
+		useRecoilState(isCurrentTrackState);
 	const [liveTrack, setLiveTrack] = useRecoilState(liveTrackState);
 	const [volume, setVolume] = useRecoilState(volumeState);
 	const [openModal, setOpenModal] = useRecoilState(openModalState);
 	const playGroups = useRecoilValue(playgroupsState);
 	const [openBackDrop, setOpenBackdrop] = useRecoilState(openBackDropState);
 	const [alert, setAlert] = useRecoilState(alertState);
-	const [openChildModal, setOpenChildModal] = useRecoilState(openChildModalState);
+	const [openChildModal, setOpenChildModal] =
+		useRecoilState(openChildModalState);
 	const topTracks = useRecoilValue(topTracksState);
 
 	//local states
 	const [searchedTracks, setSearchedTracks] = useState([]);
 	// const [openChildModal, setOpenChildModal] = useState(false);
 	const [filteredPlayGroups, setFilteredPlayGroups] = useState([]);
-	const [entryData, setEntryData] = useState({ song: {}, playlist: {}, user: {} });
+	const [entryData, setEntryData] = useState({
+		song: {},
+		playlist: {},
+		user: {},
+	});
 
 	// CHILD MODAL OPEN-CLOSE HANDLER
 
@@ -100,14 +106,44 @@ const SearchModal = () => {
 		console.log("Searched tracks --", searchedTracks);
 	}, 200);
 
-	// Handle the opening the child modal and rendering of all /playgroups/
+	// Step 2: Handle the opening the child modal and rendering of all /playgroups/
 	const handleOpenChildModal = (index) => {
-		setOpenChildModal(true);
-
 		const addedTrack = searchedTracks[index];
-		console.log("🚀 ~ file: SearchModal.jsx:104 ~ handleOpenChildModal ~ addedTrack", addedTrack);
+		console.log(
+			"🚀 ~ file: SearchModal.jsx:104 ~ handleOpenChildModal ~ addedTrack",
+			addedTrack
+		);
 
-		setEntryData((prevEntry) => ({ ...prevEntry, song: { ...addedTrack }, user: session.user }));
+		console.log(router);
+		const isFromPlaygroup = router.asPath.includes("/playlists/");
+		const currentPlaygroupId = router.query.playlistId;
+		const currentPlaygroup = playGroups?.find(
+			(playgroup) => playgroup.id === currentPlaygroupId
+		);
+
+		console.log(currentPlaygroup);
+
+		console.log(
+			"🚀 ~ file: SearchModal.jsx:120 ~ handleOpenChildModal ~ currentPlaygroup:",
+			currentPlaygroup
+		);
+
+		if (isFromPlaygroup) {
+			setEntryData((prevEntry) => ({
+				...prevEntry,
+				song: { ...addedTrack },
+				user: session.user,
+				playlist: currentPlaygroup,
+			}));
+		} else {
+			setEntryData((prevEntry) => ({
+				...prevEntry,
+				song: { ...addedTrack },
+				user: session.user,
+			}));
+
+			setOpenChildModal(true);
+		}
 	};
 
 	// when all parameters are submitted --
@@ -115,7 +151,10 @@ const SearchModal = () => {
 	// handle Playgroup search -- onChange - filtering process
 	const handlePlaygroupSearch = debounce((e) => {
 		const searchValue = e.target.value;
-		console.log("🚀 ~ file: SearchModal.jsx:39 ~ handleSearch ~ searchValue", searchValue);
+		console.log(
+			"🚀 ~ file: SearchModal.jsx:39 ~ handleSearch ~ searchValue",
+			searchValue
+		);
 
 		const filteredList = playGroups.filter((group) =>
 			group.name.toLowerCase().includes(searchValue.toLowerCase())
@@ -137,9 +176,9 @@ const SearchModal = () => {
 			addedPlaylist
 		);
 
-		// get the chosen song from the current path on the URL
+		//SCENARIO A: get the chosen song from the current path on the URL (ON THE HOMEPAGE)
 		const chosenSongId = router.asPath.substring(2);
-		console.log(chosenSongId);
+		console.log(router);
 
 		console.log(entryData);
 		console.log(topTracks[0]?.id);
@@ -149,9 +188,20 @@ const SearchModal = () => {
 		// Note - set state is an async process so it doesn't update immediately - I will use a useEffect to handle that
 
 		// check if its coming from the Homepage's Top Tracks suggestions (half-way through). If not, then it's from Add music (scratch) - treat accordingly
-		if (Object.keys(entryData.song).length === 0 && Object.keys(entryData.song).length === 0) {
-			setEntryData(() => ({ song: chosenSong, playlist: addedPlaylist, user: session.user }));
-		} else setEntryData((prevEntry) => ({ ...prevEntry, playlist: addedPlaylist }));
+		if (
+			Object.keys(entryData.song).length === 0 &&
+			Object.keys(entryData.song).length === 0
+		) {
+			setEntryData(() => ({
+				song: chosenSong,
+				playlist: addedPlaylist,
+				user: session.user,
+			}));
+		} else
+			setEntryData((prevEntry) => ({
+				...prevEntry,
+				playlist: addedPlaylist,
+			}));
 	};
 
 	const addTrackToPlaylist = useCallback(
@@ -285,11 +335,17 @@ const SearchModal = () => {
 										<div className="track-container">
 											<div
 												className="track-details"
-												onClick={() => handleTrackPlayAndPause(index)}
+												onClick={() =>
+													handleTrackPlayAndPause(index)
+												}
 											>
 												<div className="image-container">
 													<Image
-														style={{ opacity: track?.preview_url ? "1" : "0.5" }}
+														style={{
+															opacity: track?.preview_url
+																? "1"
+																: "0.5",
+														}}
 														className="track-image"
 														width={35}
 														height={35}
@@ -301,13 +357,16 @@ const SearchModal = () => {
 													/>
 													{/* Check if the current audio track has the same url as the /Current song/  */}
 													{liveTrack.preview_url ===
-														searchedTracks[index].preview_url && isPlaying ? (
+														searchedTracks[index].preview_url &&
+													isPlaying ? (
 														<BsFillPauseFill
 															color="white"
 															className="track__play-btn"
 															size={24}
 															style={{
-																display: track?.preview_url ? "block" : "none",
+																display: track?.preview_url
+																	? "block"
+																	: "none",
 															}}
 														/>
 													) : (
@@ -316,7 +375,9 @@ const SearchModal = () => {
 															className="track__play-btn"
 															size={24}
 															style={{
-																display: track?.preview_url ? "block" : "none",
+																display: track?.preview_url
+																	? "block"
+																	: "none",
 															}}
 														/>
 													)}
@@ -325,12 +386,17 @@ const SearchModal = () => {
 												<div className="song-Description">
 													<p
 														style={{
-															color: track?.preview_url ? "white" : "#ffffff69",
+															color: track?.preview_url
+																? "white"
+																: "#ffffff69",
 														}}
 														className="track-name"
 													>
 														{track?.name.length > 33
-															? `${track?.name.substring(0, 32)}...`
+															? `${track?.name.substring(
+																	0,
+																	32
+															  )}...`
 															: track?.name}
 													</p>
 													<p className="track-artist">
@@ -344,10 +410,15 @@ const SearchModal = () => {
 														<Rating
 															height={200}
 															size="small"
-															sx={{ color: "#d662ff", stroke: "#0000007a" }}
+															sx={{
+																color: "#d662ff",
+																stroke: "#0000007a",
+															}}
 															precision={0.5}
 															name="read-only"
-															value={convertToFive(track?.popularity)}
+															value={convertToFive(
+																track?.popularity
+															)}
 															readOnly
 														/>
 													</Box>
@@ -355,8 +426,13 @@ const SearchModal = () => {
 											</div>
 											<p>
 												<Button
-													onClick={() => handleOpenChildModal(index)}
-													sx={{ borderRadius: "6px", minWidth: "max-content" }}
+													onClick={() =>
+														handleOpenChildModal(index)
+													}
+													sx={{
+														borderRadius: "6px",
+														minWidth: "max-content",
+													}}
 													variant="outlined"
 												>
 													ADD TRACK
@@ -407,7 +483,10 @@ const SearchModal = () => {
 															className="track-image"
 															width={35}
 															height={35}
-															src={group?.groupImage || SongImagePlaceholder}
+															src={
+																group?.groupImage ||
+																SongImagePlaceholder
+															}
 															alt="song"
 														/>
 													</div>
@@ -424,8 +503,13 @@ const SearchModal = () => {
 												</div>
 												<p>
 													<Button
-														onClick={() => handleEntrySubmission(index)}
-														sx={{ borderRadius: "6px", minWidth: "max-content" }}
+														onClick={() =>
+															handleEntrySubmission(index)
+														}
+														sx={{
+															borderRadius: "6px",
+															minWidth: "max-content",
+														}}
 														variant="outlined"
 														color="secondary"
 													>

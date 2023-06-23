@@ -11,6 +11,7 @@ import {
 	BsPlayFill,
 	BsSpotify,
 } from "react-icons/bs";
+import { AiOutlineAppstoreAdd } from "react-icons/ai";
 import classes from "classnames";
 import Track from "../../components/Track";
 import { useSession } from "next-auth/react";
@@ -42,6 +43,7 @@ import alertStyles from "../../util/alertStyles";
 import { useQueryClient, useQuery } from "react-query";
 import useUser from "../../hooks/useUser";
 import updatePlaylistOnSpotify from "../../util/updatePlaygroupOnSpotify";
+import { openModalState } from "../../atoms/modalAtom";
 
 const { successStyle, errorStyle, warningStyle, infoStyle } = alertStyles;
 
@@ -66,6 +68,7 @@ const PlaylistPage = () => {
 	);
 	const [alert, setAlert] = useRecoilState(alertState);
 	const isOnRepeat = useRecoilValue(isOnRepeatState);
+	const [openModal, setOpenModal] = useRecoilState(openModalState);
 
 	//local states -
 	const [currentPlaylist, setCurrentPlaylist] = useState("");
@@ -356,7 +359,7 @@ const PlaylistPage = () => {
 				<div
 					style={{
 						"--playlist-hue": themeColor,
-						animation: isPlaying ? "hue-animation 40s infinite" : "none",
+						animation: isPlaying ? "hue-animation 60s infinite" : "none",
 					}}
 					className={styles.playlistContainer}
 				>
@@ -453,6 +456,7 @@ const PlaylistPage = () => {
 									</>
 								)}
 							</button>
+
 							<button
 								onClick={handleAddToSpotify}
 								style={{
@@ -467,6 +471,18 @@ const PlaylistPage = () => {
 										: "Add to Spotify"}
 								</span>
 								<BsSpotify size={18} />
+							</button>
+
+							<button
+								onClick={() => setOpenModal(true)}
+								style={{
+									border: `.1px solid hsla(${themeColor}, 100%, 66%, 0.4)`,
+									backgroundColor: `hsla(${themeColor}, 100%, 66%, 0.04)`,
+								}}
+								className={classes(styles.addToSpotifyBtn)}
+							>
+								Add music
+								<AiOutlineAppstoreAdd size={18} />
 							</button>
 						</div>
 						<div className={styles.songListContainer}>

@@ -8,7 +8,8 @@ import { CgPlayListAdd } from "react-icons/cg";
 import { openChildModalState } from "../atoms/modalAtom";
 
 const TrackCard = ({ playlist: track }) => {
-	const [openChildModal, setOpenChildModal] = useRecoilState(openChildModalState);
+	const [openChildModal, setOpenChildModal] =
+		useRecoilState(openChildModalState);
 
 	const handleOpenChildModal = () => {
 		setOpenChildModal(true);
@@ -35,7 +36,10 @@ const TrackCard = ({ playlist: track }) => {
 						</Popover.Trigger>
 						<Popover.Portal>
 							<Popover.Content>
-								<button className="ATP-btn" onClick={() => handleOpenChildModal(track.id)}>
+								<button
+									className="ATP-btn"
+									onClick={() => handleOpenChildModal(track.id)}
+								>
 									<span>Add to a playgroup</span>
 									<CgPlayListAdd size={18} />
 								</button>
