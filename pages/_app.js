@@ -19,6 +19,12 @@ Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());
 Router.events.on("routeChangeError", () => NProgress.done());
 
+if (process.env.NODE_ENV === "production") {
+	console.log = () => {};
+	console.warn = () => {};
+	console.error = () => {};
+}
+
 const MyApp = ({ Component, pageProps: { session, ...pageProps } }) => {
 	const router = useRouter();
 
@@ -29,7 +35,9 @@ const MyApp = ({ Component, pageProps: { session, ...pageProps } }) => {
 		<RecoilRoot>
 			<SessionProvider session={session}>
 				<QueryClientProvider client={queryClient}>
-					{excludeLayout && <Component {...pageProps} className={inter.className} />}
+					{excludeLayout && (
+						<Component {...pageProps} className={inter.className} />
+					)}
 					{!excludeLayout && (
 						<Layout className={inter.className}>
 							<Component {...pageProps} />

@@ -109,6 +109,7 @@ const PlaylistPage = () => {
 		//
 	}, [currentPlaylist]);
 
+	//SPOTIFY API CALLS
 	useEffect(() => {
 		if (spotifyApi.getAccessToken()) {
 			try {
@@ -142,11 +143,10 @@ const PlaylistPage = () => {
 	}, [
 		spotifyApi,
 		session,
-		playlistId,
 		setTracks,
 		setTheyTracks,
-		isLiked,
 		currentPlaygroup,
+		isLiked,
 	]);
 
 	// ON TRACK END EFFECT
@@ -353,7 +353,12 @@ const PlaylistPage = () => {
 	return (
 		<>
 			<Head>
-				<title> {currentPlaylist?.name} Playgroup | TheyPlay Music</title>
+				<title>
+					{`${
+						currentPlaylist && currentPlaylist?.name
+					} Playgroup | TheyPlay
+					Music`}
+				</title>
 			</Head>
 			<main>
 				<div
@@ -458,18 +463,6 @@ const PlaylistPage = () => {
 							</button>
 
 							<button
-								onClick={() => setOpenModal(true)}
-								style={{
-									border: `.1px solid hsla(${themeColor}, 100%, 66%, 0.4)`,
-									backgroundColor: `hsla(${themeColor}, 100%, 66%, 0.04)`,
-								}}
-								className={classes(styles.addToSpotifyBtn)}
-							>
-								Add music
-								<AiOutlineAppstoreAdd size={18} />
-							</button>
-
-							<button
 								onClick={handleAddToSpotify}
 								style={{
 									border: `.1px solid hsla(${themeColor}, 100%, 66%, 0.4)`,
@@ -483,6 +476,18 @@ const PlaylistPage = () => {
 										: "Add to Spotify"}
 								</span>
 								<BsSpotify size={18} />
+							</button>
+
+							<button
+								onClick={() => setOpenModal(true)}
+								style={{
+									border: `.1px solid hsla(${themeColor}, 100%, 66%, 0.4)`,
+									backgroundColor: `hsla(${themeColor}, 100%, 66%, 0.04)`,
+								}}
+								className={classes(styles.addToSpotifyBtn)}
+							>
+								Add music
+								<AiOutlineAppstoreAdd size={18} />
 							</button>
 						</div>
 						<div className={styles.songListContainer}>

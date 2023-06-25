@@ -10,9 +10,15 @@ import {
 	BsVolumeUpFill,
 	BsPauseCircleFill,
 	BsVolumeMuteFill,
+	BsSkipStart,
 } from "react-icons/bs";
 import { TbPlayerSkipBack, TbPlayerSkipForward } from "react-icons/tb";
-import { BsFillPlayCircleFill, BsShuffle, BsVolumeDownFill } from "react-icons/bs";
+import {
+	BsFillPlayCircleFill,
+	BsShuffle,
+	BsVolumeDownFill,
+	BsSkipEnd,
+} from "react-icons/bs";
 
 import { TbRepeat, TbRepeatOnce } from "react-icons/tb";
 
@@ -47,7 +53,9 @@ const Player = () => {
 	const [volume, setVolume] = useRecoilState(volumeState);
 	const [alert, setAlert] = useRecoilState(alertState);
 	const [isLiked, setIsLiked] = useRecoilState(isLikeState);
-	const [currentSongNumber, setCurrentSongNumber] = useRecoilState(currentSongNumberState);
+	const [currentSongNumber, setCurrentSongNumber] = useRecoilState(
+		currentSongNumberState
+	);
 	const [isOnRepeat, setIsOnRepeat] = useRecoilState(isOnRepeatState);
 
 	//local states
@@ -74,11 +82,15 @@ const Player = () => {
 	useEffect(() => {
 		// write logic for checking if liked or not initially
 		setIsLiked(
-			theyTracks[currentSongIndex]?.likes?.some((like) => like.id === session.user.username)
+			theyTracks[currentSongIndex]?.likes?.some(
+				(like) => like.id === session.user.username
+			)
 		);
 
 		console.log(
-			theyTracks[currentSongIndex]?.likes?.some((like) => like.id === session.user.username)
+			theyTracks[currentSongIndex]?.likes?.some(
+				(like) => like.id === session.user.username
+			)
 		);
 	}, [session, theyTracks, currentSongIndex, setIsLiked]);
 
@@ -202,7 +214,9 @@ const Player = () => {
 				}
 				setIsLoadingLike(false);
 			} else {
-				throw new Error("Something went wrong with the Like/Dislike. Please try again. ");
+				throw new Error(
+					"Something went wrong with the Like/Dislike. Please try again. "
+				);
 			}
 		} catch (error) {
 			console.error(error);
@@ -224,12 +238,17 @@ const Player = () => {
 						className="song-image"
 						width={75}
 						height={75}
-						src={liveTrack?.album?.images[0]?.url || "/placeholder-playlist.jpg"}
+						src={
+							liveTrack?.album?.images[0]?.url ||
+							"/placeholder-playlist.jpg"
+						}
 						priority
 						alt="Song image"
 					/>
 					<div>
-						<h3 style={{ color: "white", fontWeight: "700" }}>{liveTrack?.name}</h3>
+						<h3 style={{ color: "white", fontWeight: "700" }}>
+							{liveTrack?.name}
+						</h3>
 						<p>
 							{liveTrack?.artists &&
 								liveTrack?.artists
@@ -247,7 +266,11 @@ const Player = () => {
 						className="btn"
 						onClick={handleLikeAndDislike}
 					>
-						{isLiked ? <BsHeartFill color="white" size={18} /> : <BsHeart size={18} />}
+						{isLiked ? (
+							<BsHeartFill color="white" size={18} />
+						) : (
+							<BsHeart size={18} />
+						)}
 					</button>
 				</div>
 			</div>
@@ -260,9 +283,13 @@ const Player = () => {
 							<BsShuffle size={16} style={{ opacity: "0.6" }} />
 						</button>
 						<button onClick={handlePlayPrevious} className="btn">
-							<TbPlayerSkipBack size={24} />
+							<BsSkipStart size={30} />
 						</button>
-						<button ref={playPauseButtonRef} className="btn" onClick={handlePauseAndPlay}>
+						<button
+							ref={playPauseButtonRef}
+							className="btn"
+							onClick={handlePauseAndPlay}
+						>
 							{isPlaying ? (
 								<BsPauseCircleFill color="white" size={38} />
 							) : (
@@ -270,14 +297,18 @@ const Player = () => {
 							)}
 						</button>
 						<button onClick={handlePlayNext} className="btn">
-							<TbPlayerSkipForward size={24} />
+							<BsSkipEnd size={30} />
 						</button>
 						<button
 							onClick={handleRepeat}
 							className="btn"
 							style={{ opacity: currentSong ? "1" : "0.6" }}
 						>
-							{isOnRepeat ? <TbRepeatOnce size={17} /> : <TbRepeat size={17} />}
+							{isOnRepeat ? (
+								<TbRepeatOnce size={17} />
+							) : (
+								<TbRepeat size={17} />
+							)}
 						</button>
 					</div>
 					{/* <div className="time__bar-container">
@@ -296,7 +327,11 @@ const Player = () => {
 			<div className="player__right">
 				<div className="volume-control-container">
 					<button className="btn">
-						{volume < 0.01 ? <BsVolumeMuteFill size={24} /> : <BsVolumeDownFill size={24} />}
+						{volume < 0.01 ? (
+							<BsVolumeMuteFill size={24} />
+						) : (
+							<BsVolumeDownFill size={24} />
+						)}
 					</button>
 					<Box width={150}>
 						{volume && (
@@ -313,7 +348,10 @@ const Player = () => {
 						)}
 					</Box>
 
-					<button style={{ opacity: volume < 0.01 ? 0 : 1 }} className="btn">
+					<button
+						style={{ opacity: volume < 0.01 ? 0 : 1 }}
+						className="btn"
+					>
 						{<BsVolumeUpFill size={24} />}
 					</button>
 				</div>
