@@ -257,13 +257,11 @@ const PlaylistPage = () => {
 			tracks[currentSongIndex]?.preview_url ||
 				theyTracks[currentSongIndex]?.addedSong?.previewUrl
 		);
-		// console.log(theyTracks[currentSongIndex]?.addedSong?.previewUrl);
-		// console.log(tracks);
-		// audio.play();
-		// console.log(volume);
-		// audio.volume = ((volume + 0.1) * 0.7).toFixed(2);
-		// console.log(audio.volume);
-		// I'm getting a UI bug at 0
+
+		console.log(tracks);
+		audio.play();
+
+		audio.volume = ((volume + 0.1) * 0.7).toFixed(2); //UI issues at 0
 
 		setIsPlaying(true);
 		setCurrentSong(audio);
