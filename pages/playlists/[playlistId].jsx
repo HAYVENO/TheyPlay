@@ -44,6 +44,7 @@ import { useQueryClient, useQuery } from "react-query";
 import useUser from "../../hooks/useUser";
 import updatePlaylistOnSpotify from "../../util/updatePlaygroupOnSpotify";
 import { openModalState } from "../../atoms/modalAtom";
+import fetchPlaygroupData from "../../util/getPlaygroupData";
 
 const { successStyle, errorStyle, warningStyle, infoStyle } = alertStyles;
 
@@ -110,42 +111,69 @@ const PlaylistPage = () => {
 	}, [currentPlaylist]);
 
 	//SPOTIFY API CALLS
+	// useEffect(() => {
+	// 	if (spotifyApi.getAccessToken()) {
+	// 		try {
+	// 			//get playgroup details
+	// 			if (currentPlaygroup) {
+	// 				setCurrentPlaylist(currentPlaygroup);
+	// 			}
+	// 			//get playgroup's userSong entries
+	// 			getUserSongs(playlistId)
+	// 				.then((retrievedUserSongs) => {
+	// 					console.log(retrievedUserSongs);
+	// 					setTheyTracks(retrievedUserSongs);
+	// 					return retrievedUserSongs;
+	// 				})
+	// 				.then((retrievedUserSongs) =>
+	// 					retrievedUserSongs.map((entry) => entry.songId)
+	// 				)
+	// 				.then((songIds) =>
+	// 					spotifyApi.getTracks(songIds).then((data) => {
+	// 						console.log(data?.body?.tracks);
+	// 						setTracks(data?.body?.tracks);
+	// 					})
+	// 				);
+	// 			setContributors([
+	// 				...new Set(theyTracks.map((track) => track.userId)),
+	// 			]);
+	// 		} catch (err) {
+	// 			console.log(err);
+	// 		}
+	// 	}
+	// }, [
+	// 	spotifyApi,
+	// 	session,
+	// 	setTracks,
+	// 	setTheyTracks,
+	// 	currentPlaygroup,
+	// 	isLiked,
+	// ]);
+
+	//SPOTIFY API CALLS useQuery
+	const { data: completePlaygroupData } = useQuery(
+		["playgroupData", playlistId, isLiked],
+		() => fetchPlaygroupData(spotifyApi, playlistId)
+	);
+
 	useEffect(() => {
-		if (spotifyApi.getAccessToken()) {
-			try {
-				//get playgroup details
-				if (currentPlaygroup) {
-					setCurrentPlaylist(currentPlaygroup);
-				}
-				//get playgroup's userSong entries
-				getUserSongs(playlistId)
-					.then((retrievedUserSongs) => {
-						console.log(retrievedUserSongs);
-						setTheyTracks(retrievedUserSongs);
-						return retrievedUserSongs;
-					})
-					.then((retrievedUserSongs) =>
-						retrievedUserSongs.map((entry) => entry.songId)
-					)
-					.then((songIds) =>
-						spotifyApi.getTracks(songIds).then((data) => {
-							console.log(data?.body?.tracks);
-							setTracks(data?.body?.tracks);
-						})
-					);
-				setContributors([
-					...new Set(theyTracks.map((track) => track.userId)),
-				]);
-			} catch (err) {
-				console.log(err);
-			}
+		if (completePlaygroupData) {
+			console.log(completePlaygroupData);
+			const { retrievedUserSongs, playgroupTracks } = completePlaygroupData;
+			console.log(playgroupTracks);
+			setCurrentPlaylist(currentPlaygroup);
+			setTheyTracks(retrievedUserSongs);
+			setTracks(playgroupTracks);
+			setContributors([
+				...new Set(retrievedUserSongs.map((track) => track.userId)),
+			]);
 		}
 	}, [
-		spotifyApi,
-		session,
-		setTracks,
-		setTheyTracks,
+		completePlaygroupData,
 		currentPlaygroup,
+		setTheyTracks,
+		setTracks,
+		tracks,
 		isLiked,
 	]);
 
@@ -229,12 +257,12 @@ const PlaylistPage = () => {
 			tracks[currentSongIndex]?.preview_url ||
 				theyTracks[currentSongIndex]?.addedSong?.previewUrl
 		);
-		console.log(theyTracks[currentSongIndex]?.addedSong?.previewUrl);
-		console.log(tracks);
-		audio.play();
-		console.log(volume);
-		audio.volume = ((volume + 0.1) * 0.7).toFixed(2);
-		console.log(audio.volume);
+		// console.log(theyTracks[currentSongIndex]?.addedSong?.previewUrl);
+		// console.log(tracks);
+		// audio.play();
+		// console.log(volume);
+		// audio.volume = ((volume + 0.1) * 0.7).toFixed(2);
+		// console.log(audio.volume);
 		// I'm getting a UI bug at 0
 
 		setIsPlaying(true);
@@ -272,7 +300,7 @@ const PlaylistPage = () => {
 			const title = `${currentPlaylist?.name} - TheyPlay ✨`;
 			const formattedDate = dayjs().format("MMMM D, YYYY h:mm A");
 			const description = `Songs from the ${currentPlaylist?.name} Playgroup on TheyPlay Music app ✨. This list was last updated on ${formattedDate}.`;
-			const playgroupTracksURIs = tracks.map((track) => track.uri);
+			const playgroupTracksURIs = tracks?.map((track) => track.uri);
 			const imageUrl = currentPlaylist?.groupImage;
 
 			//  UPDATE the Added Playgroup, not Add if the user already added the playgroup in the past.
@@ -376,7 +404,7 @@ const PlaylistPage = () => {
 					>
 						<div className={styles.headContentContainer}>
 							<div className={styles.playlistImageContainer}>
-								{currentPlaylist.groupImage ? (
+								{currentPlaylist?.groupImage ? (
 									<Image
 										className={styles.playlistImage}
 										width={200}
@@ -500,7 +528,7 @@ const PlaylistPage = () => {
 							</div>
 							<ul className={styles.songList}>
 								{/* ... TRACK LIST ...  */}
-								{tracks.map((track, index) => {
+								{tracks?.map((track, index) => {
 									return (
 										<Track
 											key={index}
