@@ -72,6 +72,7 @@ const Player = () => {
 			) {
 				e.preventDefault();
 				playPauseButtonRef?.current.click();
+				// something going on
 			}
 		};
 
