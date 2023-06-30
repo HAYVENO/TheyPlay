@@ -40,7 +40,7 @@ import addPlaygroupToSpotify from "../../util/addPlaygroupToSpotify";
 import createAddedPlaygroup from "../../util/createAddedPlaygroup";
 import { openBackDropState, alertState } from "../../atoms/modalAtom";
 import alertStyles from "../../util/alertStyles";
-import { useQueryClient, useQuery } from "react-query";
+import { useQueryClient, useQuery } from "@tanstack/react-query";
 import useUser from "../../hooks/useUser";
 import updatePlaylistOnSpotify from "../../util/updatePlaygroupOnSpotify";
 import { openModalState } from "../../atoms/modalAtom";
@@ -151,10 +151,11 @@ const PlaylistPage = () => {
 	// ]);
 
 	//SPOTIFY API CALLS useQuery
-	const { data: completePlaygroupData } = useQuery(
-		["playgroupData", playlistId, isLiked],
-		() => fetchPlaygroupData(spotifyApi, playlistId)
-	);
+
+	const { data: completePlaygroupData, refetch: refetchPlaygroupData } =
+		useQuery(["playgroupData", playlistId, isLiked], () =>
+			fetchPlaygroupData(spotifyApi, playlistId)
+		);
 
 	useEffect(() => {
 		if (completePlaygroupData) {
@@ -286,8 +287,6 @@ const PlaylistPage = () => {
 				addedPlaygroup?.playgroupId === currentPlaygroup?.id
 		);
 	}, [currentUser, currentPlaygroup]);
-
-	// Rest of your component code...
 
 	const handleAddToSpotify = async () => {
 		try {

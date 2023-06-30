@@ -65,7 +65,11 @@ const Player = () => {
 	// Handle Keypress
 	useEffect(() => {
 		const handleKeyPress = (e) => {
-			if (e.code === "Space") {
+			if (
+				e.code === "Space" &&
+				e.target.tagName !== "INPUT" &&
+				e.target.tagName !== "TEXTAREA"
+			) {
 				e.preventDefault();
 				playPauseButtonRef?.current.click();
 			}

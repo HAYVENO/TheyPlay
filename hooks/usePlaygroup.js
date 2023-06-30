@@ -1,4 +1,4 @@
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 
 const usePlaygroup = (playlistId) => {
 	const { data, error } = useQuery(["playgroup", playlistId], async () => {
@@ -7,7 +7,10 @@ const usePlaygroup = (playlistId) => {
 			throw new Error("Failed to fetch playgroup");
 		}
 		const currentPlaygroup = await resp.json();
-		console.log("🚀 ~ file: usePlaygroup.js:10 ~ ~ currentPlaygroup:", currentPlaygroup);
+		console.log(
+			"🚀 ~ file: usePlaygroup.js:10 ~ ~ currentPlaygroup:",
+			currentPlaygroup
+		);
 
 		return currentPlaygroup;
 	});

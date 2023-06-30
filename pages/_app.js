@@ -7,9 +7,8 @@ import Layout from "../components/Layout";
 import { Analytics } from "@vercel/analytics/react";
 import "../styles/nprogress-bar.css";
 import NProgress from "nprogress";
-import { QueryClient, QueryClientProvider } from "react-query";
-
-const queryClient = new QueryClient();
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 // If loading a variable font, no need to specify the font weight
 const inter = Inter({ subsets: ["latin"] });
@@ -25,6 +24,7 @@ if (process.env.NODE_ENV === "production") {
 	console.warn = () => {};
 	console.error = () => {};
 }
+const queryClient = new QueryClient();
 
 const MyApp = ({ Component, pageProps: { session, ...pageProps } }) => {
 	const router = useRouter();
@@ -33,9 +33,9 @@ const MyApp = ({ Component, pageProps: { session, ...pageProps } }) => {
 	const excludeLayout = ["/signin", "/about"].includes(router.pathname);
 
 	return (
-		<RecoilRoot>
-			<SessionProvider session={session}>
-				<QueryClientProvider client={queryClient}>
+		<QueryClientProvider client={queryClient}>
+			<RecoilRoot>
+				<SessionProvider session={session}>
 					{excludeLayout && (
 						<Component {...pageProps} className={inter.className} />
 					)}
@@ -45,9 +45,10 @@ const MyApp = ({ Component, pageProps: { session, ...pageProps } }) => {
 							<Analytics />
 						</Layout>
 					)}
-				</QueryClientProvider>
-			</SessionProvider>
-		</RecoilRoot>
+				</SessionProvider>
+				<ReactQueryDevtools initialIsOpen={false} />
+			</RecoilRoot>
+		</QueryClientProvider>
 	);
 };
 

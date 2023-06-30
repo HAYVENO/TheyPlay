@@ -1,4 +1,4 @@
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 
 const useUser = (userId) => {
 	const { data, error, refetch } = useQuery(["user", userId], async () => {

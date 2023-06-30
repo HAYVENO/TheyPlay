@@ -29,6 +29,9 @@ import {
 } from "../atoms/trackAtom";
 
 import alertStyles from "../util/alertStyles";
+import fetchPlaygroupData from "../util/getPlaygroupData";
+import { QueryClient, useQueryClient } from "@tanstack/react-query";
+
 const { successStyle, errorStyle, warningStyle, infoStyle } = alertStyles;
 
 const style = {
@@ -50,6 +53,7 @@ const childStyle = {
 const SearchModal = () => {
 	const { data: session } = useSession();
 	const router = useRouter();
+	const queryClient = useQueryClient();
 
 	//global states
 	const [isPlaying, setIsPlaying] = useRecoilState(isPlayingState);
@@ -75,6 +79,8 @@ const SearchModal = () => {
 		playlist: {},
 		user: {},
 	});
+
+	//   QUERY HOOK - Get PlayGroupData
 
 	// CHILD MODAL OPEN-CLOSE HANDLER
 
@@ -252,9 +258,8 @@ const SearchModal = () => {
 						style: successStyle,
 					});
 				}
-
-				//setCloseBackdrop
-				//setClose - Both - modals
+				// Invalidate and refetch data
+				queryClient.invalidateQueries("playgroupData");
 			} catch (err) {
 				console.log(err);
 
