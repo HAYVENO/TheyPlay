@@ -95,9 +95,11 @@ const SignIn = () => {
 								placement="bottom-end"
 								title={
 									<span className="tooltip-title">
-										You don't have a Spotify account yet? Don't miss out. Sign up for free
-										— takes <b>less than 20 seconds</b>, and you get FREE access to
-										Spotify's 80M songs. <b>No credit card required.</b>
+										You don't have a Spotify account yet? Don't miss
+										out. Sign up for free — takes{" "}
+										<b>less than 20 seconds</b>, and you get FREE
+										access to Spotify's 80M songs.{" "}
+										<b>No credit card required.</b>
 										<br />
 										<br />
 										1. <b>Click sign up</b> (and follow the prompts).
@@ -125,22 +127,32 @@ const SignIn = () => {
 							<h1 className="heading-primary  ">
 								Discover and Share only the Best Songs of Life with{" "}
 								<div className="rotator-container">
-									<WordsRotator texts={["family", "friends", "colleagues", "everyone!"]} />
+									<WordsRotator
+										texts={[
+											"family",
+											"friends",
+											"colleagues",
+											"everyone!",
+										]}
+									/>
 								</div>{" "}
 							</h1>
 
 							<h2 className="heading-secondary   animate__animated animate__fadeIn ">
-								Build your perfect music catalogue with those that matter — play what they
-								decide and decide what They play ♫
+								Build your perfect music catalogue with your own people
+								NPM— play what they decide and decide what They play ♫
 							</h2>
 						</div>
 						{Object.values(providers).map((provider) => (
 							<div key={provider.name}>
 								<button
 									className="sign-in-button animate__animated animate__bounceIn animate__delay-1s "
-									onClick={() => signIn(provider.id, { callbackUrl: "/" })}
+									onClick={() =>
+										signIn(provider.id, { callbackUrl: "/" })
+									}
 								>
-									Continue with {provider.name} <SlSocialSpotify size={18} />
+									Continue with {provider.name}{" "}
+									<SlSocialSpotify size={18} />
 								</button>
 							</div>
 						))}
@@ -175,7 +187,11 @@ const SignIn = () => {
 								target="_blank"
 								rel="noopener noreferrer"
 							>
-								<SlSocialTwitter className="s-footer-bird" color="lightblue" size={20} />
+								<SlSocialTwitter
+									className="s-footer-bird"
+									color="lightblue"
+									size={20}
+								/>
 							</a>
 						</footer>
 					</>

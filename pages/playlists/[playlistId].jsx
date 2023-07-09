@@ -75,7 +75,10 @@ const PlaylistPage = () => {
 	const [currentPlaylist, setCurrentPlaylist] = useState("");
 	const [themeColor, setThemeColor] = useState(null);
 	const [contributors, setContributors] = useState("");
-	const [livePlaygroup, setLivePlaygroup] = useState("");
+	const [livePlaygroup, setLivePlaygroup] = useState({
+		liveTracks: [],
+		liveTheyTracks: [],
+	});
 	// const [currentSongNumber, setCurrentSongNumber] = useState(0);
 
 	// Custom hooks
@@ -110,46 +113,6 @@ const PlaylistPage = () => {
 		//
 	}, [currentPlaylist]);
 
-	//SPOTIFY API CALLS
-	// useEffect(() => {
-	// 	if (spotifyApi.getAccessToken()) {
-	// 		try {
-	// 			//get playgroup details
-	// 			if (currentPlaygroup) {
-	// 				setCurrentPlaylist(currentPlaygroup);
-	// 			}
-	// 			//get playgroup's userSong entries
-	// 			getUserSongs(playlistId)
-	// 				.then((retrievedUserSongs) => {
-	// 					console.log(retrievedUserSongs);
-	// 					setTheyTracks(retrievedUserSongs);
-	// 					return retrievedUserSongs;
-	// 				})
-	// 				.then((retrievedUserSongs) =>
-	// 					retrievedUserSongs.map((entry) => entry.songId)
-	// 				)
-	// 				.then((songIds) =>
-	// 					spotifyApi.getTracks(songIds).then((data) => {
-	// 						console.log(data?.body?.tracks);
-	// 						setTracks(data?.body?.tracks);
-	// 					})
-	// 				);
-	// 			setContributors([
-	// 				...new Set(theyTracks.map((track) => track.userId)),
-	// 			]);
-	// 		} catch (err) {
-	// 			console.log(err);
-	// 		}
-	// 	}
-	// }, [
-	// 	spotifyApi,
-	// 	session,
-	// 	setTracks,
-	// 	setTheyTracks,
-	// 	currentPlaygroup,
-	// 	isLiked,
-	// ]);
-
 	//SPOTIFY API CALLS useQuery
 
 	const { data: completePlaygroupData, refetch: refetchPlaygroupData } =
@@ -180,7 +143,7 @@ const PlaylistPage = () => {
 
 	// ON TRACK END EFFECT
 	useEffect(() => {
-		if (currentSongNumber >= tracks?.length) {
+		if (currentSongNumber >= livePlaygroup?.liveTracks?.length) {
 			currentSong?.pause();
 			setIsPlaying(false);
 			return;
@@ -189,7 +152,11 @@ const PlaylistPage = () => {
 		if (currentSong)
 			currentSong.onended = function () {
 				console.log("Audio playback has ended");
-
+				//Check if it's the final song of the list [L - 1] --
+				if (currentSongNumber >= livePlaygroup?.liveTracks?.length - 1) {
+					currentSong?.pause();
+					setIsPlaying(false);
+				}
 				handleTrackPlay(currentSongNumber + 1);
 				console.log(currentSongNumber);
 			};
@@ -202,8 +169,13 @@ const PlaylistPage = () => {
 
 	// PLAY NEXT TRACK EFFECT
 	useEffect(() => {
-		if (currentSongNumber >= tracks?.length || currentSongNumber < 0) {
+		console.log(currentSongNumber);
+		if (
+			currentSongNumber >= livePlaygroup?.liveTracks?.length ||
+			currentSongNumber < 0
+		) {
 			setIsPlaying(false);
+			console.log("final song ---");
 
 			return;
 		}
@@ -212,7 +184,10 @@ const PlaylistPage = () => {
 	}, [currentSongNumber]);
 
 	const handleAllTracksPlay = () => {
-		if (isPlaying) {
+		if (
+			isPlaying &&
+			JSON.stringify(livePlaygroup?.liveTracks) === JSON.stringify(tracks)
+		) {
 			currentSong?.pause();
 			setIsPlaying(false);
 			return;
@@ -224,11 +199,34 @@ const PlaylistPage = () => {
 		}
 
 		// Play the first track of the Playgroup (and go from there)
-		handleTrackPlay(0);
+		handleClickTrack(0);
+	};
+
+	const handleClickTrack = (clickedSongIndex) => {
+		// Call HandleTrackPlay
+		handleTrackPlay(clickedSongIndex);
+
+		// If liveTracks !== tracks --> Set Live Playgroup
+		// Using Stringify because Array equality conditions use
+		if (JSON.stringify(livePlaygroup.liveTracks) !== JSON.stringify(tracks)) {
+			setLivePlaygroup(() => ({
+				liveTracks: tracks,
+				liveTheyTracks: theyTracks,
+			}));
+			console.log(livePlaygroup.liveTracks === tracks);
+			console.log("Live Track did change ---");
+		}
 	};
 
 	// TODO: Handle next and Previous Play for when user leaves the current PlayGroup view
-	const handleTrackPlay = (currentSongIndex) => {
+	const handleTrackPlay = (
+		currentSongIndex,
+		tracks = livePlaygroup?.liveTracks,
+		theyTracks = livePlaygroup?.liveTheyTracks
+	) => {
+		console.log(livePlaygroup);
+		console.log(tracks);
+
 		if (currentSongIndex >= tracks?.length) {
 			console.log("way too long");
 			return;
@@ -269,6 +267,8 @@ const PlaylistPage = () => {
 		setIsCurrentTrack(currentSongIndex);
 		setLiveTrack(tracks[currentSongIndex]);
 		setCurrentSongNumber(currentSongIndex);
+
+		console.log(livePlaygroup);
 	};
 
 	console.log("currentUser --------", currentUser);
@@ -389,7 +389,12 @@ const PlaylistPage = () => {
 				<div
 					style={{
 						"--playlist-hue": themeColor,
-						animation: isPlaying ? "hue-animation 60s infinite" : "none",
+						animation:
+							isPlaying &&
+							JSON.stringify(livePlaygroup?.liveTracks) ===
+								JSON.stringify(tracks)
+								? "hue-animation 60s infinite"
+								: "none",
 					}}
 					className={styles.playlistContainer}
 				>
@@ -476,7 +481,9 @@ const PlaylistPage = () => {
 									backgroundColor: `hsla(${themeColor}, 100%, 66%, 0.3)`,
 								}}
 							>
-								{isPlaying ? (
+								{isPlaying &&
+								JSON.stringify(livePlaygroup.liveTracks) ===
+									JSON.stringify(tracks) ? (
 									<>
 										Playing <BsPause size={18} />
 									</>
@@ -532,7 +539,7 @@ const PlaylistPage = () => {
 											track={track}
 											theyTrack={theyTracks[index]}
 											index={index}
-											onClick={handleTrackPlay}
+											onClick={handleClickTrack}
 											isCurrentTrack={isCurrentTrack}
 										/>
 									);
