@@ -9,7 +9,7 @@ const fetchPlaygroupData = async (spotifyApi, playlistId) => {
 		const retrievedUserSongs = await getUserSongs(playlistId);
 
 		// Get songIds from retrievedUserSongs
-		const songIds = await retrievedUserSongs.map((entry) => entry.songId);
+		const songIds = await retrievedUserSongs?.map((entry) => entry.songId);
 		console.log(songIds);
 
 		// Get tracks using songIds
@@ -19,7 +19,7 @@ const fetchPlaygroupData = async (spotifyApi, playlistId) => {
 				"🚀 ~ file: getPlaygroupData.js:15 ~ fetchPlaygroupData ~ tracksData:",
 				tracksData
 			);
-			const playgroupTracks = await tracksData.body.tracks;
+			const playgroupTracks = await tracksData?.body?.tracks;
 			console.log(
 				"🚀 ~ file: getPlaygroupData.js:20 ~ fetchPlaygroupData ~ playgroupTracks:",
 				playgroupTracks

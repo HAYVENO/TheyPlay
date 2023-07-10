@@ -114,10 +114,13 @@ const PlaylistPage = () => {
 	}, [currentPlaylist]);
 
 	//SPOTIFY API CALLS useQuery
-
 	const { data: completePlaygroupData, refetch: refetchPlaygroupData } =
-		useQuery(["playgroupData", playlistId, isLiked], () =>
-			fetchPlaygroupData(spotifyApi, playlistId)
+		useQuery(
+			["playgroupData", playlistId, isLiked],
+			() => fetchPlaygroupData(spotifyApi, playlistId),
+			{
+				enabled: !!playlistId,
+			}
 		);
 
 	useEffect(() => {

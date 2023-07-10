@@ -627,7 +627,7 @@ main {
 	box-shadow: 4px 5px 13px 0px #030222;
 
 	/* slight rotation */
-	transform: rotate(-3deg);
+	transform: rotate(-2deg);
 	transition: background 0.2s ease-out;
 }
 

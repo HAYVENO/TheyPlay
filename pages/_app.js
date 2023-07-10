@@ -14,7 +14,11 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 const inter = Inter({ subsets: ["latin"] });
 
 // Attach Router event listeners for NProgress
-Router.events.on("routeChangeStart", () => NProgress.start());
+Router.events.on("routeChangeStart", (url) => {
+	console.log(url);
+	if (url.startsWith("/playgroups/")) return;
+	else NProgress.start();
+});
 Router.events.on("routeChangeComplete", () => NProgress.done());
 Router.events.on("routeChangeError", () => NProgress.done());
 

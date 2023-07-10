@@ -9,13 +9,20 @@ const PlaygroupCard = ({ playlist: playgroup }) => {
 			className="category__playlist"
 			onClick={() => console.log("here is the id", playgroup.id)}
 		>
-			<Link href={`/playlists/${playgroup.id}`} className="category__playlist-link">
+			<Link
+				href={`/playgroups/${playgroup.id}`}
+				className="category__playlist-link"
+			>
 				<div className="playlist__card">
 					<h3 className="playlist__title">{playgroup.name}</h3>
 					<Image
 						width={120}
 						height={120}
-						src={playgroup.groupImage ? playgroup.groupImage : "/placeholder-playlist.jpg"}
+						src={
+							playgroup.groupImage
+								? playgroup.groupImage
+								: "/placeholder-playlist.jpg"
+						}
 						className="playlist__image"
 						alt={playgroup.name}
 						priority

@@ -59,7 +59,9 @@ const Sidebar = () => {
 
 	return (
 		<nav
-			style={{ animation: isPlaying ? "hue-animation 10s infinite" : "none" }}
+			style={{
+				animation: isPlaying ? "hue-animation 10s infinite" : "none",
+			}}
 			className="sidebar"
 		>
 			<div className="logo-box">
@@ -71,7 +73,7 @@ const Sidebar = () => {
 						width={32}
 						height={32}
 					/>
-					<strong>TheyPlay</strong>
+					<strong style={{ fontSize: "1rem" }}>TheyPlay</strong>
 				</div>
 			</div>
 			<ul className="sidebar-nav">
@@ -108,9 +110,16 @@ const Sidebar = () => {
 					? playgroups.map((playlist, i) => (
 							<li key={playlist.id} className="sidebar__playlist">
 								<Link
-									className={playlist.id === playlistId ? "sidebar__playlist-active" : ""}
-									style={{ fontWeight: playlist.id === playlistId ? "800" : "400" }}
-									href={`/playlists/${playlist.id}`}
+									className={
+										playlist.id === playlistId
+											? "sidebar__playlist-active"
+											: ""
+									}
+									style={{
+										fontWeight:
+											playlist.id === playlistId ? "800" : "400",
+									}}
+									href={`/playgroups/${playlist.id}`}
 								>
 									{playlist.name}
 								</Link>
@@ -160,10 +169,18 @@ const Sidebar = () => {
 					>
 						<FaGithub size={16} style={{ cursor: "pointer" }} />
 					</a>
-					<a href="mailto:haythepen@gmail.com" target="_blank" rel="noopener noreferrer">
+					<a
+						href="mailto:haythepen@gmail.com"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
 						<HiMail size={20} style={{ cursor: "pointer" }} />
 					</a>
-					<a href="https://twitter.com/hay_yusuf" target="_blank" rel="noopener noreferrer">
+					<a
+						href="https://twitter.com/hay_yusuf"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
 						<FaTwitter size={16} style={{ cursor: "pointer" }} />
 					</a>
 				</div>
