@@ -70,8 +70,8 @@ const Sidebar = () => {
 						style={{ marginRight: "4px" }}
 						src={logoZero}
 						alt="TheyPlay-Logo"
-						width={32}
-						height={32}
+						width={28}
+						height={28}
 					/>
 					<strong style={{ fontSize: "1rem" }}>TheyPlay</strong>
 				</div>

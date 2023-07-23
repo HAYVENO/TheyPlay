@@ -2,15 +2,27 @@ import React from "react";
 import { useSession } from "next-auth/react";
 import useSpotify from "../util/useSpotify";
 import { useEffect, useState } from "react";
-import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from "react-icons/bs";
+import {
+	BsFillArrowLeftCircleFill,
+	BsFillArrowRightCircleFill,
+} from "react-icons/bs";
 import { CgPlayListAdd } from "react-icons/cg";
 import { FaUserCircle } from "react-icons/fa";
 import Avatar from "@mui/material/Avatar";
 import shuffle from "lodash/shuffle";
 import getInitials from "../util/getInitials";
 import PlaylistCategories from "./PlaylistCategories";
-import { useRecoilState, waitForAll, waitForAllSettled, waitForAny } from "recoil";
-import { openModalState, openChildModalState, playgroupsState } from "../atoms/modalAtom";
+import {
+	useRecoilState,
+	waitForAll,
+	waitForAllSettled,
+	waitForAny,
+} from "recoil";
+import {
+	openModalState,
+	openChildModalState,
+	playgroupsState,
+} from "../atoms/modalAtom";
 import { topTracksState } from "../atoms/trackAtom";
 
 const Center = () => {
@@ -20,7 +32,8 @@ const Center = () => {
 	//global states
 	const [playgroups, setPlaygroups] = useRecoilState(playgroupsState);
 	const [openModal, setOpenModal] = useRecoilState(openModalState);
-	const [openChildModal, setOpenChildModal] = useRecoilState(openChildModalState);
+	const [openChildModal, setOpenChildModal] =
+		useRecoilState(openChildModalState);
 	const [topTracks, setTopTracks] = useRecoilState(topTracksState);
 
 	//local states
@@ -73,7 +86,10 @@ const Center = () => {
 
 	return (
 		<div className="center">
-			<header className="center__heading">
+			<header
+				className="center__heading"
+				style={{ backdropFilter: "blur(30px)" }}
+			>
 				<button className="btn__add-song" onClick={handleOpenModal}>
 					<CgPlayListAdd size={20} />
 					<span>Add music</span>
