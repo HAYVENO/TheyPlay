@@ -44,6 +44,7 @@ model UserSong {
   songId         String
   userId         String
   playgroupId    String?
+  songName       String?
   addedAt        DateTime   @default(now())
   addedBy        User       @relation("addedBy", fields: [userId], references: [id])
   songPopularity Int?

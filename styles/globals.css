@@ -257,7 +257,18 @@ main {
 	border: 0.1px solid var(--mauve3);
 }
 
+.heading__sidebar-playlist {
+	color: #ffffffc1;
+	font-size: 0.7rem;
+	font-weight: 600;
+	margin-bottom: 0;
+	padding-top: 1rem;
+	padding-bottom: 0.5rem;
+	padding-left: 1.3rem;
+}
+
 .sidebar__playlists {
+	margin-top: 0;
 	min-height: fit-content;
 	max-height: 17rem;
 	padding: 0 1.7rem;
