@@ -30,7 +30,7 @@ import {
 
 import alertStyles from "../util/alertStyles";
 import fetchPlaygroupData from "../util/getPlaygroupData";
-import { QueryClient, useQueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 
 const { successStyle, errorStyle, warningStyle, infoStyle } = alertStyles;
 

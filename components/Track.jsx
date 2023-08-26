@@ -82,7 +82,10 @@ const Track = ({ track, theyTrack, index, onClick, isCurrentTrack }) => {
 						/>
 					</Box>
 				</div>
-				<p style={{ fontStyle: "italic" }}> {dayjs(theyTrack?.addedAt).fromNow()}</p>
+				<p style={{ fontStyle: "italic" }}>
+					{" "}
+					{dayjs(theyTrack?.addedAt).fromNow()}
+				</p>
 			</div>
 		</li>
 	);

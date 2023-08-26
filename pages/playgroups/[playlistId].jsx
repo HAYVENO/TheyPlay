@@ -206,8 +206,19 @@ const PlaylistPage = () => {
 	};
 
 	const handleClickTrack = (clickedSongIndex) => {
-		// Call HandleTrackPlay
-		handleTrackPlay(clickedSongIndex);
+		console.log("liveTrack size--", livePlaygroup?.liveTracks.length);
+
+		// check that LivePlaygroup has been populated then call handleTrackPlay accordingly
+
+		if (livePlaygroup?.liveTracks.length < 1) {
+			handleTrackPlay(clickedSongIndex, tracks, theyTracks);
+		} else {
+			handleTrackPlay(
+				clickedSongIndex,
+				livePlaygroup?.liveTracks,
+				livePlaygroup?.liveTheyTracks
+			);
+		}
 
 		// If liveTracks !== tracks --> Set Live Playgroup
 		// Using Stringify because Array equality conditions use
