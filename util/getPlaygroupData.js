@@ -5,11 +5,17 @@ const fetchPlaygroupData = async (spotifyApi, playlistId) => {
 		if (spotifyApi & playlistId) {
 			return;
 		}
-		// Get playgroup's userSong entries
+		// Get the playgroup's userSong entries
 		const retrievedUserSongs = await getUserSongs(playlistId);
+		console.log(
+			"🚀 ~ file: getPlaygroupData.js:10 ~ fetchPlaygroupData ~ retrievedUserSongs:",
+			retrievedUserSongs
+		);
 
-		// Get songIds from retrievedUserSongs
-		const songIds = await retrievedUserSongs?.map((entry) => entry.songId);
+		// Get the latest 49 songIds from retrievedUserSongs
+		const songIds = await retrievedUserSongs
+			?.map((entry) => entry.songId)
+			.slice(0, 50);
 		console.log(songIds);
 
 		// Get tracks using songIds
