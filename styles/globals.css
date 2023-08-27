@@ -275,7 +275,7 @@ main {
 	font-size: 0.8rem;
 	overflow-y: scroll;
 
-	mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.161), rgb(0, 0, 0) 10%);
+	mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.15), rgb(0, 0, 0) 10%);
 }
 
 .sidebar__playlists > * {
