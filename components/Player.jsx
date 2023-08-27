@@ -120,17 +120,17 @@ const Player = () => {
 		setCurrentSongNumber((prevNumber) => prevNumber - 1);
 	};
 
-	const handlePauseAndPlay = () => {
+	const handlePauseAndPlay = async () => {
 		// console.log("current SONG", currentSong);
 		// pause the current song, and vice-versa
 		if (!currentSong) return;
 
 		if (isPlaying) {
-			currentSong.pause();
+			await currentSong.pause();
 			setIsPlaying(false);
 			return;
 		} else {
-			currentSong.play();
+			await currentSong.play();
 			setIsPlaying(true);
 
 			return;

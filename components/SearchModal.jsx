@@ -290,9 +290,9 @@ const SearchModal = () => {
 	}, [entryData, session, addTrackToPlaylist]);
 
 	// handler for searchedTrack play and Pause
-	const handleTrackPlayAndPause = (currentSongIndex) => {
+	const handleTrackPlayAndPause = async (currentSongIndex) => {
 		if (isPlaying) {
-			currentSong.pause();
+			await currentSong.pause();
 		}
 
 		if (!searchedTracks[currentSongIndex].preview_url) {
@@ -303,7 +303,7 @@ const SearchModal = () => {
 
 		//create a new audio object with the track's /play - link/
 		const audio = new Audio(searchedTracks[currentSongIndex].preview_url);
-		audio.play();
+		await audio.play();
 		audio.volume = volume;
 		audio.loop = true;
 		setIsPlaying(true);

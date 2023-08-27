@@ -233,7 +233,7 @@ const PlaylistPage = () => {
 	};
 
 	// TODO: Handle next and Previous Play for when user leaves the current PlayGroup view
-	const handleTrackPlay = (
+	const handleTrackPlay = async (
 		currentSongIndex,
 		tracks = livePlaygroup?.liveTracks,
 		theyTracks = livePlaygroup?.liveTheyTracks
@@ -262,7 +262,7 @@ const PlaylistPage = () => {
 
 		if (isPlaying) {
 			console.log(currentSong);
-			currentSong.pause();
+			await currentSong.pause();
 		}
 
 		//create a new audio object with the track's /play - link/
@@ -272,7 +272,7 @@ const PlaylistPage = () => {
 		);
 
 		console.log(tracks);
-		audio.play();
+		await audio.play();
 
 		audio.volume = ((volume + 0.1) * 0.7).toFixed(2); //UI issues at 0
 
