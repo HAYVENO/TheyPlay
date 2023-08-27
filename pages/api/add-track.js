@@ -17,14 +17,15 @@ const addSong = async function handler(req, res) {
 	console.log("🚀 ~ file: add-track.js:17 ~ addSong ~ entryData:", entryData);
 
 	// check if the user has not passed the daily limit of the Playgroup
-	const { dailyLimit: playgroupDailyLimit } = await prisma.playgroup.findUnique({
-		where: {
-			id: entryData.playlist.id,
-		},
-		select: {
-			dailyLimit: true,
-		},
-	});
+	const { dailyLimit: playgroupDailyLimit } =
+		await prisma.playgroup.findUnique({
+			where: {
+				id: entryData.playlist.id,
+			},
+			select: {
+				dailyLimit: true,
+			},
+		});
 
 	console.log(playgroupDailyLimit);
 
@@ -49,7 +50,10 @@ const addSong = async function handler(req, res) {
 		"🚀 ~ file: add-track.js:39 ~ addSong ~ userSongsAddedToday:",
 		userSongsAddedToPlaygroupToday
 	);
-	console.log("🚀 ~ file: add-track.js:41 ~ addSong ~ dailyLimit:", playgroupDailyLimit);
+	console.log(
+		"🚀 ~ file: add-track.js:41 ~ addSong ~ dailyLimit:",
+		playgroupDailyLimit
+	);
 
 	//check to ensure songs the user added today are less than the P-dailyLimit
 	if (userSongsAddedToPlaygroupToday >= playgroupDailyLimit) {
@@ -92,12 +96,14 @@ const addSong = async function handler(req, res) {
 
 		if (existingUserSong)
 			return res.status(400).json({
-				message: "You already added this song — please choose a different song. :)",
+				message:
+					"You already added this song — please choose a different song. :)",
 			});
 
 		//create userSong object
 		const createUserSong = await prisma.userSong.create({
 			data: {
+				songName: entryData.song.name,
 				songId: entryData.song.id,
 				userId: entryData.user.username,
 				playgroupId: entryData.playlist.id,
