@@ -13,9 +13,8 @@ const fetchPlaygroupData = async (spotifyApi, playlistId) => {
 		);
 
 		// Get the latest 49 songIds from retrievedUserSongs
-		const songIds = await retrievedUserSongs
-			?.map((entry) => entry.songId)
-			.slice(0, 50);
+		const songIds = await retrievedUserSongs?.map((entry) => entry.songId);
+		// .slice(0, 50);
 		console.log(songIds);
 
 		// Get tracks using songIds
