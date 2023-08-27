@@ -30,6 +30,6 @@ export default async function handler(req, res) {
 		res.json(userSongs);
 	} catch (err) {
 		console.log(err);
-		console.error(err);
+		res.json({ err });
 	}
 }
