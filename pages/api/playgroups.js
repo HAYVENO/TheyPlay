@@ -22,6 +22,7 @@ export default async function handler(req, res) {
 			res.status(200).json(playgroup);
 		} catch (err) {
 			console.log(err);
+			res.status(500).json({ err });
 		}
 	} else {
 		// if no playgroup specified, get all playgroups
@@ -31,6 +32,7 @@ export default async function handler(req, res) {
 			res.status(200).json(playgroups);
 		} catch (err) {
 			console.log(err);
+			res.status(500).json({ err });
 		}
 	}
 }
