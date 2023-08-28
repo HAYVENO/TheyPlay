@@ -112,7 +112,7 @@ const SearchModal = () => {
 		console.log("Searched tracks --", searchedTracks);
 	}, 200);
 
-	// Step 2: Handle the opening the child modal and rendering of all /playgroups/
+	// Step 2: Handle the opening the child modal and rendering of all /playgroups/ -- On Add track
 	const handleOpenChildModal = (index) => {
 		const addedTrack = searchedTracks[index];
 		console.log(
@@ -121,7 +121,9 @@ const SearchModal = () => {
 		);
 
 		console.log(router);
-		const isFromPlaygroup = router.asPath.includes("/playlists/");
+
+		// Check if the /add song/ is coming from a Playgroup page
+		const isFromPlaygroup = router.asPath.includes("/playgroups/");
 		const currentPlaygroupId = router.query.playlistId;
 		const currentPlaygroup = playGroups?.find(
 			(playgroup) => playgroup.id === currentPlaygroupId
@@ -194,10 +196,8 @@ const SearchModal = () => {
 		// Note - set state is an async process so it doesn't update immediately - I will use a useEffect to handle that
 
 		// check if its coming from the Homepage's Top Tracks suggestions (half-way through). If not, then it's from Add music (scratch) - treat accordingly
-		if (
-			Object.keys(entryData.song).length === 0 &&
-			Object.keys(entryData.song).length === 0
-		) {
+		if (Object.keys(entryData.song).length === 0) {
+			// If NO entry song yet, then it's from the suggestions - so, add /song: chosenSong/
 			setEntryData(() => ({
 				song: chosenSong,
 				playlist: addedPlaylist,

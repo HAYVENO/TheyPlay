@@ -220,7 +220,7 @@ const PlaylistPage = () => {
 			);
 		}
 
-		// If liveTracks !== tracks --> Set Live Playgroup
+		// If liveplaygroup's liveTracks[] !== tracks[] --> Set Live Playgroup to match
 		// Using Stringify because Array equality conditions use
 		if (JSON.stringify(livePlaygroup.liveTracks) !== JSON.stringify(tracks)) {
 			setLivePlaygroup(() => ({

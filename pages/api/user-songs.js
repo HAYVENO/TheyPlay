@@ -1,8 +1,11 @@
 import { prisma } from "../../server/db/client";
 
 export default async function handler(req, res) {
-	const { playgroupId } = req.query;
+	if (req.method !== "GET") {
+		return res.status(405).json({ message: "Method not allowed" });
+	}
 
+	const { playgroupId } = req.query;
 	try {
 		const userSongs = await prisma.userSong.findMany({
 			where: {
