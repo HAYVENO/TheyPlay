@@ -87,7 +87,7 @@ const Sidebar = () => {
 					<Link href="#" onClick={handleOpenModal}>
 						<MdOutlineAddCircleOutline size={24} />
 
-						<span>Add Song</span>
+						<span>Add song</span>
 					</Link>
 				</li>
 				<li>

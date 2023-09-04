@@ -139,8 +139,9 @@ const SignIn = () => {
 							</h1>
 
 							<h2 className="heading-secondary   animate__animated animate__fadeIn ">
-								Build your perfect music catalogue with your own people
-								NPM— play what they decide and decide what They play ♫
+								Build your perfect music catalogue with music lovers
+								worldwide — play what they decide and decide what They
+								play ♫
 							</h2>
 						</div>
 						{Object.values(providers).map((provider) => (
