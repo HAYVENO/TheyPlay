@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React from "react";
 import Head from "next/head";
 
@@ -19,7 +20,9 @@ const PrivacyPolicy = () => {
 						Privacy Policy | TheyPlay
 					</h1>
 					<hr />
-					<p>[ Last updated - {formattedDate()} ]</p>
+					<p style={{ fontFamily: "monospace" }}>
+						Last updated - {formattedDate()}{" "}
+					</p>
 					<p>
 						This Privacy Policy describes Our policies and procedures on
 						the collection, use and disclosure of Your information when
@@ -191,12 +194,11 @@ const PrivacyPolicy = () => {
 						</li>
 						<li>
 							<p>
-								<strong>To contact You:</strong> To contact You by
-								email, telephone calls, SMS, or other equivalent forms
-								of electronic communication, such as a mobile
-								application's push notifications regarding updates or
-								informative communications related to the
-								functionalities, products or contracted services,
+								<strong>To contact You:</strong> To contact You by email
+								or other equivalent forms of electronic communication,
+								such as a mobile application's push notifications
+								regarding updates or informative communications related
+								to the functionalities, products or contracted services,
 								including the security updates, when necessary or
 								reasonable for their implementation.
 							</p>
@@ -397,15 +399,35 @@ const PrivacyPolicy = () => {
 						any changes. Changes to this Privacy Policy are effective when
 						they are posted on this page.
 					</p>
-					<h1>Contact Us</h1>
+					<h1>Contact The Team</h1>
 					<p>
-						If you have any questions about this Privacy Policy, reach out
-						via the links below:
+						If you have any questions about this Privacy Policy or would
+						like to get in touch, please feel free to{" "}
+						<a
+							href="https://github.com/HAYVENO/hayveno/issues"
+							target="_blank"
+							rel="noreferrer"
+						>
+							create an issue on GitHub
+						</a>
+						,{" "}
+						<a
+							href="mailto:haythepen@gmail.com"
+							target="_blank"
+							rel="noreferrer"
+						>
+							send an email
+						</a>
+						, or reach out via{" "}
+						<a
+							href="https://twitter.com/hay_yusuf"
+							target="_blank"
+							rel="noreferrer"
+						>
+							Abdulhafeez's Twitter
+						</a>
+						.
 					</p>
-					<ul>
-						<li>Email: haythepen@gmail.com</li>
-						<li>Github: https://github.com/HAYVENO/hayveno/issues</li>
-					</ul>
 				</div>
 			</main>
 		</>

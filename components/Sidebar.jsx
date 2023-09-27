@@ -10,6 +10,7 @@ import { HiMail } from "react-icons/hi";
 import { RxDashboard } from "react-icons/rx";
 import { BiLibrary, BiLogOutCircle } from "react-icons/bi";
 import { MdOutlineAddCircleOutline } from "react-icons/md";
+import { BsPeople } from "react-icons/bs";
 
 // dynamic import for footer-preview-image
 import dynamic from "next/dynamic";
@@ -83,6 +84,7 @@ const Sidebar = () => {
 						<span>Dashboard</span>
 					</Link>
 				</li>
+
 				<li>
 					<Link href="#" onClick={handleOpenModal}>
 						<MdOutlineAddCircleOutline size={24} />
@@ -96,6 +98,14 @@ const Sidebar = () => {
 						<span>Liked songs</span>
 					</Link>
 				</li>
+
+				<li>
+					<Link href="/privacy-policy">
+						<BsPeople size={24} />
+						<span>About</span>
+					</Link>
+				</li>
+
 				<li onClick={() => signOut()}>
 					<Link href="">
 						<BiLogOutCircle size={24} />

@@ -1186,12 +1186,13 @@ main {
 
 /* PRIVACY POLICY PAGE */
 .privacy-policy-container {
-	font-family: sans-serif;
+	min-height: 100vh;
+	font-family: "Trebuchet MS";
 	margin: 0 auto;
-	width: 60%;
-	padding: 8rem;
+	padding: 7rem 10rem;
 	background-color: var(--background);
 	background-color: var(--background);
+	background-color: rgb(20, 20, 31);
 }
 
 .privacy-policy-container__heading {
@@ -1235,7 +1236,7 @@ h3 {
 .privacy-policy-container li {
 	line-height: 1.8;
 	font-weight: 400;
-	list-style-type: circle;
+	list-style: revert;
 
 	font-size: 16px;
 }
@@ -1255,15 +1256,17 @@ h3 {
 	flex-direction: column;
 }
 
-.privacy-policy-container__link {
-	color: #0070f3;
+.privacy-policy-container a {
+	color: #ba57de;
 	text-decoration: none;
 	transition: color 0.2s ease;
 }
 
-.privacy-policy-container__link:hover {
-	color: #1c6bf6;
+.privacy-policy-container a:hover {
+	color: #eb50ff;
 }
+
+/* PRIVACY POLICY PAGE */
 
 /* ----  */
 
