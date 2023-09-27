@@ -34,7 +34,7 @@ const MyApp = ({ Component, pageProps: { session, ...pageProps } }) => {
 	const router = useRouter();
 
 	// exclude app-wide layout for the routes contained in the array
-	const excludeLayout = ["/signin", "/about"].includes(router.pathname);
+	const excludeLayout = ["/signin"].includes(router.pathname);
 
 	return (
 		<QueryClientProvider client={queryClient}>

@@ -1,0 +1,48 @@
+.privacyPolicyContainer {
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 20px;
+	background-color: var(--background);
+	background-color: red;
+}
+
+.privacyPolicyContainer h1 {
+	font-size: 24px;
+	margin-bottom: 20px;
+}
+
+.privacyPolicyContainer h2 {
+	font-size: 20px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+.privacyPolicyContainer p {
+	font-size: 16px;
+	line-height: 1.5;
+	margin-bottom: 15px;
+}
+
+.privacyPolicyContainer p:last-child {
+	margin-bottom: 0;
+}
+
+.privacyPolicyContainer.main {
+	background-color: #f5f5f5;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+/* Customize the styling for links */
+.privacyPolicyContainer a {
+	color: #0070f3;
+	text-decoration: none;
+	transition: color 0.2s ease;
+}
+
+.privacyPolicyContainer a:hover {
+	color: #1c6bf6;
+}
+
+/* Add specific styles for headings, paragraphs, links, and buttons as needed */
