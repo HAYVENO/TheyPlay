@@ -161,7 +161,6 @@ const SignIn = () => {
 							<div style={{ margin: 0 }}>
 								Built with 🤍 by{" "}
 								<a
-									style={{ color: "white" }}
 									id="yusuf-copy"
 									href="https://github.com/hayveno"
 									target="_blank"

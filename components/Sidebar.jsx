@@ -9,7 +9,7 @@ import { FaGithub, FaTwitter } from "react-icons/fa";
 import { HiMail } from "react-icons/hi";
 import { RxDashboard } from "react-icons/rx";
 import { BiLibrary, BiLogOutCircle } from "react-icons/bi";
-import { MdOutlineAddCircleOutline } from "react-icons/md";
+import { SlMagnifierAdd } from "react-icons/sl";
 import { BsPeople } from "react-icons/bs";
 
 // dynamic import for footer-preview-image
@@ -87,7 +87,7 @@ const Sidebar = () => {
 
 				<li>
 					<Link href="#" onClick={handleOpenModal}>
-						<MdOutlineAddCircleOutline size={24} />
+						<SlMagnifierAdd size={24} />
 
 						<span>Add song</span>
 					</Link>
@@ -100,7 +100,7 @@ const Sidebar = () => {
 				</li>
 
 				<li>
-					<Link href="/privacy-policy">
+					<Link href="/about">
 						<BsPeople size={24} />
 						<span>About</span>
 					</Link>
@@ -125,10 +125,6 @@ const Sidebar = () => {
 											? "sidebar__playlist-active"
 											: ""
 									}
-									style={{
-										fontWeight:
-											playlist.id === playlistId ? "800" : "400",
-									}}
 									href={`/playgroups/${playlist.id}`}
 								>
 									{playlist.name}
@@ -147,7 +143,7 @@ const Sidebar = () => {
 			</ul>
 			<div className="sidebar-footer">
 				<div style={{ margin: 0 }}>
-					Built by{" "}
+					Created by{" "}
 					<a
 						id="yusuf-copy"
 						href="https://github.com/hayveno"

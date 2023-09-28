@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-// import SongImagePlaceholder from "../public/placeholder-playlist.jpg";
 
 const PlaygroupCard = ({ playlist: playgroup }) => {
 	return (

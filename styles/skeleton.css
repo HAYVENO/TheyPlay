@@ -1,0 +1,48 @@
+/* skeleton  styling MUI*/
+
+.my__custom-skeleton {
+	/* skeleton background color */
+	background-color: #75757531;
+}
+
+.my__custom-skeleton::after {
+	/* skeleton wave color */
+	background: linear-gradient(
+		90deg,
+		transparent,
+		rgba(170, 166, 166, 0.613),
+		transparent
+	) !important;
+	content: "";
+	position: absolute;
+	transform: translateX(-100%);
+	inset: 0px;
+}
+
+.card-skeleton {
+	position: relative;
+	overflow: hidden;
+	border-radius: 0.5rem;
+	padding-top: 15px;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	padding: 0.5rem;
+	border: 0.1px solid var(--mauve3);
+	border-radius: 0.7rem;
+	background-color: #3d3d3d35;
+	height: 180px;
+	transform: rotate(-3deg);
+}
+
+.title-skeleton {
+	padding: 1rem 1.2rem;
+	margin: 0;
+}
+
+.image-skeleton {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	transform: rotate(324deg) translate(-5%, -5%);
+}
