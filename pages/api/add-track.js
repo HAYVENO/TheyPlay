@@ -97,7 +97,7 @@ const addSong = async function handler(req, res) {
 		if (existingUserSong)
 			return res.status(400).json({
 				message:
-					"You already added this song — please choose a different song. :)",
+					"Song already exists on this Playgroup — please choose a different song 😇",
 			});
 
 		//create userSong object

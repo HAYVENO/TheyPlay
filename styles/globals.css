@@ -594,14 +594,18 @@ main {
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
-	background-color: rgba(36, 36, 36, 0.403);
+	background-color: rgba(36, 36, 36, 0.4);
 	padding: 0.5rem 1rem;
 	border-radius: 50px;
 	cursor: pointer;
 }
 
 .user__profile:hover {
-	background-color: rgba(60, 60, 60, 0.403);
+	background-color: rgba(60, 60, 60, 0.4);
+}
+
+.user__profile:active {
+	background-color: rgba(36, 36, 36, 0.6);
 }
 
 .category:nth-of-type(1) {
@@ -770,7 +774,7 @@ main {
 	display: flex;
 	flex-direction: column;
 	position: absolute;
-	right: -3rem;
+	right: -4.5rem;
 	top: 0.9rem;
 	border-radius: 2rem;
 }

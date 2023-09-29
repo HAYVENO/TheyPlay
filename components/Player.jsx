@@ -197,6 +197,7 @@ const Player = () => {
 					//pop up success alert
 					setAlert({
 						open: true,
+
 						message,
 						severity: "info",
 						style: infoStyle,
@@ -209,6 +210,7 @@ const Player = () => {
 
 					setAlert({
 						open: true,
+
 						message,
 						severity: "info",
 						style: infoStyle,

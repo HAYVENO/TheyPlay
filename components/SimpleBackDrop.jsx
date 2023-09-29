@@ -19,7 +19,7 @@ export default function SimpleBackdrop() {
 			>
 				{/* <CircularProgress color="inherit" /> */}
 
-				<ScaleLoader color="lightblue" />
+				<ScaleLoader color="var(--color-link)" />
 			</Backdrop>
 		</div>
 	);

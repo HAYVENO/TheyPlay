@@ -18,8 +18,6 @@ export default function AlertBox() {
 			...alert,
 			open: false,
 		});
-
-		// setHide(true);
 	};
 
 	function Transition(props) {
@@ -27,7 +25,7 @@ export default function AlertBox() {
 	}
 
 	return (
-		<div style={{ display: hide ? "none" : "block" }}>
+		<div style={{ display: alert.open ? "block" : "none" }}>
 			<Snackbar
 				anchorOrigin={{
 					vertical: alert.vertical || "top",

@@ -4,15 +4,16 @@ import getInitials from "../util/getInitials";
 import { Avatar } from "@mui/material";
 import * as Popover from "@radix-ui/react-popover";
 
-import { useSession } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 import { useRecoilState } from "recoil";
 
 import { CgPlayListAdd } from "react-icons/cg"; // Import your icons
 import { BsPeople } from "react-icons/bs";
 import { MdOutlinePrivacyTip } from "react-icons/md";
 import { openModalState } from "../atoms/modalAtom";
+import { BiLogOutCircle } from "react-icons/bi";
 
-const Header = ({ isLoading }) => {
+const Header = ({ isLoading, playgroupName = null }) => {
 	const { data: session, status } = useSession();
 	const [openModal, setOpenModal] = useRecoilState(openModalState);
 
@@ -27,7 +28,11 @@ const Header = ({ isLoading }) => {
 		>
 			<button className="btn__add-song" onClick={handleOpenModal}>
 				<CgPlayListAdd size={20} />
-				<span>Add music</span>
+				{playgroupName ? (
+					<span>Add music to {playgroupName}</span>
+				) : (
+					<span>Add music</span>
+				)}
 			</button>
 			{status === "authenticated" && !isLoading && (
 				<Popover.Root>
@@ -66,6 +71,15 @@ const Header = ({ isLoading }) => {
 								<button className="dropdown-btn">
 									<span>Privacy Policy</span>
 									<MdOutlinePrivacyTip size={18} />
+								</button>
+							</Link>
+							<Link href="" style={{ textDecoration: "none" }}>
+								<button
+									onClick={() => signOut()}
+									className="dropdown-btn"
+								>
+									<span>Log out</span>
+									<BiLogOutCircle size={18} />
 								</button>
 							</Link>
 						</Popover.Content>
