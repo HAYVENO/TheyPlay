@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from "react";
 import Head from "next/head";
+import Header from "../components/Header";
 
 const PrivacyPolicy = () => {
 	const formattedDate = () => {
@@ -15,6 +16,7 @@ const PrivacyPolicy = () => {
 				<title>Privacy Policy | TheyPlay</title>
 			</Head>
 			<main>
+				<Header isLoading={false} />
 				<div className="privacy-policy-container">
 					<h1 className="privacy-policy-container__heading">
 						Privacy Policy | TheyPlay

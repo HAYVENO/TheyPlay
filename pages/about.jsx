@@ -2,6 +2,7 @@
 import React from "react";
 import Head from "next/head";
 import Image from "next/image";
+import Header from "../components/Header";
 
 const About = () => {
 	const formattedDate = () => {
@@ -16,6 +17,7 @@ const About = () => {
 				<title>About | TheyPlay</title>
 			</Head>
 			<main>
+				<Header isLoading={false} />
 				<section className="privacy-policy-container about-container">
 					<h1 className="privacy-policy-container__heading">
 						About | TheyPlay
@@ -114,7 +116,7 @@ const About = () => {
 						information.
 					</p>
 
-					<h2>Join and contribute to the TheyPlay Community</h2>
+					<h2>Join and Contribute to TheyPlay</h2>
 
 					<p>
 						I invite you to be part of the TheyPlay community and

@@ -5,8 +5,10 @@ import { useEffect, useState } from "react";
 import {
 	BsFillArrowLeftCircleFill,
 	BsFillArrowRightCircleFill,
+	BsPeople,
 } from "react-icons/bs";
 import { CgPlayListAdd } from "react-icons/cg";
+import { MdOutlinePrivacyTip } from "react-icons/md";
 import { FaUserCircle } from "react-icons/fa";
 import Avatar from "@mui/material/Avatar";
 import shuffle from "lodash/shuffle";
@@ -24,6 +26,9 @@ import {
 	playgroupsState,
 } from "../atoms/modalAtom";
 import { topTracksState } from "../atoms/trackAtom";
+import * as Popover from "@radix-ui/react-popover";
+import Link from "next/link";
+import Header from "./Header";
 
 const Center = () => {
 	const spotifyApi = useSpotify();
@@ -86,33 +91,8 @@ const Center = () => {
 
 	return (
 		<div className="center">
-			<header
-				className="center__heading"
-				style={{ backdropFilter: "blur(30px)" }}
-			>
-				<button className="btn__add-song" onClick={handleOpenModal}>
-					<CgPlayListAdd size={20} />
-					<span>Add music</span>
-				</button>
-				{status === "authenticated" && !isLoading && (
-					<div className="user__profile">
-						<div className="profile__image">
-							<Avatar
-								sx={{
-									backgroundColor: "#fff",
-									color: "#202020",
-									fontSize: "0.8rem",
-									width: 30,
-									height: 30,
-								}}
-							>
-								{getInitials(session.user.name)}
-							</Avatar>
-						</div>
-						<span className="profile__name">{session?.user?.name}</span>
-					</div>
-				)}
-			</header>
+			<Header isLoading={isLoading} />
+
 			{/* {PLAYLIST CATEGORIES  } */}
 			<PlaylistCategories
 				key={1}

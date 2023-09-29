@@ -19,7 +19,7 @@ export default function AlertBox() {
 			open: false,
 		});
 
-		setHide(true);
+		// setHide(true);
 	};
 
 	function Transition(props) {
@@ -27,20 +27,26 @@ export default function AlertBox() {
 	}
 
 	return (
-		<Snackbar
-			// sx={{ display: hide ? "none" : "block" }}
-			anchorOrigin={{
-				vertical: alert.vertical || "top",
-				horizontal: alert.horizontal || "right",
-			}}
-			open={alert.open}
-			autoHideDuration={4000}
-			onClose={handleClose}
-			TransitionComponent={Transition}
-		>
-			<Alert open={alert.open} onClose={handleClose} severity={alert.severity} sx={alert.style}>
-				{alert.message}
-			</Alert>
-		</Snackbar>
+		<div style={{ display: hide ? "none" : "block" }}>
+			<Snackbar
+				anchorOrigin={{
+					vertical: alert.vertical || "top",
+					horizontal: alert.horizontal || "right",
+				}}
+				open={alert.open}
+				autoHideDuration={4000}
+				onClose={handleClose}
+				TransitionComponent={Transition}
+			>
+				<Alert
+					open={alert.open}
+					onClose={handleClose}
+					severity={alert.severity}
+					sx={alert.style}
+				>
+					{alert.message}
+				</Alert>
+			</Snackbar>
+		</div>
 	);
 }
