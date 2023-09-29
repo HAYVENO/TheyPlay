@@ -106,12 +106,12 @@ const Sidebar = () => {
 					</Link>
 				</li>
 
-				<li onClick={() => signOut()}>
+				{/* <li onClick={() => signOut()}>
 					<Link href="">
 						<BiLogOutCircle size={24} />
 						<span>Sign out</span>
 					</Link>
-				</li>
+				</li> */}
 			</ul>
 			<h3 className="heading__sidebar-playlist">Playgroups</h3>
 			{/* side bar playlists  */}
