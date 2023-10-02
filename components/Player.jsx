@@ -11,6 +11,7 @@ import {
 	BsPauseCircleFill,
 	BsVolumeMuteFill,
 	BsSkipStart,
+	BsSpotify,
 } from "react-icons/bs";
 import { TbPlayerSkipBack, TbPlayerSkipForward } from "react-icons/tb";
 import {
@@ -19,6 +20,7 @@ import {
 	BsVolumeDownFill,
 	BsSkipEnd,
 } from "react-icons/bs";
+import { SlSocialSpotify } from "react-icons/sl";
 
 import { TbRepeat, TbRepeatOnce } from "react-icons/tb";
 
@@ -37,6 +39,7 @@ import {
 	currentSongNumberState,
 	isOnRepeatState,
 } from "../atoms/trackAtom";
+import Tooltip from "@mui/material/Tooltip";
 
 import alertStyles from "../util/alertStyles";
 
@@ -236,6 +239,8 @@ const Player = () => {
 		}
 	};
 
+	console.log(liveTrack?.external_urls?.spotify);
+
 	return (
 		<div className="player">
 			{/* Left */}
@@ -264,21 +269,51 @@ const Player = () => {
 									.join(", ")}
 						</p>
 					</div>
-					<button
-						style={{
-							cursor: isLoadingLike ? "not-allowed" : "pointer",
-							opacity: isLoadingLike ? "0.6" : "1",
-						}}
-						disabled={isLoadingLike ? true : false}
-						className="btn"
-						onClick={handleLikeAndDislike}
-					>
-						{isLiked ? (
-							<BsHeartFill color="white" size={18} />
-						) : (
-							<BsHeart size={18} />
-						)}
-					</button>
+					<div className="player__cta-container">
+						{/* like button */}
+						<Tooltip arrow placement="top" title="Like or unlike song">
+							<button
+								style={{
+									cursor: isLoadingLike ? "not-allowed" : "pointer",
+									opacity: isLoadingLike ? "0.6" : "1",
+								}}
+								disabled={isLoadingLike ? true : false}
+								className="btn"
+								onClick={handleLikeAndDislike}
+							>
+								{isLiked ? (
+									<BsHeartFill color="white" size={20} />
+								) : (
+									<BsHeart size={20} />
+								)}
+							</button>
+						</Tooltip>
+						{/* Play on Spotify button */}
+						<Tooltip
+							arrow
+							placement="top"
+							title="Play on Spotify"
+							sx={{ fontSize: "20px" }}
+						>
+							<a
+								href={liveTrack?.external_urls?.spotify}
+								target="_blank"
+								rel="noopener noreferrer"
+								style={{
+									opacity: liveTrack?.external_urls?.spotify
+										? "1"
+										: "0.6",
+									cursor: liveTrack?.external_urls?.spotify
+										? "pointer"
+										: "not-allowed",
+								}}
+							>
+								<button className="btn">
+									<SlSocialSpotify color="white" size={20} />
+								</button>
+							</a>
+						</Tooltip>
+					</div>
 				</div>
 			</div>
 

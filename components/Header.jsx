@@ -11,7 +11,7 @@ import { CgPlayListAdd } from "react-icons/cg"; // Import your icons
 import { BsPeople } from "react-icons/bs";
 import { MdOutlinePrivacyTip } from "react-icons/md";
 import { openModalState } from "../atoms/modalAtom";
-import { BiLogOutCircle } from "react-icons/bi";
+import { BiLogOut } from "react-icons/bi";
 
 const Header = ({ isLoading, playgroupName = null }) => {
 	const { data: session, status } = useSession();
@@ -79,7 +79,7 @@ const Header = ({ isLoading, playgroupName = null }) => {
 									className="dropdown-btn"
 								>
 									<span>Log out</span>
-									<BiLogOutCircle size={18} />
+									<BiLogOut size={18} />
 								</button>
 							</Link>
 						</Popover.Content>

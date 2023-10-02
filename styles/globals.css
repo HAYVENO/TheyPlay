@@ -412,7 +412,7 @@ main {
 /* left bar  */
 .left-bar {
 	margin: auto 1rem;
-	width: 22vw;
+	/* max-width: 22vw; */
 }
 
 .left-bar-container {
@@ -422,18 +422,27 @@ main {
 	border: 0.1px solid #2f2f69df;
 	border-radius: 6px;
 	box-shadow: 1px 1px 10px 2px #0302228f;
+	padding-right: 1rem;
 }
 
 .left-bar-container h3 {
-	font-size: 0.7rem;
+	box-sizing: border-box;
+	margin-bottom: 0;
+	font-size: 0.8rem;
 	font-weight: 500;
 	color: white;
 }
 
 .left-bar-container p {
-	color: var(--color-text);
+	color: white;
 	font-size: 0.6rem;
 	font-weight: 300;
+}
+
+.player__cta-container {
+	display: flex;
+	align-items: baseline;
+	justify-content: center;
 }
 
 .btn {
@@ -446,7 +455,7 @@ main {
 }
 
 .btn:hover {
-	transform: scale(1.07);
+	transform: scale(1.1);
 }
 
 .btn:active {
@@ -455,6 +464,10 @@ main {
 
 .btn:focus {
 	outline: none;
+}
+
+.player__cta-container .btn {
+	transform: none;
 }
 
 .song-image {
@@ -529,6 +542,7 @@ main {
 
 /* CENTER  */
 .center {
+	/* background-color: rgb(9, 9, 20); */
 	background-color: var(--background);
 	position: relative;
 	overflow: scroll;
@@ -594,18 +608,19 @@ main {
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
-	background-color: rgba(36, 36, 36, 0.4);
+	background-color: rgba(60, 60, 60, 0.4);
+
 	padding: 0.5rem 1rem;
 	border-radius: 50px;
 	cursor: pointer;
 }
 
 .user__profile:hover {
-	background-color: rgba(60, 60, 60, 0.4);
+	background-color: rgba(36, 36, 36, 0.8);
 }
 
 .user__profile:active {
-	background-color: rgba(36, 36, 36, 0.6);
+	background-color: rgba(36, 36, 36, 0.4);
 }
 
 .category:nth-of-type(1) {

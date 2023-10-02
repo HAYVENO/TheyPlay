@@ -6,7 +6,7 @@ import Skeleton from "@mui/material/Skeleton";
 import { signOut, useSession } from "next-auth/react";
 import { HiSearch } from "react-icons/hi";
 import { FaGithub, FaTwitter } from "react-icons/fa";
-import { HiMail } from "react-icons/hi";
+import { BsPersonCircle } from "react-icons/bs";
 import { RxDashboard } from "react-icons/rx";
 import { BiLibrary, BiLogOutCircle } from "react-icons/bi";
 import { SlMagnifierAdd } from "react-icons/sl";
@@ -169,6 +169,7 @@ const Sidebar = () => {
 				<div className="line-3"></div>
 				<div className="footer__socials-container">
 					<a
+						title="GitHub Repository"
 						href="https://github.com/HAYVENO/TheyPlay"
 						target="_blank"
 						rel="noopener noreferrer"
@@ -176,13 +177,15 @@ const Sidebar = () => {
 						<FaGithub size={16} style={{ cursor: "pointer" }} />
 					</a>
 					<a
-						href="mailto:haythepen@gmail.com"
+						title="Yusuf's Official Website"
+						href="https://hayveno-hive.vercel.app/"
 						target="_blank"
 						rel="noopener noreferrer"
 					>
-						<HiMail size={20} style={{ cursor: "pointer" }} />
+						<BsPersonCircle size={18} style={{ cursor: "pointer" }} />
 					</a>
 					<a
+						title="Yusuf's Twitter"
 						href="https://twitter.com/hay_yusuf"
 						target="_blank"
 						rel="noopener noreferrer"
