@@ -3,6 +3,8 @@
 	color: white;
 	background-color: rgb(18, 18, 18);
 	transition: all 1s ease;
+	white-space: nowrap;
+	line-height: 1;
 }
 
 .playlistContainer > * {
@@ -10,9 +12,6 @@
 }
 
 .playlistHead {
-	height: 40vh;
-	max-height: 340px;
-	min-height: 220px;
 	background-image: linear-gradient(
 		to bottom,
 		hsla(var(--playlist-hue), 100%, 25%, 0.5) 0,
@@ -22,7 +21,7 @@
 	/* background-color: rgb(66 117 255 / 42%); */
 	display: flex;
 	padding: 1.4rem;
-
+	padding-top: 7rem;
 	border-bottom: 0.1px solid #ffffff00;
 }
 
@@ -70,7 +69,7 @@
 
 .playlistName {
 	font-size: 4rem;
-	min-width: 500px;
+	/* min-width: 500px; */
 	padding-bottom: 1rem;
 	line-height: 0;
 	text-shadow: 4px 4px 8px rgba(27, 27, 27, 0.503);
@@ -90,7 +89,7 @@
 }
 
 .playlistControl {
-	min-height: 4rem;
+	/* min-height: 4rem; */
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
@@ -114,7 +113,7 @@
 	font-size: 0.8rem;
 	margin-right: 1.4rem;
 	padding: 0.7rem 1.7rem;
-	min-width: 150px;
+	/* min-width: 150px; */
 }
 
 .addToSpotifyBtn {
@@ -195,16 +194,16 @@
 	align-items: center;
 	display: flex;
 	gap: 1.2rem;
+	overflow: hidden;
+	padding-left: 0.5rem;
 }
 
 .songDescription {
 	display: flex;
 	flex-direction: column;
+	padding: 0.5rem 0.1rem;
 	line-height: 0;
 	margin: 0;
-	padding: 0 1rem;
-
-	max-width: 15vw;
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
@@ -218,17 +217,16 @@
 	transition: transform 0.3s ease;
 }
 
-.songTitle {
+.songTitle,
+.songTitle + p {
 	font-weight: bold;
 	color: white;
 	font-size: 0.75rem;
-	overflow: visible;
-	white-space: nowrap;
+	margin: 6px;
+	overflow: hidden;
+	line-height: 1;
+	/* white-space: nowrap; */
 	text-overflow: ellipsis;
-
-	-webkit-line-clamp: 1;
-	-webkit-box-orient: vertical;
-	display: -webkit-box;
 }
 
 /* Animations  */
@@ -244,4 +242,70 @@
 	100% {
 		filter: hue-rotate(0deg);
 	}
+}
+
+/* TABLET */
+@media screen and (max-width: 900px) {
+	.listGrid {
+		grid-template-columns: [SN] 20px [title] 6fr [item1] 2fr [item2] 2fr;
+	}
+
+	.submittedAtBox {
+		display: none;
+	}
+
+	.submittedAtHeading {
+		display: none;
+	}
+}
+/* MOBILE */
+@media screen and (max-width: 650px) {
+	.listGrid {
+		grid-template-columns: [SN] 20px [title] 6fr [item1] 1.5fr;
+	}
+
+	.playlistDetails {
+		max-width: 80vw;
+		white-space: break-spaces;
+		line-height: 1;
+	}
+	.playlistHead {
+		padding-top: 6rem;
+		/* min-height: 70vh; */
+		max-height: none;
+	}
+
+	.playlistName {
+		order: -2;
+		font-size: 3rem;
+	}
+
+	.playlistDescription {
+		order: -2;
+	}
+
+	.headContentContainer {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.headContentContainer {
+		white-space: break-spaces;
+		max-width: 80vw;
+	}
+
+	.popularityHeading {
+		display: none;
+	}
+
+	.ratingsContainer {
+		display: none;
+	}
+
+	.songListContainer {
+		padding: 1rem;
+	}
+
+	/* .songDescription {	
+	}  */
 }

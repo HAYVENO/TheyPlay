@@ -68,7 +68,9 @@ const Track = ({ track, theyTrack, index, onClick, isCurrentTrack }) => {
 						</p>
 					</div>
 				</div>
-				<p>{theyTrack?.addedBy?.name?.split(" ")[0]}</p>
+				<div className={styles.addedByBox}>
+					<p>{theyTrack?.addedBy?.name?.split(" ")[0]}</p>
+				</div>
 				<div className={styles.ratingsContainer}>
 					<Box>
 						<Rating
@@ -82,7 +84,10 @@ const Track = ({ track, theyTrack, index, onClick, isCurrentTrack }) => {
 						/>
 					</Box>
 				</div>
-				<p style={{ fontStyle: "italic" }}>
+				<p
+					className={styles.submittedAtBox}
+					style={{ fontStyle: "italic" }}
+				>
 					{" "}
 					{dayjs(theyTrack?.addedAt).fromNow()}
 				</p>

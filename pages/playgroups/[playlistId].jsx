@@ -467,7 +467,7 @@ const PlaylistPage = () => {
 									<Skeleton
 										className="my__custom-skeleton"
 										animation="wave"
-										width={400}
+										width={330}
 									>
 										<h1 className={styles.playlistName}></h1>
 									</Skeleton>
@@ -542,11 +542,11 @@ const PlaylistPage = () => {
 						</div>
 						<div className={styles.songListContainer}>
 							<div className={classes(styles.listGrid, styles.listHead)}>
-								<p>S/N</p>
-								<p>Title</p>
-								<p>Added by</p>
-								<p>Popularity</p>
-								<p>Submitted</p>
+								<p className={styles.snHeading}>S/N</p>
+								<p className={styles.titleHeading}>Title</p>
+								<p className={styles.addedByHeading}>Added by</p>
+								<p className={styles.popularityHeading}>Popularity</p>
+								<p className={styles.submittedAtHeading}>Submitted</p>
 							</div>
 							<ul className={styles.songList}>
 								{/* ... TRACK LIST ...  */}

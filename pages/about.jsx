@@ -106,6 +106,85 @@ const About = () => {
 							</b>
 							.
 						</p>
+						<br />
+
+						<h3>How to Get Started ♫</h3>
+
+						<p>
+							TheyPlay is a community-driven music discovery app designed
+							to enrich your musical journey. Here's how to make the most
+							of it:
+						</p>
+
+						<ol>
+							<li>
+								<strong>Search for a Song:</strong>
+								<ul>
+									<li>
+										Start by searching for a song you love using
+										TheyPlay's user-friendly search feature.
+									</li>
+								</ul>
+							</li>
+
+							<li>
+								<strong>Choose a Playgroup:</strong>
+								<ul>
+									<li>
+										Once you've found your song, select a playgroup to
+										add it to. Playgroups are communities of music
+										enthusiasts who share their favorite tracks.
+									</li>
+								</ul>
+							</li>
+
+							<li>
+								<strong>Leave a Note (Optional):</strong>
+								<ul>
+									<li>
+										Feel like sharing a personal story or your
+										thoughts about the song? Leave a note along with
+										your added track to create a unique narrative.
+									</li>
+								</ul>
+							</li>
+
+							<li>
+								<strong>Gamified Experience:</strong>
+								<ul>
+									<li>
+										TheyPlay adds a fun twist to music sharing. Earn
+										points based on likes and how many users add your
+										chosen song to their libraries. Your points
+										contribute to your user level.
+									</li>
+								</ul>
+							</li>
+
+							<li>
+								<strong>Playgroup Limits:</strong>
+								<ul>
+									<li>
+										Be mindful of playgroup limits. Each playgroup may
+										have a daily, weekly, or monthly limit on the
+										number of songs you can add. This helps maintain a
+										harmonious sharing experience.
+									</li>
+								</ul>
+							</li>
+
+							<li>
+								<strong>Add to Spotify:</strong>
+								<ul>
+									<li>
+										Want to listen to your curated playlist on
+										Spotify? Simply choose "Add to Spotify." You can
+										update your Spotify playlist at any time by
+										selecting "Update on Spotify."
+									</li>
+								</ul>
+							</li>
+						</ol>
 
 						<p>
 							By the way, your personal data is precious, and we treat it

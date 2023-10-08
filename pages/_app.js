@@ -9,6 +9,7 @@ import "../styles/nprogress-bar.css";
 import NProgress from "nprogress";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import Head from "next/head";
 
 // If loading a variable font, no need to specify the font weight
 const inter = Inter({ subsets: ["latin"] });
@@ -37,22 +38,31 @@ const MyApp = ({ Component, pageProps: { session, ...pageProps } }) => {
 	const excludeLayout = ["/signin"].includes(router.pathname);
 
 	return (
-		<QueryClientProvider client={queryClient}>
-			<RecoilRoot>
-				<SessionProvider session={session}>
-					{excludeLayout && (
-						<Component {...pageProps} className={inter.className} />
-					)}
-					{!excludeLayout && (
-						<Layout className={inter.className}>
-							<Component {...pageProps} />
-							<Analytics />
-						</Layout>
-					)}
-				</SessionProvider>
-				<ReactQueryDevtools initialIsOpen={false} />
-			</RecoilRoot>
-		</QueryClientProvider>
+		<>
+			<Head>
+				<meta
+					name="viewport"
+					content="width=device-width, initial-scale=1, viewport-fit=cover"
+				/>
+			</Head>
+
+			<QueryClientProvider client={queryClient}>
+				<RecoilRoot>
+					<SessionProvider session={session}>
+						{excludeLayout && (
+							<Component {...pageProps} className={inter.className} />
+						)}
+						{!excludeLayout && (
+							<Layout className={inter.className}>
+								<Component {...pageProps} />
+								<Analytics />
+							</Layout>
+						)}
+					</SessionProvider>
+					<ReactQueryDevtools initialIsOpen={false} />
+				</RecoilRoot>
+			</QueryClientProvider>
+		</>
 	);
 };
 

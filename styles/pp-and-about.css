@@ -37,6 +37,7 @@ h3 {
 
 .privacy-policy-container h1 {
 	margin-bottom: 20px;
+	line-height: 1;
 	font-weight: 500;
 	font-size: 1.7rem;
 	margin-bottom: 2rem;
@@ -44,6 +45,7 @@ h3 {
 
 .privacy-policy-container h2 {
 	font-size: 1.5rem;
+	line-height: 1;
 }
 
 .privacy-policy-container h3 {
@@ -60,13 +62,17 @@ h3 {
 .privacy-policy-container li {
 	line-height: 1.8;
 	font-weight: 400;
-	list-style: disc !important;
+	/* list-style: disc !important; */
 
 	font-size: 16px;
 }
 
+.privacy-policy-container ol {
+	list-style: georgian;
+}
+
 .privacy-policy-container li:last-child {
-	margin-bottom: 3rem;
+	margin-bottom: 2rem;
 }
 
 .privacy-policy-container__last-paragraph {
@@ -176,4 +182,20 @@ h4 {
 	color: rgb(74, 74, 74);
 	text-decoration: none;
 	width: 100%;
+}
+
+/* MOBILE */
+@media screen and (max-width: 650px) {
+	.privacy-policy-container {
+		min-height: 100vh;
+		margin: 0 auto;
+		padding: 7rem 4%;
+	}
+
+	.about_profile {
+		grid-template-columns: 1fr;
+		gap: 1.2rem;
+		margin: 0.5rem;
+		padding: 1rem 2rem;
+	}
 }

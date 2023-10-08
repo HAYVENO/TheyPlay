@@ -8,10 +8,12 @@ import { useSession, signOut } from "next-auth/react";
 import { useRecoilState } from "recoil";
 
 import { CgPlayListAdd } from "react-icons/cg"; // Import your icons
+import { BsReverseLayoutSidebarReverse } from "react-icons/bs"; // Import your icons
 import { BsPeople } from "react-icons/bs";
 import { MdOutlinePrivacyTip } from "react-icons/md";
 import { openModalState } from "../atoms/modalAtom";
 import { BiLogOut } from "react-icons/bi";
+import Sidebar from "./Sidebar";
 
 const Header = ({ isLoading, playgroupName = null }) => {
 	const { data: session, status } = useSession();
@@ -26,6 +28,21 @@ const Header = ({ isLoading, playgroupName = null }) => {
 			className="center__heading"
 			style={{ backdropFilter: "blur(30px)" }}
 		>
+			{/* <Popover.Root>
+				<Popover.Trigger asChild>
+					
+				</Popover.Trigger>
+				<Popover.Portal>
+					<Popover.Content className="popover-dropdown">
+						<Sidebar isClassed={true} />
+					</Popover.Content>
+				</Popover.Portal>
+			</Popover.Root> */}
+
+			<button className="btn__drawer">
+				<BsReverseLayoutSidebarReverse size={32} />
+			</button>
+
 			<button className="btn__add-song" onClick={handleOpenModal}>
 				<CgPlayListAdd size={20} />
 				{playgroupName ? (

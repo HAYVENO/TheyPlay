@@ -153,12 +153,26 @@ main {
 	grid-row: 2/ -1;
 	color: var(--color-text);
 	background-color: var(--background);
-	height: 4.5rem;
+	min-height: 4.5rem;
 	display: flex;
 	justify-content: space-between;
 	align-items: stretch;
 	padding: 0.4rem;
 	border-top: 0.1px solid var(--mauve8);
+}
+
+.btn__drawer {
+	display: none;
+	align-items: center;
+	cursor: pointer;
+	background: transparent;
+	color: wheat;
+	border: none;
+}
+
+.btn__drawer:active {
+	color: white;
+	transform: rotate(10deg);
 }
 
 .btn__add-song {
@@ -423,6 +437,8 @@ main {
 	border-radius: 6px;
 	box-shadow: 1px 1px 10px 2px #0302228f;
 	padding-right: 1rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .left-bar-container h3 {
@@ -431,6 +447,7 @@ main {
 	font-size: 0.8rem;
 	font-weight: 500;
 	color: white;
+	/* white-space: nowrap; */
 }
 
 .left-bar-container p {
@@ -440,6 +457,7 @@ main {
 }
 
 .player__cta-container {
+	margin-left: auto;
 	display: flex;
 	align-items: baseline;
 	justify-content: center;
@@ -545,7 +563,7 @@ main {
 	/* background-color: rgb(9, 9, 20); */
 	background-color: var(--background);
 	position: relative;
-	overflow: scroll;
+	overflow: overlay;
 	color: var(--color-text);
 
 	/* animation: hue-animation 15s infinite; */
@@ -639,7 +657,7 @@ main {
 	min-height: 205px;
 	margin: 0;
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(186px, 190px));
+	grid-template-columns: repeat(auto-fit, minmax(160px, 190px));
 	grid-gap: 2rem;
 	padding: 0rem 2.5rem;
 	padding-bottom: 1rem;
@@ -806,7 +824,7 @@ main {
 	padding: 0.4rem 0.6rem;
 	font-weight: 500;
 	font-size: 0.8rem;
-	background-color: rgba(53, 53, 53, 0.8);
+	background-color: rgba(53, 53, 53, 0.92);
 	border: none;
 	border-radius: auto;
 	border-bottom: 0.1px solid rgb(53 53 53);
@@ -896,5 +914,117 @@ main {
 	}
 	100% {
 		stroke-dashoffset: 2.11827;
+	}
+}
+
+/* TABLET */
+@media screen and (max-width: 1000px) {
+	.home-container {
+		grid-template-columns: 1fr;
+	}
+
+	.btn__drawer {
+		display: flex;
+	}
+
+	/* testing */
+	.sidebar {
+		display: none;
+	}
+
+	.sidebar-drawer {
+		display: flex;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		width: 70%;
+		backdrop-filter: blur(30px);
+		min-height: 100vh;
+		padding-top: 2rem;
+		z-index: 99999;
+		box-shadow: 6px -9px 34px -7px black;
+		overflow-y: hidden;
+		overflow-x: hidden;
+	}
+
+	.player__right {
+		display: none;
+	}
+
+	.player {
+		padding: 0.4rem 1.5rem;
+	}
+}
+
+/* MOBILE */
+@media screen and (max-width: 650px) {
+	.home-container {
+		max-height: 85vh;
+	}
+
+	.category__playlists {
+		grid-template-columns: repeat(auto-fit, minmax(100px, 160px));
+		grid-gap: 1rem;
+		padding: 0rem 1rem;
+		padding-bottom: 1rem;
+		width: auto;
+	}
+
+	.playlist__card {
+		min-height: 140px;
+	}
+
+	.playlistDetails {
+		max-width: 80vw;
+	}
+
+	.left-bar-container {
+		line-height: 1.4;
+	}
+
+	.center__heading {
+		padding: 1rem 1rem;
+	}
+
+	.btn__add-song {
+		font-size: 0.8rem;
+		padding: 0.6rem 0.8rem;
+	}
+
+	.player {
+		flex-direction: column;
+		gap: 1rem;
+		padding: 1rem 1rem;
+	}
+
+	.profile__name {
+		display: none;
+	}
+
+	.now__playing-controls {
+		gap: 0.1rem;
+	}
+
+	/* the control btn sizes on mobile */
+	.now__playing-controls .btn svg {
+		width: 2rem;
+		/* aspect-ratio: 1; */
+	}
+
+	.song-image {
+		box-shadow: none;
+	}
+
+	.playlist__image {
+		width: 100px;
+		height: 100px;
+		/* aspect-ratio: 1; */
+	}
+
+	.popover-dropdown {
+		right: -2.5rem;
+		top: 1.3rem;
+		border-radius: 2rem;
 	}
 }

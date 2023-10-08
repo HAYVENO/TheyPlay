@@ -244,7 +244,12 @@ const Player = () => {
 	return (
 		<div className="player">
 			{/* Left */}
-			<div className="left-bar">
+			<div
+				style={{
+					display: liveTrack?.external_urls?.spotify ? "block" : "none",
+				}}
+				className="left-bar"
+			>
 				<div className="left-bar-container">
 					<Image
 						className="song-image"
