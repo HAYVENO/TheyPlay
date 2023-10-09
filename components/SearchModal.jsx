@@ -34,21 +34,21 @@ import { useQueryClient } from "@tanstack/react-query";
 
 const { successStyle, errorStyle, warningStyle, infoStyle } = alertStyles;
 
-const style = {
-	position: "absolute",
-	top: "15%",
-	left: "50%",
-	transform: "translateX(-50%)",
-	width: "35%",
-};
+// const style = {
+// 	position: "absolute",
+// 	top: "15%",
+// 	left: "50%",
+// 	transform: "translateX(-50%)",
+// 	width: "35%",
+// };
 
-const childStyle = {
-	position: "absolute",
-	top: "40%",
-	left: "55%",
-	transform: "translateX(-50%)",
-	width: "35%",
-};
+// const childStyle = {
+// 	position: "absolute",
+// 	top: "40%",
+// 	left: "55%",
+// 	transform: "translateX(-50%)",
+// 	width: "35%",
+// };
 
 const SearchModal = () => {
 	const { data: session } = useSession();
@@ -315,7 +315,7 @@ const SearchModal = () => {
 	return (
 		<div>
 			<Modal open={openModal} onClose={handleClose}>
-				<div style={style}>
+				<div className="modal_wrapper">
 					<div className="search-modal">
 						<div className="search-container">
 							<div className="search-icon">
@@ -397,12 +397,7 @@ const SearchModal = () => {
 														}}
 														className="track-name"
 													>
-														{track?.name.length > 33
-															? `${track?.name.substring(
-																	0,
-																	32
-															  )}...`
-															: track?.name}
+														{track?.name}
 													</p>
 													<p className="track-artist">
 														{track?.artists
@@ -429,20 +424,17 @@ const SearchModal = () => {
 													</Box>
 												</div>
 											</div>
-											<p>
+											<div>
 												<Button
+													className="add_track-btn"
 													onClick={() =>
 														handleOpenChildModal(index)
 													}
-													sx={{
-														borderRadius: "6px",
-														minWidth: "max-content",
-													}}
 													variant="outlined"
 												>
 													ADD TRACK
 												</Button>
-											</p>
+											</div>
 											{/* CHILD MODAL */}
 										</div>
 									</li>
@@ -453,7 +445,7 @@ const SearchModal = () => {
 				</div>
 			</Modal>
 			<Modal open={openChildModal} onClose={handleCloseChildModal}>
-				<div style={childStyle}>
+				<div className="child_modal-wrapper">
 					<div className="child__search-modal">
 						<div className="child__search-container">
 							<div className="search-icon">

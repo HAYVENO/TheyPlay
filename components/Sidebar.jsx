@@ -23,7 +23,7 @@ import { isPlayingState } from "../atoms/trackAtom";
 import { openModalState, playgroupsState } from "../atoms/modalAtom";
 import LinkPreview from "./util-components/LinkPreview";
 
-const Sidebar = () => {
+const Sidebar = ({ isDrawer }) => {
 	const router = useRouter();
 	const { playlistId } = router.query;
 
@@ -63,7 +63,7 @@ const Sidebar = () => {
 			style={{
 				animation: isPlaying ? "hue-animation 10s infinite" : "none",
 			}}
-			className="sidebar"
+			className={isDrawer ? "sidebar sidebar-drawer" : "sidebar"}
 		>
 			<div className="logo-box">
 				<div className="s-app-title">

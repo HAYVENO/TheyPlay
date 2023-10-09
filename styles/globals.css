@@ -175,6 +175,22 @@ main {
 	transform: rotate(10deg);
 }
 
+.sidebar-drawer {
+	display: block !important;
+	font-family: sans-serif;
+	width: 100%;
+
+	min-height: 100vh;
+	padding-top: 2rem;
+	z-index: 99999;
+	/* box-shadow: 6px -9px 34px -7px black; */
+}
+
+.sidebar-drawer.sidebar li:hover {
+	background-color: #ffa60021;
+	border-radius: 4px;
+}
+
 .btn__add-song {
 	display: flex;
 	align-items: center;
@@ -930,22 +946,6 @@ main {
 	/* testing */
 	.sidebar {
 		display: none;
-	}
-
-	.sidebar-drawer {
-		display: flex;
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		left: 0;
-		width: 70%;
-		backdrop-filter: blur(30px);
-		min-height: 100vh;
-		padding-top: 2rem;
-		z-index: 99999;
-		box-shadow: 6px -9px 34px -7px black;
-		overflow-y: hidden;
-		overflow-x: hidden;
 	}
 
 	.player__right {

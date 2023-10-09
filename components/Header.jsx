@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link"; // Import Next.js Link
 import getInitials from "../util/getInitials";
-import { Avatar } from "@mui/material";
+import { Avatar, Drawer } from "@mui/material";
 import * as Popover from "@radix-ui/react-popover";
 
 import { useSession, signOut } from "next-auth/react";
@@ -18,9 +18,21 @@ import Sidebar from "./Sidebar";
 const Header = ({ isLoading, playgroupName = null }) => {
 	const { data: session, status } = useSession();
 	const [openModal, setOpenModal] = useRecoilState(openModalState);
+	const [openDrawer, setOpenDrawer] = useState(false);
 
 	const handleOpenModal = (e) => {
 		setOpenModal(true);
+	};
+
+	const toggleDrawer = (open) => (event) => {
+		if (
+			event.type === "keydown" &&
+			(event.key === "Tab" || event.key === "Shift")
+		) {
+			return;
+		}
+
+		setOpenDrawer(open);
 	};
 
 	return (
@@ -39,7 +51,7 @@ const Header = ({ isLoading, playgroupName = null }) => {
 				</Popover.Portal>
 			</Popover.Root> */}
 
-			<button className="btn__drawer">
+			<button className="btn__drawer" onClick={toggleDrawer(true)}>
 				<BsReverseLayoutSidebarReverse size={32} />
 			</button>
 
@@ -103,6 +115,15 @@ const Header = ({ isLoading, playgroupName = null }) => {
 					</Popover.Portal>
 				</Popover.Root>
 			)}
+			{/* Drawer component */}
+			<Drawer
+				anchor="left" // Specify the anchor position (left in this case)
+				open={openDrawer} // Open state of the drawer
+				onClose={toggleDrawer(false)} // Function to close the drawer
+			>
+				{/* Content inside the drawer */}
+				<Sidebar isDrawer={true} />
+			</Drawer>
 		</header>
 	);
 };

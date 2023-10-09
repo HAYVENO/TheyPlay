@@ -1,4 +1,21 @@
 /* SEARCH MODAL */
+
+.modal_wrapper {
+	position: absolute;
+	top: 15%;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 50%;
+}
+
+.child_modal-wrapper {
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 50%;
+}
+
 .search-modal {
 	background-color: rgba(17, 11, 29, 0.3);
 	backdrop-filter: blur(20px);
@@ -6,7 +23,7 @@
 	/* box-shadow: 1px 2px 64px -12px rgba(0, 0, 0, 0.471); */
 	box-shadow: var(--backlight);
 	border-radius: 3px;
-	width: 130%;
+	/* width: 130%; */
 
 	font-family: monospace;
 }
@@ -31,7 +48,7 @@
 	background: none;
 	font-family: inherit;
 	color: inherit;
-	font-size: 1.2rem;
+	font-size: 1.1rem;
 	width: 100%;
 	outline: none;
 	flex: 1;
@@ -43,18 +60,31 @@
 	color: white;
 	padding: 0;
 	margin: 0;
+	overflow: hidden;
 }
 
 .track-container {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	gap: 1rem;
 	border: 0.1px solid transparent;
-
 	border-bottom: 0.1px solid rgba(255, 255, 255, 0.071);
-	/* cursor: pointer; */
 	padding: 0.5rem;
 	padding: 0.8rem 1.5rem;
+	overflow: hidden;
+}
+
+.track-details .song-Description {
+	overflow: hidden;
+	/* white-space: nowrap; */
+}
+
+.track-details .song-Description p {
+	white-space: nowrap;
+	line-height: 1;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .track-container:hover {
@@ -64,6 +94,7 @@
 
 .image-container {
 	position: relative;
+	padding: 0 0.7rem;
 }
 
 .track__play-btn {
@@ -88,11 +119,16 @@
 }
 
 .track-details {
-	display: flex;
+	display: grid;
+	grid-template-columns: auto 1fr;
 	align-items: center;
-	display: flex;
+
 	gap: 1.2rem;
 	cursor: pointer;
+
+	width: 66%;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .track-description {
@@ -102,9 +138,9 @@
 	margin: 0;
 	padding: 0 1rem;
 
-	max-width: 15vw;
+	/* max-width: 15vw; */
 	overflow: hidden;
-	white-space: nowrap;
+	/* white-space: nowrap; */
 	text-overflow: ellipsis;
 }
 
@@ -124,13 +160,19 @@
 	text-overflow: ellipsis;
 
 	/* margin-bottom: 0.5rem; */
-	line-height: 0.2;
+	line-height: 1;
 }
 
 .track-artist {
 	color: var(--color-text);
 	font-size: 0.8rem;
 	margin-bottom: 0.3rem;
+}
+
+.add_track-btn {
+	font-size: 0.8rem;
+	border-radius: 6px;
+	min-width: max-content;
 }
 
 /* Child modal properties */
@@ -156,4 +198,53 @@
 	box-shadow: var(--backlight2);
 
 	font-family: monospace;
+}
+
+/* TABLET */
+@media screen and (max-width: 1000px) {
+	.modal_wrapper {
+		top: 15%;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 70%;
+	}
+
+	.search-modal {
+		/* width: 150%; */
+	}
+
+	.search-field {
+		font-size: 1rem;
+	}
+}
+
+/* MOBILE */
+@media screen and (max-width: 650px) {
+	.modal_wrapper {
+		top: 15%;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 90%;
+	}
+
+	.track-container {
+		padding: 0.5rem 1rem;
+	}
+
+	.search-field {
+		font-size: 0.8rem;
+	}
+
+	.track-name {
+		color: white;
+		font-size: 0.7rem;
+	}
+
+	.track-artist {
+		font-size: 0.6rem;
+	}
+
+	.add_track-btn {
+		font-size: 0.6rem;
+	}
 }
