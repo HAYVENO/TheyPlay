@@ -46,6 +46,7 @@ import updatePlaylistOnSpotify from "../../util/updatePlaygroupOnSpotify";
 import { openModalState } from "../../atoms/modalAtom";
 import fetchPlaygroupData from "../../util/getPlaygroupData";
 import Header from "../../components/Header";
+import debounce from "lodash/debounce";
 
 const { successStyle, errorStyle, warningStyle, infoStyle } = alertStyles;
 
@@ -171,7 +172,7 @@ const PlaylistPage = () => {
 		);
 	}, [currentSong, currentSongNumber]);
 
-	// PLAY NEXT TRACK EFFECT
+	// CURRENT SONG NUMBER CHANGE EFFECT
 	useEffect(() => {
 		console.log(currentSongNumber);
 		if (
@@ -206,19 +207,20 @@ const PlaylistPage = () => {
 		handleClickTrack(0);
 	};
 
-	const handleClickTrack = (clickedSongIndex) => {
+	// DEBOUNCE HANDLE CLICK, SOLVE MULTI-GLITCHY PLAYS?
+	const handleClickTrack = debounce((clickedSongIndex) => {
 		console.log("liveTrack size--", livePlaygroup?.liveTracks.length);
 
 		// check that LivePlaygroup has been populated then call handleTrackPlay accordingly
-
-		if (livePlaygroup?.liveTracks.length < 1) {
+		if (livePlaygroup?.liveTracks?.length < 1) {
 			handleTrackPlay(clickedSongIndex, tracks, theyTracks);
 		} else {
-			handleTrackPlay(
-				clickedSongIndex,
-				livePlaygroup?.liveTracks,
-				livePlaygroup?.liveTheyTracks
-			);
+			setCurrentSongNumber(clickedSongIndex);
+			// handleTrackPlay(
+			// 	clickedSongIndex,
+			// 	livePlaygroup?.liveTracks,
+			// 	livePlaygroup?.liveTheyTracks
+			// );
 		}
 
 		// If liveplaygroup's liveTracks[] !== tracks[] --> Set Live Playgroup to match
@@ -231,60 +233,63 @@ const PlaylistPage = () => {
 			console.log(livePlaygroup.liveTracks === tracks);
 			console.log("Live Track did change ---");
 		}
-	};
+	}, 300);
 
 	// TODO: Handle next and Previous Play for when user leaves the current PlayGroup view
-	const handleTrackPlay = async (
-		currentSongIndex,
-		tracks = livePlaygroup?.liveTracks,
-		theyTracks = livePlaygroup?.liveTheyTracks
-	) => {
-		console.log(livePlaygroup);
-		console.log(tracks);
+	const handleTrackPlay = debounce(
+		async (
+			currentSongIndex,
+			tracks = livePlaygroup?.liveTracks,
+			theyTracks = livePlaygroup?.liveTheyTracks
+		) => {
+			console.log(livePlaygroup);
+			console.log(tracks);
 
-		if (currentSongIndex >= tracks?.length) {
-			console.log("way too long");
-			return;
-		}
-		//check if the track's preview sound is available
-		if (
-			!tracks[currentSongIndex]?.preview_url &&
-			!theyTracks[currentSongIndex]?.addedSong?.previewUrl
-		) {
-			setAlert({
-				open: true,
-				message: `${tracks[currentSongIndex]?.album?.name}'s audio is not available at this moment 😕`,
-				severity: "warning",
-				style: warningStyle,
-			});
+			if (currentSongIndex >= tracks?.length) {
+				console.log("way too long");
+				return;
+			}
 
-			currentSongIndex = currentSongIndex + 1;
-		}
+			if (isPlaying) {
+				console.log(currentSong);
+				await currentSong.pause();
+			}
 
-		if (isPlaying) {
-			console.log(currentSong);
-			await currentSong.pause();
-		}
+			//check if the track's preview sound is available
+			if (
+				!tracks[currentSongIndex]?.preview_url &&
+				!theyTracks[currentSongIndex]?.addedSong?.previewUrl
+			) {
+				setAlert({
+					open: true,
+					message: `${tracks[currentSongIndex]?.album?.name}'s audio is not available at this moment 😕`,
+					severity: "warning",
+					style: warningStyle,
+				});
 
-		//create a new audio object with the track's /play - link/
-		const audio = new Audio(
-			tracks[currentSongIndex]?.preview_url ||
-				theyTracks[currentSongIndex]?.addedSong?.previewUrl
-		);
+				currentSongIndex = currentSongIndex + 1;
+			}
 
-		console.log(tracks);
-		await audio.play();
+			//create a new audio object with the track's /play - link/
+			const audio = new Audio(
+				tracks[currentSongIndex]?.preview_url ||
+					theyTracks[currentSongIndex]?.addedSong?.previewUrl
+			);
 
-		audio.volume = ((volume + 0.1) * 0.7).toFixed(2); //UI issues at 0
+			console.log(tracks);
+			await audio.play();
 
-		setIsPlaying(true);
-		setCurrentSong(audio);
-		setIsCurrentTrack(currentSongIndex);
-		setLiveTrack(tracks[currentSongIndex]);
-		setCurrentSongNumber(currentSongIndex);
+			audio.volume = ((volume + 0.1) * 0.7).toFixed(2); //UI issues at 0
 
-		console.log(livePlaygroup);
-	};
+			setIsPlaying(true);
+			setCurrentSong(audio);
+			setIsCurrentTrack(currentSongIndex);
+			setLiveTrack(tracks[currentSongIndex]);
+
+			console.log(livePlaygroup);
+		},
+		500 // debounce for .5s
+	);
 
 	console.log("currentUser --------", currentUser);
 
