@@ -151,7 +151,6 @@
 .heading-secondary {
 	display: flex;
 	justify-content: center;
-	flex-basis: 70%;
 	max-width: 70%;
 	margin-top: 1.5rem;
 	color: var(--mauve7);
@@ -221,4 +220,110 @@
 .s-footer svg:hover {
 	transform: rotateZ(-30deg);
 	fill: rgb(255, 138, 255);
+}
+
+/* Words rotator  */
+.rotator-container {
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	font-size: 4rem;
+	/* line-height: 0; */
+}
+
+.words {
+	box-sizing: content-box;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+
+	overflow: hidden;
+	height: 70px;
+}
+.words span {
+	display: block;
+	height: 100%;
+	color: #75abfb;
+	animation: spin_words 6s infinite;
+}
+
+.mobile_fallback-word {
+	display: none;
+	color: #75abfb;
+}
+
+/* STYLE BREAKPOINT */
+@media screen and (max-width: 840px) {
+	.s-header-container {
+		margin: 1px 1rem;
+	}
+
+	.heading-container {
+		width: 90%;
+	}
+
+	.heading-primary {
+		font-size: 2rem;
+	}
+
+	.heading-secondary {
+		font-size: 1rem;
+		max-width: 100%;
+	}
+
+	.sign-in-button {
+		padding: 1rem 2rem;
+	}
+
+	.rotator-container {
+		display: none;
+	}
+
+	.mobile_fallback-word {
+		display: inline-block;
+	}
+}
+
+/* MOBILE */
+@media screen and (max-width: 650px) {
+	.container {
+		overflow: hidden;
+		padding-top: 7rem;
+	}
+
+	.s-header::after {
+		margin-left: 1rem;
+		margin-right: 1rem;
+	}
+
+	.hero-animation {
+		width: 100vw;
+		overflow: hidden;
+		height: 100%;
+		padding: 2rem 0;
+		padding-bottom: 3rem;
+		filter: blur(10px);
+	}
+
+	.s-header {
+		padding: 1rem 1rem;
+	}
+
+	.s-header * {
+		font-size: 0.9rem !important;
+	}
+
+	.sign-in-button {
+		font-weight: 500;
+		font-size: 1rem;
+	}
+
+	.s-footer {
+		font-size: 0.7rem;
+		padding: 1rem 1rem;
+	}
+
+	.s-footer svg {
+		height: 15px;
+	}
 }

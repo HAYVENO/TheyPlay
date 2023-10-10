@@ -10,10 +10,10 @@
 
 .child_modal-wrapper {
 	position: absolute;
-	top: 40%;
+	top: 30%;
 	left: 50%;
 	transform: translateX(-50%);
-	width: 50%;
+	width: 60%;
 }
 
 .search-modal {
@@ -203,14 +203,11 @@
 /* TABLET */
 @media screen and (max-width: 1000px) {
 	.modal_wrapper {
-		top: 15%;
-		left: 50%;
-		transform: translateX(-50%);
 		width: 70%;
 	}
 
-	.search-modal {
-		/* width: 150%; */
+	.child_modal-wrapper {
+		width: 80%;
 	}
 
 	.search-field {
@@ -221,10 +218,11 @@
 /* MOBILE */
 @media screen and (max-width: 650px) {
 	.modal_wrapper {
-		top: 15%;
-		left: 50%;
-		transform: translateX(-50%);
 		width: 90%;
+	}
+
+	.child_modal-wrapper {
+		width: 95%;
 	}
 
 	.track-container {

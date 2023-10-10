@@ -10,7 +10,7 @@ const PlaylistCardSkeleton = ({ cards }) =>
 					<Skeleton width={180} height={30} />
 				</div>
 				<div className="image-skeleton">
-					<Skeleton width={120} height={120} borderRadius={10} />
+					<Skeleton width={110} height={110} borderRadius={10} />
 				</div>
 			</div>
 		));

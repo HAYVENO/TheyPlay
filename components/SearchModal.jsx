@@ -452,7 +452,6 @@ const SearchModal = () => {
 								<SlPlaylist size={25} color="#5090d3" />
 							</div>
 							<input
-								style={{ fontSize: "1rem" }}
 								className="search-field"
 								name="playlist"
 								placeholder="Step 2. Choose a Playgroup"

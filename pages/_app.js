@@ -59,7 +59,7 @@ const MyApp = ({ Component, pageProps: { session, ...pageProps } }) => {
 							</Layout>
 						)}
 					</SessionProvider>
-					<ReactQueryDevtools initialIsOpen={false} />
+					{/* <ReactQueryDevtools initialIsOpen={false} /> */}
 				</RecoilRoot>
 			</QueryClientProvider>
 		</>

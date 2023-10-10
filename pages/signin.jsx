@@ -95,10 +95,9 @@ const SignIn = () => {
 								placement="bottom-end"
 								title={
 									<span className="tooltip-title">
-										You don't have a Spotify account yet? Don't miss
-										out. Sign up for free — takes{" "}
-										<b>less than 20 seconds</b>, and you get FREE
-										access to Spotify's 80M songs.{" "}
+										Don't have a Spotify account yet? Don't miss out.
+										Sign up for free — takes{" "}
+										<b>less than 20 seconds</b>, and it's FREE.{" "}
 										<b>No credit card required.</b>
 										<br />
 										<br />
@@ -126,6 +125,7 @@ const SignIn = () => {
 						<div className="heading-container">
 							<h1 className="heading-primary  ">
 								Discover and Share only the Best Songs of Life with{" "}
+								<span className="mobile_fallback-word">everyone!</span>{" "}
 								<div className="rotator-container">
 									<WordsRotator
 										texts={[
