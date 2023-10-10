@@ -44,11 +44,12 @@ export default async function handler(req, res) {
 				},
 			});
 			console.log(removedUserSongLike);
-			return res.status(200).json({ message: "Like removed successfully 🌟" });
+			return res.status(200).json({ message: "Like removed 🌟" });
 		} catch (err) {
 			console.log(err);
 			res.status(400).json({
-				message: "Something went wrong with your Like request — please try again.",
+				message:
+					"Something went wrong with your Like request — please try again.",
 			});
 		}
 	}

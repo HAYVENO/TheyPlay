@@ -179,8 +179,7 @@ main {
 	display: block !important;
 	font-family: sans-serif;
 	width: 100%;
-
-	min-height: 100vh;
+	height: 100vh;
 	padding-top: 2rem;
 	z-index: 99999;
 	/* box-shadow: 6px -9px 34px -7px black; */

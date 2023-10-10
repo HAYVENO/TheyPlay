@@ -162,7 +162,11 @@ const PlaylistPage = () => {
 					currentSong?.pause();
 					setIsPlaying(false);
 				}
-				handleTrackPlay(currentSongNumber + 1);
+
+				// set number to next track so useEffect can play it
+				setCurrentSongNumber((prevNumber) => prevNumber + 1);
+				// handleTrackPlay(currentSongNumber + 1);
+
 				console.log(currentSongNumber);
 			};
 
@@ -211,18 +215,6 @@ const PlaylistPage = () => {
 	const handleClickTrack = debounce((clickedSongIndex) => {
 		console.log("liveTrack size--", livePlaygroup?.liveTracks.length);
 
-		// check that LivePlaygroup has been populated then call handleTrackPlay accordingly
-		if (livePlaygroup?.liveTracks?.length < 1) {
-			handleTrackPlay(clickedSongIndex, tracks, theyTracks);
-		} else {
-			setCurrentSongNumber(clickedSongIndex);
-			// handleTrackPlay(
-			// 	clickedSongIndex,
-			// 	livePlaygroup?.liveTracks,
-			// 	livePlaygroup?.liveTheyTracks
-			// );
-		}
-
 		// If liveplaygroup's liveTracks[] !== tracks[] --> Set Live Playgroup to match
 		// Using Stringify because Array equality conditions use
 		if (JSON.stringify(livePlaygroup.liveTracks) !== JSON.stringify(tracks)) {
@@ -232,7 +224,24 @@ const PlaylistPage = () => {
 			}));
 			console.log(livePlaygroup.liveTracks === tracks);
 			console.log("Live Track did change ---");
+
+			handleTrackPlay(clickedSongIndex, tracks, theyTracks);
+		} else {
+			setCurrentSongNumber(clickedSongIndex);
 		}
+
+		// check that LivePlaygroup has been populated then call handleTrackPlay accordingly
+		// if (livePlaygroup?.liveTracks?.length < 1) {
+		// 	handleTrackPlay(clickedSongIndex, tracks, theyTracks);
+		// } else {
+		// 	setCurrentSongNumber(clickedSongIndex);
+		// }
+
+		// handleTrackPlay(
+		// 	clickedSongIndex,
+		// 	livePlaygroup?.liveTracks,
+		// 	livePlaygroup?.liveTheyTracks
+		// );
 	}, 300);
 
 	// TODO: Handle next and Previous Play for when user leaves the current PlayGroup view
@@ -247,6 +256,8 @@ const PlaylistPage = () => {
 
 			if (currentSongIndex >= tracks?.length) {
 				console.log("way too long");
+				await currentSong.pause();
+				setIsPlaying(false);
 				return;
 			}
 
