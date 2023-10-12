@@ -44,7 +44,7 @@ const SignIn = () => {
 			setShowTooltip(true);
 			const hideTimer = setTimeout(() => {
 				setShowTooltip(false);
-			}, 7000);
+			}, 9000);
 			return () => {
 				clearTimeout(hideTimer);
 			};
@@ -61,143 +61,176 @@ const SignIn = () => {
 			<Head>
 				<title>Sign in - TheyPlay Music App</title>
 			</Head>
-			<header className="s-header">
-				<nav className="s-header-container">
-					<div className="s-app-title">
-						<Image
-							style={{ marginRight: "4px" }}
-							src={logoZero}
-							alt="TheyPlay-Logo"
-							width={34}
-							height={34}
-						/>
+			<div className="s-wrapper">
+				<header className="s-header">
+					<nav className="s-header-container">
+						<div className="s-app-title">
+							<Image
+								style={{ marginRight: "4px" }}
+								src={logoZero}
+								alt="TheyPlay-Logo"
+								width={34}
+								height={34}
+							/>
 
-						<strong>TheyPlay</strong>
-					</div>
-					<div className="header-items">
-						<strong style={{ borderRight: "1px solid white" }}></strong>
-						<strong
-							onClick={() => signIn("spotify", { callbackUrl: "/" })} //hardcoded the spotify providerId here --
-							className="sign-in-text"
-						>
-							sign in
-						</strong>
-						<span style={{ fontSize: "2rem", fontWeight: "300" }}>|</span>
-						<a
-							id="sign-up-link"
-							href="https://www.spotify.com/us/signup"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							<Tooltip
-								arrow
-								open={showTooltip}
-								placement="bottom-end"
-								title={
-									<span className="tooltip-title">
-										Don't have a Spotify account yet? Don't miss out.
-										Sign up for free — takes{" "}
-										<b>less than 20 seconds</b>, and it's FREE.{" "}
-										<b>No credit card required.</b>
-										<br />
-										<br />
-										1. <b>Click sign up</b> (and follow the prompts).
-										<br />
-										2. <b>Return to this page</b> to sign in.
-									</span>
-								}
-								onMouseEnter={() => setShowTooltip(true)}
-								onMouseLeave={() => setShowTooltip(false)}
-							>
-								<strong className="sign-up-text">sign up?</strong>
-							</Tooltip>
-						</a>
-						{/* <BsGithub size={24} /> */}
-					</div>
-				</nav>
-			</header>
-			<div className="container">
-				<div className="hero-animation">
-					<AnimatedSvg />
-				</div>
-				{providers.length !== 0 ? (
-					<>
-						<div className="heading-container">
-							<h1 className="heading-primary  ">
-								Discover and Share only the Best Songs of Life with{" "}
-								<span className="mobile_fallback-word">everyone!</span>{" "}
-								<div className="rotator-container">
-									<WordsRotator
-										texts={[
-											"family",
-											"friends",
-											"colleagues",
-											"everyone!",
-										]}
-									/>
-								</div>{" "}
-							</h1>
-
-							<h2 className="heading-secondary   animate__animated animate__fadeIn ">
-								Build your perfect music catalogue with music lovers
-								worldwide — play what they decide and decide what They
-								play ♫
-							</h2>
+							<strong>TheyPlay</strong>
 						</div>
-						{Object.values(providers).map((provider) => (
-							<div key={provider.name}>
-								<button
-									className="sign-in-button animate__animated animate__bounceIn animate__delay-1s "
-									onClick={() =>
-										signIn(provider.id, { callbackUrl: "/" })
-									}
-								>
-									Continue with {provider.name}{" "}
-									<SlSocialSpotify size={18} />
-								</button>
-							</div>
-						))}
-						<footer className="s-footer">
-							<div style={{ margin: 0 }}>
-								Built with 🤍 by{" "}
-								<a
-									id="yusuf-copy"
-									href="https://github.com/hayveno"
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									Yusuf Abdulhafeez
-								</a>
-								{providers ? (
-									<LinkPreview
-										conf="signin-conf"
-										imageUrl="https://res.cloudinary.com/detye5zx5/image/upload/v1683667680/hayveno-github-profile_nxslwy.png"
-									/>
-								) : (
-									<Skeleton
-										className="footer__image-preview "
-										variant="rectangular"
-										width={150}
-										height={116}
-									/>
-								)}
-							</div>
+						<div className="header-items">
+							<strong
+								style={{ borderRight: "1px solid white" }}
+							></strong>
+							<strong
+								onClick={() => signIn("spotify", { callbackUrl: "/" })} //hardcoded the spotify providerId here --
+								className="sign-in-text"
+							>
+								sign in
+							</strong>
+							<span style={{ fontSize: "2rem", fontWeight: "300" }}>
+								|
+							</span>
 							<a
-								href="https://twitter.com/hay_yusuf"
+								id="sign-up-link"
+								href="https://www.spotify.com/us/signup"
 								target="_blank"
 								rel="noopener noreferrer"
 							>
-								<SlSocialTwitter
-									className="s-footer-bird"
-									color="lightblue"
-									size={20}
-								/>
+								<Tooltip
+									arrow
+									// open={showTooltip}
+									placement="bottom-end"
+									title={
+										<span className="tooltip-title">
+											Don't have a Spotify account yet? Don't miss
+											out. Sign up for free — takes{" "}
+											<b>less than 20 seconds</b>, and it's FREE.{" "}
+											<b>No credit card required.</b>
+											<br />
+											<br />
+											1. <b>Click sign up</b> (and follow the
+											prompts).
+											<br />
+											2. <b>Return to this page</b> to sign in.
+										</span>
+									}
+									onMouseEnter={() => setShowTooltip(true)}
+									onMouseLeave={() => setShowTooltip(false)}
+								>
+									<strong className="sign-up-text">sign up?</strong>
+								</Tooltip>
 							</a>
-						</footer>
-					</>
-				) : (
-					""
-				)}
+							{/* <BsGithub size={24} /> */}
+						</div>
+					</nav>
+				</header>
+				<div className="container">
+					<div className="hero-animation">
+						<AnimatedSvg />
+					</div>
+					{providers.length !== 0 ? (
+						<>
+							<div className="heading-container">
+								<h1 className="heading-primary  ">
+									Discover and Share only the Best Songs of Life with{" "}
+									<span className="mobile_fallback-word">
+										everyone!
+									</span>{" "}
+									<div className="rotator-container">
+										<WordsRotator
+											texts={[
+												"family",
+												"friends",
+												"colleagues",
+												"everyone!",
+											]}
+										/>
+									</div>{" "}
+								</h1>
+
+								<h2 className="heading-secondary   animate__animated animate__fadeIn ">
+									Build your perfect music catalogue with music lovers
+									worldwide — play what they decide and decide what
+									They play ♫
+								</h2>
+							</div>
+							{Object.values(providers).map((provider) => (
+								<div key={provider.name}>
+									<Tooltip
+										arrow
+										open={showTooltip}
+										placement="bottom"
+										title={
+											<span className="tooltip-title">
+												Don't have a Spotify account to continue?
+												Don't miss out.{" "}
+												<b>
+													Click the Sign up button to sign up for
+													FREE
+												</b>{" "}
+												— takes less than 20 seconds. <br />
+												<br />
+												1. <b>Click sign up</b> (and follow the
+												prompts).
+												<br />
+												2. <b>Return to this page</b> to sign in.
+											</span>
+										}
+										onMouseEnter={() => setShowTooltip(true)}
+										onMouseLeave={() => setShowTooltip(false)}
+									>
+										<button
+											className="sign-in-button animate__animated animate__bounceIn animate__delay-1s "
+											onClick={() =>
+												signIn(provider.id, { callbackUrl: "/" })
+											}
+										>
+											Continue with {provider.name}{" "}
+											<SlSocialSpotify size={18} />
+										</button>
+									</Tooltip>
+								</div>
+							))}
+							<footer className="s-footer">
+								<div style={{ margin: 0 }}>
+									Built with 🤍 by{" "}
+									<a
+										id="yusuf-copy"
+										href="https://github.com/hayveno"
+										target="_blank"
+										rel="noopener noreferrer"
+									>
+										Yusuf Abdulhafeez
+									</a>
+									{providers ? (
+										<LinkPreview
+											conf="signin-conf"
+											imageUrl="https://res.cloudinary.com/detye5zx5/image/upload/v1683667680/hayveno-github-profile_nxslwy.png"
+										/>
+									) : (
+										<Skeleton
+											className="footer__image-preview "
+											variant="rectangular"
+											width={150}
+											height={116}
+										/>
+									)}
+								</div>
+								<a
+									href="https://twitter.com/hay_yusuf"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									<SlSocialTwitter
+										className="s-footer-bird"
+										color="lightblue"
+										size={20}
+									/>
+								</a>
+							</footer>
+						</>
+					) : (
+						""
+					)}
+				</div>
 			</div>
 		</>
 	);

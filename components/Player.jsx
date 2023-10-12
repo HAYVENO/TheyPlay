@@ -245,9 +245,9 @@ const Player = () => {
 		<div className="player">
 			{/* Left */}
 			<div
-				style={{
-					display: liveTrack?.external_urls?.spotify ? "block" : "none",
-				}}
+				// style={{
+				// 	display: liveTrack?.external_urls?.spotify ? "block" : "none",
+				// }}
 				className="left-bar"
 			>
 				<div className="left-bar-container">
@@ -264,7 +264,7 @@ const Player = () => {
 					/>
 					<div>
 						<h3 style={{ color: "white", fontWeight: "700" }}>
-							{liveTrack?.name}
+							{liveTrack?.name ? liveTrack?.name : "Play a song ♫"}
 						</h3>
 						<p>
 							{liveTrack?.artists &&
@@ -279,8 +279,16 @@ const Player = () => {
 						<Tooltip arrow placement="top" title="Like or unlike song">
 							<button
 								style={{
-									cursor: isLoadingLike ? "not-allowed" : "pointer",
-									opacity: isLoadingLike ? "0.6" : "1",
+									cursor:
+										!liveTrack?.external_urls?.spotify ||
+										isLoadingLike
+											? "not-allowed"
+											: "pointer",
+									opacity:
+										!liveTrack?.external_urls?.spotify ||
+										isLoadingLike
+											? "0.6"
+											: "1",
 								}}
 								disabled={isLoadingLike ? true : false}
 								className="btn"

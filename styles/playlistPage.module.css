@@ -244,6 +244,30 @@
 	}
 }
 
+.playgroupFooter {
+	font-family: monospace;
+	/* box-sizing: border-box; */
+	display: flex;
+	white-space: wrap !important;
+	max-width: 100%;
+	justify-content: center;
+	color: var(--mauve8);
+
+	text-align: center;
+	font-weight: 400;
+	font-size: 0.9rem;
+	padding: 1.3rem 2rem;
+}
+
+.playgroupFooter p {
+	font-size: 0.9rem;
+	white-space: wrap !important;
+
+	line-height: 1.4;
+}
+
+/* MEDIA QUERY SECTION */
+
 /* TABLET */
 @media screen and (max-width: 900px) {
 	.listGrid {
@@ -304,6 +328,7 @@
 
 	.songListContainer {
 		padding: 1rem;
+		padding-bottom: 15rem; /* pad bottom to make up for Player box */
 	}
 
 	/* .songDescription {	

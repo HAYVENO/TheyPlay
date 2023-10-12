@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React, { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
@@ -163,7 +164,7 @@ const PlaylistPage = () => {
 					setIsPlaying(false);
 				}
 
-				// set number to next track so useEffect can play it
+				// set number to next track so useEffect can
 				setCurrentSongNumber((prevNumber) => prevNumber + 1);
 				// handleTrackPlay(currentSongNumber + 1);
 
@@ -579,6 +580,13 @@ const PlaylistPage = () => {
 									);
 								})}
 							</ul>
+							<br />
+							{/* <div className={styles.playgroupFooter}>
+								<p>
+									Your turn to keep the music going! Add the next song
+									to the groove 🫵🏾
+								</p>
+							</div> */}
 						</div>
 					</div>
 				</div>
