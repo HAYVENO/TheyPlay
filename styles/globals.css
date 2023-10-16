@@ -153,7 +153,9 @@ main {
 	grid-row: 2/ -1;
 	color: var(--color-text);
 	background-color: var(--background);
-	display: flex;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	/* grid-template-rows: 1; */
 	justify-content: space-between;
 	align-items: stretch;
 	padding: 0.4rem;
@@ -554,6 +556,7 @@ main {
 }
 
 .player__right {
+	justify-self: end;
 	margin: auto 1rem;
 	display: flex;
 	align-items: center;
@@ -927,6 +930,7 @@ main {
 
 	.player {
 		padding: 0.4rem 1.5rem;
+		grid-template-columns: 1fr 1fr;
 	}
 }
 
@@ -938,6 +942,7 @@ main {
 
 	.player {
 		position: fixed;
+		grid-template-columns: 1fr;
 		bottom: 0;
 		width: 95vw;
 		flex-direction: column;

@@ -31,6 +31,7 @@ import {
 	isLikeState,
 	currentSongNumberState,
 	isOnRepeatState,
+	livePlaygroupState,
 } from "../../atoms/trackAtom";
 import getUserSongs from "../../util/getUserSongs";
 import usePlaygroup from "../../hooks/usePlaygroup";
@@ -48,6 +49,9 @@ import { openModalState } from "../../atoms/modalAtom";
 import fetchPlaygroupData from "../../util/getPlaygroupData";
 import Header from "../../components/Header";
 import debounce from "lodash/debounce";
+import useAudioPlayback from "../../hooks/useAudioPlayback";
+import useCurrentSongEffect from "../../hooks/useSetCurrentSong";
+import useSetCurrentSong from "../../hooks/useSetCurrentSong";
 
 const { successStyle, errorStyle, warningStyle, infoStyle } = alertStyles;
 
@@ -70,6 +74,7 @@ const PlaylistPage = () => {
 	const [currentSongNumber, setCurrentSongNumber] = useRecoilState(
 		currentSongNumberState
 	);
+	const [livePlaygroup, setLivePlaygroup] = useRecoilState(livePlaygroupState);
 	const [alert, setAlert] = useRecoilState(alertState);
 	const isOnRepeat = useRecoilValue(isOnRepeatState);
 	const [openModal, setOpenModal] = useRecoilState(openModalState);
@@ -78,10 +83,10 @@ const PlaylistPage = () => {
 	const [currentPlaylist, setCurrentPlaylist] = useState("");
 	const [themeColor, setThemeColor] = useState(null);
 	const [contributors, setContributors] = useState("");
-	const [livePlaygroup, setLivePlaygroup] = useState({
-		liveTracks: [],
-		liveTheyTracks: [],
-	});
+	// const [livePlaygroup, setLivePlaygroup] = useState({
+	// 	liveTracks: [],
+	// 	liveTheyTracks: [],
+	// });
 	// const [currentSongNumber, setCurrentSongNumber] = useState(0);
 
 	// Custom hooks
@@ -147,52 +152,6 @@ const PlaylistPage = () => {
 		isLiked,
 	]);
 
-	// ON TRACK END EFFECT
-	useEffect(() => {
-		if (currentSongNumber >= livePlaygroup?.liveTracks?.length) {
-			currentSong?.pause();
-			setIsPlaying(false);
-			return;
-		}
-
-		if (currentSong)
-			currentSong.onended = function () {
-				console.log("Audio playback has ended");
-				//Check if it's the final song of the list [L - 1] --
-				if (currentSongNumber >= livePlaygroup?.liveTracks?.length - 1) {
-					currentSong?.pause();
-					setIsPlaying(false);
-				}
-
-				// set number to next track so useEffect can
-				setCurrentSongNumber((prevNumber) => prevNumber + 1);
-				// handleTrackPlay(currentSongNumber + 1);
-
-				console.log(currentSongNumber);
-			};
-
-		console.log(
-			"🚀 ~ file: [playlistId].jsx:137 ~ useEffect ~ currentSongNumber:",
-			currentSongNumber
-		);
-	}, [currentSong, currentSongNumber]);
-
-	// CURRENT SONG NUMBER CHANGE EFFECT
-	useEffect(() => {
-		console.log(currentSongNumber);
-		if (
-			currentSongNumber >= livePlaygroup?.liveTracks?.length ||
-			currentSongNumber < 0
-		) {
-			setIsPlaying(false);
-			console.log("final song ---");
-
-			return;
-		}
-		console.log("handle play skip");
-		handleTrackPlay(currentSongNumber);
-	}, [currentSongNumber]);
-
 	const handleAllTracksPlay = () => {
 		if (
 			isPlaying &&
@@ -217,7 +176,7 @@ const PlaylistPage = () => {
 		console.log("liveTrack size--", livePlaygroup?.liveTracks.length);
 
 		// If liveplaygroup's liveTracks[] !== tracks[] --> Set Live Playgroup to match
-		// Using Stringify because Array equality conditions use
+
 		if (JSON.stringify(livePlaygroup.liveTracks) !== JSON.stringify(tracks)) {
 			setLivePlaygroup(() => ({
 				liveTracks: tracks,
@@ -226,23 +185,12 @@ const PlaylistPage = () => {
 			console.log(livePlaygroup.liveTracks === tracks);
 			console.log("Live Track did change ---");
 
-			handleTrackPlay(clickedSongIndex, tracks, theyTracks);
+			// handleTrackPlay(clickedSongIndex, tracks, theyTracks);
+
+			setCurrentSongNumber(clickedSongIndex);
 		} else {
 			setCurrentSongNumber(clickedSongIndex);
 		}
-
-		// check that LivePlaygroup has been populated then call handleTrackPlay accordingly
-		// if (livePlaygroup?.liveTracks?.length < 1) {
-		// 	handleTrackPlay(clickedSongIndex, tracks, theyTracks);
-		// } else {
-		// 	setCurrentSongNumber(clickedSongIndex);
-		// }
-
-		// handleTrackPlay(
-		// 	clickedSongIndex,
-		// 	livePlaygroup?.liveTracks,
-		// 	livePlaygroup?.liveTheyTracks
-		// );
 	}, 300);
 
 	// TODO: Handle next and Previous Play for when user leaves the current PlayGroup view

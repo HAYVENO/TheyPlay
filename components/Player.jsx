@@ -42,6 +42,7 @@ import {
 import Tooltip from "@mui/material/Tooltip";
 
 import alertStyles from "../util/alertStyles";
+import useSetCurrentSong from "../hooks/useSetCurrentSong";
 
 const Player = () => {
 	const { data: session } = useSession();
@@ -276,7 +277,7 @@ const Player = () => {
 					</div>
 					<div className="player__cta-container">
 						{/* like button */}
-						<Tooltip arrow placement="top" title="Like or unlike song">
+						<Tooltip arrow placement="top" title="Like (or unlike) song">
 							<button
 								style={{
 									cursor:
@@ -305,7 +306,7 @@ const Player = () => {
 						<Tooltip
 							arrow
 							placement="top"
-							title="Play on Spotify"
+							title="Play on Spotify (Full song)"
 							sx={{ fontSize: "20px" }}
 						>
 							<a

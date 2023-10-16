@@ -6,7 +6,8 @@ export async function middleware(req) {
 
 	if (req.nextUrl.pathname.startsWith("/_next")) return NextResponse.next();
 
-	//check if user is trying to authenticate or they have a token
+	//TODO: Review this check
+	//check if user is trying to authenticate or they have a token -
 	if (req.nextUrl.pathname.includes("/api/auth") || token) {
 		return NextResponse.next();
 	}

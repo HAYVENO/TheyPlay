@@ -163,7 +163,7 @@ const SignIn = () => {
 												Don't have a Spotify account to continue?
 												Don't miss out.{" "}
 												<b>
-													Click the Sign up button to sign up for
+													Click the Sign up button to register for
 													FREE
 												</b>{" "}
 												— takes less than 20 seconds. <br />

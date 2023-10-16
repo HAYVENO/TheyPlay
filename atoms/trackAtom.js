@@ -40,6 +40,14 @@ export const theyTracksState = atom({
 	default: [],
 });
 
+export const livePlaygroupState = atom({
+	key: "livePlaygroupState",
+	default: {
+		liveTracks: [],
+		liveTheyTracks: [],
+	},
+});
+
 export const topTracksState = atom({
 	key: "topTracksState",
 	default: [],
