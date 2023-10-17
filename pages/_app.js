@@ -55,7 +55,7 @@ const MyApp = ({ Component, pageProps: { session, ...pageProps } }) => {
 						{!excludeLayout && (
 							<Layout className={inter.className}>
 								<Component {...pageProps} />
-								<Analytics />
+								{/* <Analytics /> */}
 							</Layout>
 						)}
 					</SessionProvider>
