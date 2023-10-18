@@ -8,6 +8,12 @@ const fetchPlaygroupData = async (spotifyApi, playlistId) => {
 		// Get playgroup's userSong entries
 		const retrievedUserSongs = await getUserSongs(playlistId);
 
+		console.log(retrievedUserSongs);
+
+		if (!retrievedUserSongs || retrievedUserSongs.length < 1) {
+			return "N/A";
+		}
+
 		// Get songIds from retrievedUserSongs
 		const songIds = await retrievedUserSongs?.map((entry) => entry.songId);
 		console.log(songIds);

@@ -286,7 +286,7 @@ main {
 	color: #ffffffc1;
 	font-size: 0.7rem;
 	font-weight: 600;
-	margin-bottom: 0;
+	margin-bottom: 0.2rem;
 	padding-top: 1rem;
 	padding-bottom: 0.5rem;
 	padding-left: 1.3rem;
@@ -299,8 +299,10 @@ main {
 	padding: 0 1.7rem;
 	font-size: 0.8rem;
 	overflow-y: scroll;
-
 	mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.15), rgb(0, 0, 0) 10%);
+
+	/* max-width to fix glitch */
+	max-width: 144px;
 }
 
 .sidebar__playlists > * {

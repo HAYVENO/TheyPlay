@@ -3,7 +3,9 @@ import React from "react";
 const PlaylistContributors = ({ theyTracks, playlistId, styles }) => {
 	const contributors = [
 		...new Set(
-			theyTracks.filter((track) => track.playgroupId === playlistId).map((track) => track.userId)
+			theyTracks
+				?.filter((track) => track.playgroupId === playlistId)
+				.map((track) => track.userId)
 		),
 	];
 
@@ -11,9 +13,12 @@ const PlaylistContributors = ({ theyTracks, playlistId, styles }) => {
 		<>
 			<p className={styles.playlistContributors}>
 				<span className={styles.playlistContributorsNames}>
-					{theyTracks.find((track) => track.playgroupId === playlistId)?.addedBy?.name}
+					{theyTracks &&
+						theyTracks?.find((track) => track?.playgroupId === playlistId)
+							?.addedBy?.name}
 				</span>{" "}
-				and {contributors.length - 1} other contributor{contributors.length < 3 ? "" : "s"}.
+				and {contributors.length - 1} other contributor
+				{contributors.length < 3 ? "" : "s"}.
 			</p>
 		</>
 	);

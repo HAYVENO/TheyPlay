@@ -140,7 +140,7 @@ const PlaylistPage = () => {
 			setTheyTracks(retrievedUserSongs);
 			setTracks(playgroupTracks);
 			setContributors([
-				...new Set(retrievedUserSongs.map((track) => track.userId)),
+				...new Set(retrievedUserSongs?.map((track) => track?.userId)),
 			]);
 		}
 	}, [
@@ -412,6 +412,12 @@ const PlaylistPage = () => {
 									/>
 								) : (
 									<Skeleton
+										style={{
+											display:
+												currentPlaylist?.name && contributors < 1
+													? "none"
+													: "block",
+										}}
 										className="my__custom-skeleton"
 										animation="wave"
 										width={200}
@@ -438,10 +444,10 @@ const PlaylistPage = () => {
 									</Skeleton>
 								)}
 
-								{tracks?.length && currentPlaylist?.description ? (
-									<p className={styles.playlistDescription}>{`${
-										tracks.length || " "
-									} tracks • ${currentPlaylist?.description}`}</p>
+								{currentPlaylist?.description ? (
+									<p
+										className={styles.playlistDescription}
+									>{`  ${currentPlaylist?.description}  •  Daily limit: ${currentPlaylist?.dailyLimit} tracks`}</p>
 								) : (
 									<Skeleton
 										className="my__custom-skeleton"
@@ -513,20 +519,22 @@ const PlaylistPage = () => {
 								<p className={styles.popularityHeading}>Popularity</p>
 								<p className={styles.submittedAtHeading}>Submitted</p>
 							</div>
+
 							<ul className={styles.songList}>
 								{/* ... TRACK LIST ...  */}
-								{tracks?.map((track, index) => {
-									return (
-										<Track
-											key={index}
-											track={track}
-											theyTrack={theyTracks[index]}
-											index={index}
-											onClick={handleClickTrack}
-											isCurrentTrack={isCurrentTrack}
-										/>
-									);
-								})}
+								{tracks &&
+									tracks?.map((track, index) => {
+										return (
+											<Track
+												key={index}
+												track={track}
+												theyTrack={theyTracks[index]}
+												index={index}
+												onClick={handleClickTrack}
+												isCurrentTrack={isCurrentTrack}
+											/>
+										);
+									})}
 							</ul>
 							<br />
 							{/* <div className={styles.playgroupFooter}>

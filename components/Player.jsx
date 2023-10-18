@@ -90,17 +90,18 @@ const Player = () => {
 	// useEffect for every time a new song is mounted on the Player
 	useEffect(() => {
 		// write logic for checking if liked or not initially
-		setIsLiked(
-			theyTracks[currentSongIndex]?.likes?.some(
-				(like) => like.id === session.user.username
-			)
-		);
+		theyTracks &&
+			setIsLiked(
+				theyTracks[currentSongIndex]?.likes?.some(
+					(like) => like.id === session.user.username
+				)
+			);
 
-		console.log(
-			theyTracks[currentSongIndex]?.likes?.some(
-				(like) => like.id === session.user.username
-			)
-		);
+		// console.log(
+		// 	theyTracks[currentSongIndex]?.likes?.some(
+		// 		(like) => like.id === session.user.username
+		// 	)
+		// );
 	}, [session, theyTracks, currentSongIndex, setIsLiked]);
 
 	const debouncedHandleVolume = debounce((value) => {
