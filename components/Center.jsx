@@ -32,6 +32,7 @@ import Header from "./Header";
 
 const Center = () => {
 	const spotifyApi = useSpotify();
+
 	const { data: session, status } = useSession();
 
 	//global states
@@ -107,7 +108,7 @@ const Center = () => {
 				type="track"
 				loading={isLoading}
 				category={topTracks}
-				title="YOUR TOP TRACKS"
+				title="SUGGESTED TRACKS (FOR YOU)"
 			/>
 			<PlaylistCategories
 				key={2}

@@ -5,19 +5,28 @@ import Image from "next/image";
 
 const PlaylistCard = ({ playlist }) => {
 	return (
-		<li className="category__playlist" onClick={() => console.log("here is the id", playlist.id)}>
-			<Link href={`/playlists/${playlist.id}`} className="category__playlist-link">
+		<li
+			className="category__playlist"
+			onClick={() => console.log("here is the id", playlist.id)}
+		>
+			<Link
+				href={`/playlists/${playlist.id}`}
+				className="category__playlist-link"
+			>
 				<div className="playlist__card">
-					<h3 className="playlist__title">{playlist.name}</h3>
-
 					<Image
 						width={120}
 						height={120}
-						src={playlist.images[0] ? playlist.images[0].url : "/placeholder-playlist.jpg"}
+						src={
+							playlist.images[0]
+								? playlist.images[0].url
+								: "/placeholder-playlist.jpg"
+						}
 						className="playlist__image"
 						alt={playlist.name}
 						priority
 					/>
+					<h3 className="playlist__title">{playlist.name}</h3>
 				</div>
 			</Link>
 		</li>

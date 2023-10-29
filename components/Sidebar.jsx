@@ -11,6 +11,7 @@ import { RxDashboard } from "react-icons/rx";
 import { BiLibrary, BiLogOutCircle } from "react-icons/bi";
 import { SlMagnifierAdd } from "react-icons/sl";
 import { BsPeople } from "react-icons/bs";
+import { TfiHelpAlt } from "react-icons/tfi";
 
 // dynamic import for footer-preview-image
 import dynamic from "next/dynamic";
@@ -101,7 +102,7 @@ const Sidebar = ({ isDrawer }) => {
 
 				<li>
 					<Link href="/about">
-						<BsPeople size={24} />
+						<TfiHelpAlt size={24} />
 						<span>About</span>
 					</Link>
 				</li>

@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { useSession } from "next-auth/react";
-import debounce from "lodash/debounce"; //3.4KB
+import debounce from "lodash/debounce";
 // import SongImagePlaceholder from "../public/placeholder-playlist.jpg";
 import {
 	BsHeartFill,
@@ -109,9 +109,7 @@ const Player = () => {
 
 		//set the volume - and convert the value from percentage to fraction
 		currentSong.volume = value / 100;
-		console.log(currentSong.volume);
 		setVolume(currentSong.volume);
-		console.log(currentSong.volume);
 	}, 100);
 
 	const handlePlayNext = () => {

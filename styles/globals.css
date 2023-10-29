@@ -357,7 +357,8 @@ main {
 	justify-content: center;
 	width: 100%;
 	box-sizing: border-box;
-	background-color: rgba(63, 65, 92, 0.221);
+	background-color: rgb(41 43 60 / 90%);
+	backdrop-filter: blur(2px);
 	color: rgba(245, 245, 245, 0.744);
 	position: absolute;
 	bottom: 0;

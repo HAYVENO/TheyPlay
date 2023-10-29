@@ -1,5 +1,6 @@
 import "../styles/globals.css";
 import { useRouter, Router } from "next/router";
+import { useSession } from "next-auth/react";
 import { SessionProvider } from "next-auth/react";
 import { Inter } from "@next/font/google";
 import { RecoilRoot } from "recoil";
@@ -33,6 +34,8 @@ const queryClient = new QueryClient();
 
 const MyApp = ({ Component, pageProps: { session, ...pageProps } }) => {
 	const router = useRouter();
+	console.log(session);
+	// const session = useSession();
 
 	// exclude app-wide layout for the routes contained in the array
 	const excludeLayout = ["/signin"].includes(router.pathname);
