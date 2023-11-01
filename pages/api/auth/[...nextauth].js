@@ -93,8 +93,19 @@ export default NextAuth({
 					},
 				});
 			}
+			// TODO: Need to redirect the user to the protected route here
 
 			return true;
 		},
+
+		async redirect({ baseUrl }) {
+			console.log("you have been redirect home here -", baseUrl);
+			return baseUrl;
+		},
+
+		// 		async redirect() {
+		//     // Replace '/homepage' with the actual URL of your homepage
+		//     return '/homepage';
+		//   }
 	},
 });
