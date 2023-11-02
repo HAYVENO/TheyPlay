@@ -184,18 +184,22 @@ h4 {
 	width: 100%;
 }
 
-/* MOBILE */
-@media screen and (max-width: 650px) {
-	.privacy-policy-container {
-		min-height: 100vh;
-		margin: 0 auto;
-		padding: 7rem 4%;
-	}
-
+/* TABLET */
+@media screen and (max-width: 1000px) {
 	.about_profile {
 		grid-template-columns: 1fr;
 		gap: 1.2rem;
 		margin: 0.5rem;
 		padding: 1rem 2rem;
 	}
+
+	.privacy-policy-container {
+		min-height: 100vh;
+		margin: 0 auto;
+		padding: 7rem 4%;
+	}
+}
+
+/* MOBILE */
+@media screen and (max-width: 650px) {
 }
