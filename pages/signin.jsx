@@ -3,8 +3,9 @@ import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import logoZero from "../public/logo-zero.svg";
-import { BsGithub } from "react-icons/bs";
-import { SlSocialSpotify, SlSocialTwitter } from "react-icons/sl";
+import { BsSpotify } from "react-icons/bs";
+import { SlSocialTwitter } from "react-icons/sl";
+
 import { getProviders, signIn } from "next-auth/react";
 import AnimatedSvg from "../components/util-components/AnimatedSvg";
 import LinkPreview from "../components/util-components/LinkPreview";
@@ -44,11 +45,11 @@ const SignIn = () => {
 			setShowTooltip(true);
 			const hideTimer = setTimeout(() => {
 				setShowTooltip(false);
-			}, 9000);
+			}, 12000);
 			return () => {
 				clearTimeout(hideTimer);
 			};
-		}, 8000);
+		}, 6000);
 
 		return () => {
 			clearTimeout(showTimer);
@@ -160,18 +161,11 @@ const SignIn = () => {
 										placement="bottom"
 										title={
 											<span className="tooltip-title">
-												Don't have a Spotify account to continue?
-												Don't miss out.{" "}
-												<b>
-													Click the Sign up button to register for
-													FREE
-												</b>{" "}
-												— takes less than 20 seconds. <br />
-												<br />
-												1. <b>Click sign up</b> (and follow the
-												prompts).
-												<br />
-												2. <b>Return to this page</b> to sign in.
+												Kindly note that TheyPlay is still in Dev
+												mode. To access the full functionality, send
+												mail to <b>haythepen@gmail.com</b> with the
+												title: <br />{" "}
+												<b>"Request TheyPlay access"</b>
 											</span>
 										}
 										onMouseEnter={() => setShowTooltip(true)}
@@ -184,7 +178,7 @@ const SignIn = () => {
 											}
 										>
 											Continue with {provider.name}{" "}
-											<SlSocialSpotify size={18} />
+											<BsSpotify size={22} />
 										</button>
 									</Tooltip>
 								</div>

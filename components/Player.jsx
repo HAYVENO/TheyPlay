@@ -11,16 +11,13 @@ import {
 	BsPauseCircleFill,
 	BsVolumeMuteFill,
 	BsSkipStart,
-	BsSpotify,
-} from "react-icons/bs";
-import { TbPlayerSkipBack, TbPlayerSkipForward } from "react-icons/tb";
-import {
 	BsFillPlayCircleFill,
 	BsShuffle,
 	BsVolumeDownFill,
 	BsSkipEnd,
+	BsSpotify,
 } from "react-icons/bs";
-import { SlSocialSpotify } from "react-icons/sl";
+import { TbPlayerSkipBack, TbPlayerSkipForward } from "react-icons/tb";
 
 import { TbRepeat, TbRepeatOnce } from "react-icons/tb";
 
@@ -276,7 +273,11 @@ const Player = () => {
 					</div>
 					<div className="player__cta-container">
 						{/* like button */}
-						<Tooltip arrow placement="top" title="Like (or unlike) song">
+						<Tooltip
+							arrow
+							placement="top"
+							title={`${isLiked ? "Unlike" : "Like"} song`}
+						>
 							<button
 								style={{
 									cursor:
@@ -287,7 +288,7 @@ const Player = () => {
 									opacity:
 										!liveTrack?.external_urls?.spotify ||
 										isLoadingLike
-											? "0.6"
+											? "0.7"
 											: "1",
 								}}
 								disabled={isLoadingLike ? true : false}
@@ -305,24 +306,26 @@ const Player = () => {
 						<Tooltip
 							arrow
 							placement="top"
-							title="Play on Spotify (Full song)"
+							title="Play on Spotify"
 							sx={{ fontSize: "20px" }}
 						>
 							<a
 								href={liveTrack?.external_urls?.spotify}
 								target="_blank"
 								rel="noopener noreferrer"
-								style={{
-									opacity: liveTrack?.external_urls?.spotify
-										? "1"
-										: "0.6",
-									cursor: liveTrack?.external_urls?.spotify
-										? "pointer"
-										: "not-allowed",
-								}}
 							>
-								<button className="btn">
-									<SlSocialSpotify color="white" size={20} />
+								<button
+									className="btn"
+									style={{
+										opacity: liveTrack?.external_urls?.spotify
+											? "1"
+											: "0.7",
+										cursor: liveTrack?.external_urls?.spotify
+											? "pointer"
+											: "not-allowed",
+									}}
+								>
+									<BsSpotify color="white" size={22} />
 								</button>
 							</a>
 						</Tooltip>

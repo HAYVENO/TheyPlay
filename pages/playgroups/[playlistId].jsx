@@ -58,6 +58,7 @@ const { successStyle, errorStyle, warningStyle, infoStyle } = alertStyles;
 const PlaylistPage = () => {
 	// URL queries
 	const router = useRouter();
+	console.log(router);
 	const { playlistId } = router.query;
 
 	//global states -
@@ -474,11 +475,11 @@ const PlaylistPage = () => {
 								JSON.stringify(livePlaygroup.liveTracks) ===
 									JSON.stringify(tracks) ? (
 									<>
-										Playing <BsPause size={18} />
+										Playing <BsPause size={21} />
 									</>
 								) : (
 									<>
-										Play All <BsPlayFill size={18} />
+										Play All <BsPlayFill size={21} />
 									</>
 								)}
 							</button>
@@ -496,7 +497,7 @@ const PlaylistPage = () => {
 										? "Update on Spotify"
 										: "Add to Spotify"}
 								</span>
-								<BsSpotify size={18} />
+								<BsSpotify size={21} />
 							</button>
 
 							{/* <button

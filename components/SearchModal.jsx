@@ -31,6 +31,7 @@ import {
 import alertStyles from "../util/alertStyles";
 import fetchPlaygroupData from "../util/getPlaygroupData";
 import { useQueryClient } from "@tanstack/react-query";
+import Link from "next/link";
 
 const { successStyle, errorStyle, warningStyle, infoStyle } = alertStyles;
 
@@ -331,10 +332,12 @@ const SearchModal = () => {
 								autoCorrect="off"
 								autoComplete="off"
 								onChange={handleSearch}
+								autoFocus={openModal ? true : false}
 							></input>
 						</div>
 						<ul className="search-list">
 							{searchedTracks.map((track, index) => {
+								console.log(track?.external_urls?.spotify);
 								return (
 									<li key={index}>
 										<div className="track-container">
@@ -389,16 +392,24 @@ const SearchModal = () => {
 												</div>
 
 												<div className="song-Description">
-													<p
-														style={{
-															color: track?.preview_url
-																? "white"
-																: "#ffffff69",
-														}}
-														className="track-name"
+													<Link
+														style={{ textDecoration: "none" }}
+														href={track?.external_urls?.spotify}
+														target="_blank"
+														rel="noreferrer nofollow"
 													>
-														{track?.name}
-													</p>
+														<p
+															title="Listen on Spotify"
+															style={{
+																color: track?.preview_url
+																	? "white"
+																	: "#ffffff69",
+															}}
+															className="track-name"
+														>
+															{track?.name}
+														</p>
+													</Link>
 													<p className="track-artist">
 														{track?.artists
 															.map((artist) => artist.name)

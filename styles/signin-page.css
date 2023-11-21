@@ -180,18 +180,18 @@
 	font-size: 1rem;
 	margin-top: 1.5rem;
 	font-weight: 600;
-	background-color: rgb(2, 142, 70);
+	background-color: #1db954;
 	color: white;
 	border: none;
 	border-radius: 6px;
 	cursor: pointer;
 
 	padding: 1.1rem 5rem;
-	transition: all 0.4s ease;
+	/* transition: all 0.4s ease; */
 }
 
 .sign-in-button:hover {
-	background-color: rgb(20, 181, 98);
+	background-color: rgb(31, 185, 106);
 	transform: scale(1.05);
 }
 

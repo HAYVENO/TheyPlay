@@ -116,6 +116,7 @@ const Sidebar = ({ isDrawer }) => {
 			</ul>
 			<h3 className="heading__sidebar-playlist">Playgroups</h3>
 			{/* side bar playlists  */}
+			{console.log(playgroups)}
 			<ul className="sidebar__playlists">
 				{playgroups.length > 0
 					? playgroups.map((playlist, i) => (

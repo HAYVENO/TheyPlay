@@ -453,7 +453,7 @@ main {
 	align-items: center;
 	gap: 1.5rem;
 	border: 0.1px solid #2f2f69df;
-	border-radius: 6px;
+	border-radius: 2px;
 	box-shadow: 1px 1px 10px 2px #0302228f;
 	padding-right: 1rem;
 	overflow: hidden;
@@ -512,7 +512,7 @@ main {
 	width: 3.5rem;
 	height: 3.5rem;
 	object-fit: cover;
-	border-radius: 0.3rem;
+	/* border-radius: 0.3rem; */
 	/* transform: rotate(-15deg); */
 }
 
@@ -619,7 +619,7 @@ main {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	border-bottom: 0.1px solid var(--mauve9);
+	border-bottom: 0.1px solid hsl(0deg 0% 67.47% / 34%);
 	max-height: 64px;
 	width: -webkit-fill-available;
 	backdrop-filter: blur(30px);
@@ -687,7 +687,7 @@ main {
 .playlist__card {
 	position: relative;
 	height: 180px;
-	border-radius: 0.5rem;
+	border-radius: 4px;
 	padding-top: 15px;
 	overflow: hidden;
 	border: 1.2px solid var(--mauve3);
@@ -702,7 +702,7 @@ main {
 	box-shadow: 4px 5px 13px 0px #030222;
 
 	/* slight rotation */
-	transform: rotate(-2deg);
+	/* transform: rotate(-2deg); */
 	transition: background 0.2s ease-out;
 }
 
@@ -741,7 +741,7 @@ main {
 
 	background-color: rgba(65, 59, 59, 0.271);
 	/* border: 0.1px solid rgb(111, 111, 111); */
-	border-radius: 4px;
+	/* border-radius: 4px; */
 	transition: all 0.2s ease-out;
 	box-shadow: 0px 0px 12px #00000070;
 }

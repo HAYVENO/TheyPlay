@@ -11,6 +11,7 @@ import { liveTrackState, currentSongState } from "../atoms/trackAtom";
 //dayjs
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import Link from "next/link";
 dayjs.extend(relativeTime);
 
 const Track = ({ track, theyTrack, index, onClick, isCurrentTrack }) => {
@@ -48,18 +49,22 @@ const Track = ({ track, theyTrack, index, onClick, isCurrentTrack }) => {
 					<Image
 						// style={{ opacity: track.preview_url ? "1" : "0.3" }}
 						className={styles.songImage}
-						width={35}
-						height={35}
+						width={38}
+						height={38}
 						src={track?.album?.images[1].url}
 						alt="song"
 					/>
 					<div className={styles.songDescription}>
-						<p
-							// style={{ color: track.preview_url ? "white" : "#ffffff69" }}
-							className={styles.songTitle}
+						<Link
+							style={{ textDecoration: "none", margin: "0" }}
+							href={track?.external_urls?.spotify}
+							target="_blank"
+							rel="noreferrer nofollow"
 						>
-							{track?.name}
-						</p>
+							<p title="Listen on Spotify" className={styles.songTitle}>
+								{track?.name}
+							</p>
+						</Link>
 						<p className={styles.songArtist}>
 							{track?.artists
 								.map((artist) => artist?.name)

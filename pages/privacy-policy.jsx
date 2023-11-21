@@ -19,9 +19,9 @@ const PrivacyPolicy = () => {
 				<div className="privacy-policy-wrapper">
 					<Header isLoading={false} />
 					<div className="privacy-policy-container">
-						<h1 className="privacy-policy-container__heading">
+						<h2 className="privacy-policy-container__heading">
 							Privacy Policy | TheyPlay
-						</h1>
+						</h2>
 						<hr />
 						<p style={{ fontFamily: "monospace" }}>
 							Last updated - {formattedDate()}{" "}

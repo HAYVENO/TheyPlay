@@ -107,16 +107,16 @@
 	z-index: 9;
 }
 
-.track-container:hover img {
+/* .track-container:hover img {
 	filter: brightness(0.5);
-}
+} */
 
-.track-container:hover .track__play-btn {
+/* .track-container:hover .track__play-btn {
 	opacity: 1;
 	visibility: visible;
 	bottom: 20%;
 	left: 15%;
-}
+} */
 
 .track-details {
 	display: grid;
@@ -146,12 +146,13 @@
 
 .track-image {
 	object-fit: cover;
-	transform: rotate(15deg) scale(1.3);
-	border-radius: 3px;
+	transform: scale(1.3);
+	/* border-radius: 3px; */
 	background: rgba(57, 85, 179, 0.272);
 }
 
 .track-name {
+	margin: 4px 0;
 	font-weight: bolder;
 	color: white;
 	font-size: 0.8rem;
@@ -159,13 +160,19 @@
 	white-space: nowrap;
 	text-overflow: ellipsis;
 
-	/* margin-bottom: 0.5rem; */
+	padding-bottom: 0.2rem;
 	line-height: 1;
+}
+
+.track-name:hover {
+	text-decoration: underline;
+	text-underline-offset: 2px;
 }
 
 .track-artist {
 	color: var(--color-text);
 	font-size: 0.8rem;
+	margin-top: 0.3rem;
 	margin-bottom: 0.3rem;
 }
 

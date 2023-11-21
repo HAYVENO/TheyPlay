@@ -33,7 +33,7 @@
 
 .playlistImageContainer {
 	box-shadow: 1px 2px 65px -12px rgba(0, 0, 0, 0.471);
-	border-radius: 3px;
+	/* border-radius: 3px; */
 	width: 200px;
 	height: 200px;
 	background-color: #3a393926;
@@ -42,7 +42,7 @@
 .playlistImage {
 	object-fit: cover;
 	box-shadow: 1px 2px 65px -12px rgba(0, 0, 0, 0.471);
-	border-radius: 3px;
+	/* border-radius: 3px; */
 }
 
 .playlistDetails {
@@ -211,8 +211,8 @@
 
 .songImage {
 	object-fit: cover;
-	transform: rotate(-30deg);
-	border-radius: 3px;
+	transform: rotate(-3deg);
+	/* border-radius: 3px; */
 	background: rgba(57, 85, 179, 0.272);
 	transition: transform 0.3s ease;
 }
@@ -222,11 +222,16 @@
 	font-weight: bold;
 	color: white;
 	font-size: 0.75rem;
-	margin: 6px;
+	margin: 4px 0;
+
 	overflow: hidden;
 	line-height: 1;
 	/* white-space: nowrap; */
 	text-overflow: ellipsis;
+}
+
+.songTitle:hover {
+	text-decoration: underline;
 }
 
 /* Animations  */

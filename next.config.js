@@ -7,7 +7,12 @@ module.exports = withBundleAnalyzer(
 	withImages({
 		reactStrictMode: true,
 		images: {
-			domains: ["mosaic.scdn.co", "i.scdn.co", "res.cloudinary.com"],
+			domains: [
+				"mosaic.scdn.co",
+				"i.scdn.co",
+				"res.cloudinary.com",
+				"images.unsplash.com",
+			],
 		},
 	})
 );

@@ -110,20 +110,20 @@ const Center = () => {
 				category={topTracks}
 				title="SUGGESTED TRACKS (FOR YOU)"
 			/>
-			<PlaylistCategories
+			{/* <PlaylistCategories
 				key={2}
 				type="playlist"
 				loading={isLoading}
 				category={playlists}
 				title="YOUR PLAYLISTS"
-			/>
-			<PlaylistCategories
+			/> */}
+			{/* <PlaylistCategories
 				key={3}
 				type="playlist"
 				loading={isLoading}
 				category={topArtists}
-				title="YOUR TOP ARTISTS"
-			/>
+				title="YOUR TOP ARTISTS (BONUS)"
+			/> */}
 		</div>
 	);
 };
