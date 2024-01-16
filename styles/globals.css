@@ -674,11 +674,111 @@ main {
 	text-shadow: 4px 4px #01011f;
 }
 
-.category__playlists {
+/* PLAYGROUP CARDS */
+/* dynamic class name */
+.category__playgroups {
+	min-height: 200px;
+	margin: 0;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(160px, 270px));
+	/* prev 190px max */
+	grid-gap: 2rem;
+	padding: 0rem 2.5rem;
+	padding-bottom: 1rem;
+	width: auto;
+}
+
+.playgroup__card {
+	font-family: "inter", sans-serif;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.3rem;
+	height: 180px;
+	border-radius: 4px;
+	padding: 0 1rem 1rem;
+	overflow: hidden;
+	border: 1.2px solid var(--mauve3);
+	background: rgba(37, 43, 55, 0.202);
+	box-shadow: 4px 5px 13px 0px #030222;
+	transition: background 0.2s ease-out;
+}
+
+.playgroup__card:hover {
+	background: rgba(63, 71, 86, 0.3);
+}
+
+.playgroup__title {
+	font-family: "inter", sans-serif;
+	color: #dbdbdb;
+	display: inline-block; /* cant be flex */
+	text-align: center;
+
+	/* for proper alignment */
+	max-width: 100%;
+	padding: 1rem 1rem;
+	padding-bottom: 8px;
+
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	margin: 0;
+	font-size: 0.8rem;
+	font-weight: 600;
+	/* text-shadow: 3px 3px 4px rgb(0, 6, 31); */
+}
+
+.playgroup__description {
+	color: #dbdbdb;
+	display: inline-block;
+	text-align: center;
+
+	/* for proper alignment */
+	max-width: 100%;
+	padding: 8px;
+	/* padding-bottom: 1.6rem; */
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	margin: 0;
+	font-size: 0.68rem;
+	font-weight: 400;
+	/* text-shadow: 3px 3px 4px rgb(0, 6, 31); */
+}
+
+.playgroup__image {
+	margin-bottom: 4px;
+	width: 120px;
+	height: 120px;
+	width: 115%;
+	height: 100%;
+	aspect-ratio: 1/1;
+	overflow: hidden;
+	position: relative;
+	object-fit: cover;
+
+	background-color: rgba(65, 59, 59, 0.271);
+	/* border: 0.1px solid rgb(111, 111, 111); */
+	/* border-radius: 4px; */
+	transition: all 0.2s ease-out;
+	box-shadow: 0px 0px 12px #00000070;
+}
+
+.playgroup__image-container {
+	position: relative;
+	overflow: hidden;
+}
+
+/* TRACK CARDS */
+
+/* dynamic class name */
+.category__tracks {
 	min-height: 205px;
 	margin: 0;
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(160px, 190px));
+	grid-template-columns: repeat(auto-fit, minmax(160px, 206px));
+	/* prev 190px max */
 	grid-gap: 2rem;
 	padding: 0rem 2.5rem;
 	padding-bottom: 1rem;
@@ -697,20 +797,8 @@ main {
 	padding: 11% 14%;
 	overflow: hidden;
 	border: 1.2px solid var(--mauve3);
-	/* background: linear-gradient(
-			90deg,
-			rgba(43, 39, 90, 0.1) 2.81%,
-			rgba(43, 39, 90, 0) 50%
-		),
-		rgba(64, 75, 95, 0.1); */
-
-	/* backdrop-filter: blur(10px); */
 	background: rgba(37, 43, 55, 0.202);
-
 	box-shadow: 4px 5px 13px 0px #030222;
-
-	/* slight rotation */
-	/* transform: rotate(-2deg); */
 	transition: background 0.2s ease-out;
 }
 
@@ -738,6 +826,7 @@ main {
 }
 
 .playlist__artists {
+	font-family: "inter", sans-serif;
 	color: #dbdbdb;
 	display: inline-block;
 	text-align: center;
@@ -988,7 +1077,15 @@ main {
 		padding: 1rem 1rem;
 	}
 
-	.category__playlists {
+	.category__playgroups {
+		grid-template-columns: repeat(auto-fit, minmax(100px, 160px));
+		grid-gap: 1rem;
+		padding: 0rem 1rem;
+		padding-bottom: 1rem;
+		width: auto;
+	}
+
+	.category__tracks {
 		grid-template-columns: repeat(auto-fit, minmax(100px, 160px));
 		grid-gap: 1rem;
 		padding: 0rem 1rem;

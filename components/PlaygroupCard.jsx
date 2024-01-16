@@ -12,8 +12,7 @@ const PlaygroupCard = ({ playlist: playgroup }) => {
 				href={`/playgroups/${playgroup.id}`}
 				className="category__playlist-link"
 			>
-				<div className="playlist__card">
-					<h3 className="playlist__title">{playgroup.name}</h3>
+				<div className="playgroup__card">
 					<Image
 						width={120}
 						height={120}
@@ -22,10 +21,12 @@ const PlaygroupCard = ({ playlist: playgroup }) => {
 								? playgroup.groupImage
 								: "/placeholder-playlist.jpg"
 						}
-						className="playlist__image"
+						className="playgroup__image"
 						alt={playgroup.name}
 						priority
 					/>
+					<h3 className="playlist__title">{playgroup?.name} playgroup</h3>
+					<h3 className="playlist__artists">{playgroup?.description}</h3>
 				</div>
 			</Link>
 		</li>

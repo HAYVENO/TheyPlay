@@ -12,16 +12,22 @@ const PlaylistCategories = ({ category, title, type, loading }) => {
 				<h2 className="category__title">{title}</h2>
 			</div>
 
-			<ul className="category__playlists">
+			<ul className={`category__${type}s`}>
 				{/* PLAYLIST CARDS  */}
 				{loading ? (
 					<PlaylistCardSkeleton cards={5} />
 				) : (
 					category?.map((item) => {
 						return (
-							(type === "playgroup" && <PlaygroupCard key={item.id} playlist={item} />) ||
-							(type === "playlist" && <PlaylistCard key={item.id} playlist={item} />) ||
-							(type === "track" && <TrackCard key={item.id} playlist={item} />)
+							(type === "playgroup" && (
+								<PlaygroupCard key={item.id} playlist={item} />
+							)) ||
+							(type === "playlist" && (
+								<PlaylistCard key={item.id} playlist={item} />
+							)) ||
+							(type === "track" && (
+								<TrackCard key={item.id} playlist={item} />
+							))
 						);
 					})
 				)}
