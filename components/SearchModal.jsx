@@ -32,6 +32,7 @@ import alertStyles from "../util/alertStyles";
 import fetchPlaygroupData from "../util/getPlaygroupData";
 import { useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
+import formatToSentence from "../util/formatToSentence";
 
 const { successStyle, errorStyle, warningStyle, infoStyle } = alertStyles;
 
@@ -411,10 +412,11 @@ const SearchModal = () => {
 														</p>
 													</Link>
 													<p className="track-artist">
-														{track?.artists
-															.map((artist) => artist.name)
-															.slice(0, 3)
-															.join(", ")}
+														{track?.artists &&
+															formatToSentence(
+																track?.artists,
+																"name"
+															)}
 													</p>
 													{/* ratings */}
 													<Box>

@@ -47,6 +47,7 @@ const Center = () => {
 	const [topArtists, setTopArtists] = useState([]);
 	// const [topTracks, setTopTracks] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
+	const [isShowAll, setIsShowAll] = useState(false);
 
 	useEffect(() => {
 		if (spotifyApi.getAccessToken()) {
@@ -100,7 +101,7 @@ const Center = () => {
 				type="playgroup"
 				loading={isLoading}
 				category={playgroups}
-				title="WHAT THEY PLAY"
+				title="WHAT THEY DO"
 			/>
 			{/* Shuffle the Suggested Top Tracks for the Tracks category */}
 			<PlaylistCategories

@@ -40,6 +40,7 @@ import Tooltip from "@mui/material/Tooltip";
 
 import alertStyles from "../util/alertStyles";
 import useSetCurrentSong from "../hooks/useSetCurrentSong";
+import formatToSentence from "../util/formatToSentence";
 
 const Player = () => {
 	const { data: session } = useSession();
@@ -265,10 +266,7 @@ const Player = () => {
 						</h3>
 						<p>
 							{liveTrack?.artists &&
-								liveTrack?.artists
-									.map((artist) => artist?.name)
-									.slice(0, 3)
-									.join(", ")}
+								formatToSentence(liveTrack?.artists, "name")}
 						</p>
 					</div>
 					<div className="player__cta-container">
@@ -401,7 +399,7 @@ const Player = () => {
 								min={isPlaying ? 0.01 : 0} // I'm getting a UI bug at 0
 								max={100}
 								onChange={(e) => debouncedHandleVolume(e.target.value)}
-								color="secondary"
+								color="primary"
 							/>
 						)}
 					</Box>

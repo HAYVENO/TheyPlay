@@ -12,6 +12,7 @@ import { liveTrackState, currentSongState } from "../atoms/trackAtom";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import Link from "next/link";
+import formatToSentence from "../util/formatToSentence";
 dayjs.extend(relativeTime);
 
 const Track = ({ track, theyTrack, index, onClick, isCurrentTrack }) => {
@@ -66,10 +67,8 @@ const Track = ({ track, theyTrack, index, onClick, isCurrentTrack }) => {
 							</p>
 						</Link>
 						<p className={styles.songArtist}>
-							{track?.artists
-								.map((artist) => artist?.name)
-								.slice(0, 3)
-								.join(", ")}
+							{track?.artists &&
+								formatToSentence(track?.artists, "name")}
 						</p>
 					</div>
 				</div>

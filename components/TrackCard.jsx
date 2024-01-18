@@ -6,6 +6,7 @@ import * as Popover from "@radix-ui/react-popover";
 import { BsSpotify, BsThreeDots } from "react-icons/bs";
 import { CgPlayListAdd } from "react-icons/cg";
 import { openChildModalState } from "../atoms/modalAtom";
+import formatToSentence from "../util/formatToSentence";
 
 const TrackCard = ({ playlist: track }) => {
 	const [openChildModal, setOpenChildModal] =
@@ -22,8 +23,8 @@ const TrackCard = ({ playlist: track }) => {
 					<Popover.Root>
 						<Image
 							className="playlist__image"
-							width={120}
-							height={120}
+							width={640}
+							height={640}
 							alt={track.name}
 							src={track?.album?.images[0]?.url}
 							priority
@@ -40,7 +41,7 @@ const TrackCard = ({ playlist: track }) => {
 										className="ATP-btn"
 										onClick={() => handleOpenChildModal(track.id)}
 									>
-										<span>Add to a playgroup</span>
+										<span>Add to a Playgroup</span>
 										<CgPlayListAdd size={18} />
 									</button>
 									<button
@@ -62,10 +63,7 @@ const TrackCard = ({ playlist: track }) => {
 
 					<h3 className="playlist__title">{track.name}</h3>
 					<h3 className="playlist__artists">
-						{track?.artists
-							.map((artist) => artist?.name)
-							.slice(0, 3)
-							.join(", ")}
+						{formatToSentence(track?.artists, "name")}
 					</h3>
 				</div>
 			</Link>
