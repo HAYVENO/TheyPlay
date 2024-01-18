@@ -50,7 +50,7 @@ const PlaylistCategories = ({ category, title, type, loading }) => {
 					</>
 				)}
 			</ul>
-			{type === "playgroup" && (
+			{type === "playgroup" && !loading && (
 				<div className="btn__show-more-container">
 					<button
 						className="btn__show-more"

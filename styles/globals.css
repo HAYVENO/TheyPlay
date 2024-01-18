@@ -697,6 +697,7 @@ main {
 .btn__show-more {
 	cursor: pointer;
 	background-color: rgb(218, 218, 218);
+	color: black;
 	font-size: 0.8rem;
 	padding: 10px 20px;
 	border: none;
@@ -1057,10 +1058,17 @@ main {
 	}
 }
 
+/* EXTRA-LARGE SCREENS */
+@media screen and (min-width: 1800px) {
+	.category__playgroups {
+		grid-template-columns: repeat(auto-fit, minmax(160px, 300px));
+	}
+}
+
 /* TABLET */
 @media screen and (max-width: 1000px) {
 	.category__playgroups {
-		grid-template-columns: repeat(auto-fit, minmax(100px, 45%));
+		grid-template-columns: repeat(auto-fit, minmax(160px, 45%));
 		grid-gap: 1.2rem;
 		padding: 0rem 1rem;
 		padding-bottom: 1rem;
@@ -1092,6 +1100,10 @@ main {
 
 /* MOBILE */
 @media screen and (max-width: 650px) {
+	.category__playgroups {
+		grid-template-columns: repeat(auto-fit, minmax(99%, 100%));
+	}
+
 	.home-container {
 		max-height: 100vh;
 	}
@@ -1107,7 +1119,7 @@ main {
 	}
 
 	.category__tracks {
-		grid-template-columns: repeat(auto-fit, minmax(100px, 45%));
+		grid-template-columns: repeat(auto-fit, minmax(150px, 45%));
 		grid-gap: 1rem;
 		padding: 0rem 1rem;
 		padding-bottom: 1rem;
