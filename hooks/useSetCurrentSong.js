@@ -50,6 +50,7 @@ function useSetCurrentSong() {
 
 			//check if the track's preview sound is available
 			if (
+				theyTracks[currentSongIndex] &&
 				!tracks[currentSongIndex]?.preview_url &&
 				!theyTracks[currentSongIndex]?.addedSong?.previewUrl
 			) {

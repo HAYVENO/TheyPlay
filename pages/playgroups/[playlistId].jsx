@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import Image from "next/image";
@@ -233,15 +233,16 @@ const PlaylistPage = () => {
 
 			//check if the track's preview sound is available
 			if (
+				tracks[currentSongIndex]?.album &&
 				!tracks[currentSongIndex]?.preview_url &&
 				!theyTracks[currentSongIndex]?.addedSong?.previewUrl
 			) {
-				setAlert({
-					open: true,
-					message: `${tracks[currentSongIndex]?.album?.name}'s audio is not available at this moment 😕`,
-					severity: "warning",
-					style: warningStyle,
-				});
+				// setAlert({
+				// 	open: true,
+				// 	message: `${tracks[currentSongIndex]?.album?.name}'s audio is not available at this moment 😕`,
+				// 	severity: "warning",
+				// 	style: errorStyle,
+				// });
 
 				currentSongIndex = currentSongIndex + 1;
 			}
