@@ -15,6 +15,8 @@ const playTrack = async (currentSongIndex, livePlaygroup) => {
 	}
 
 	// Check if the track's preview sound is available
+	console.log(!tracks[currentSongIndex]?.preview_url);
+	console.log(theyTracks[currentSongIndex]?.addedSong?.previewUrl);
 	if (
 		!tracks[currentSongIndex]?.preview_url &&
 		!theyTracks[currentSongIndex]?.addedSong?.previewUrl

@@ -56,16 +56,16 @@ const Track = ({ track, theyTrack, index, onClick, isCurrentTrack }) => {
 						alt="song"
 					/>
 					<div className={styles.songDescription}>
-						<Link
+						<p
 							style={{ textDecoration: "none", margin: "0" }}
-							href={track?.external_urls?.spotify}
-							target="_blank"
-							rel="noreferrer nofollow"
+							// href={track?.external_urls?.spotify}
+							// target="_blank"
+							// rel="noreferrer nofollow"
 						>
 							<p title="Listen on Spotify" className={styles.songTitle}>
 								{track?.name}
 							</p>
-						</Link>
+						</p>
 						<p className={styles.songArtist}>
 							{track?.artists &&
 								formatToSentence(track?.artists, "name")}

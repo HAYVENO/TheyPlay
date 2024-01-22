@@ -55,7 +55,7 @@ export const topTracksState = atom({
 
 export const currentSongNumberState = atom({
 	key: "currentSongNumberState",
-	default: 0,
+	default: -1, // FIX: At 0, track does not change, leading to track 1 not playing
 });
 
 export const isLikeState = atom({

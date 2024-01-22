@@ -6,11 +6,12 @@ const PlaylistCardSkeleton = ({ cards }) =>
 		.fill(0)
 		.map((x, i) => (
 			<div key={i} className="card-skeleton">
-				<div className="title-skeleton">
-					<Skeleton width={180} height={30} />
-				</div>
 				<div className="image-skeleton">
-					<Skeleton width={110} height={110} borderRadius={10} />
+					<Skeleton width={1000} height={110} />
+				</div>
+				<div className="title-skeleton">
+					<Skeleton variant="h2" height={10} />
+					<Skeleton variant="p" height={10} />
 				</div>
 			</div>
 		));

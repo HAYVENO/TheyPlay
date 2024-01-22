@@ -39,7 +39,6 @@ import {
 import Tooltip from "@mui/material/Tooltip";
 
 import alertStyles from "../util/alertStyles";
-import useSetCurrentSong from "../hooks/useSetCurrentSong";
 import formatToSentence from "../util/formatToSentence";
 
 const Player = () => {
@@ -122,7 +121,7 @@ const Player = () => {
 	};
 
 	const handlePauseAndPlay = async () => {
-		// console.log("current SONG", currentSong);
+		console.log("current SONG", currentSong);
 		// pause the current song, and vice-versa
 		if (!currentSong) return;
 
@@ -237,6 +236,7 @@ const Player = () => {
 		}
 	};
 
+	console.log(liveTrack);
 	console.log(liveTrack?.external_urls?.spotify);
 
 	return (

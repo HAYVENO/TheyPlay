@@ -32,6 +32,7 @@ function useSetCurrentSong() {
 			tracks = livePlaygroup?.liveTracks,
 			theyTracks = livePlaygroup?.liveTheyTracks
 		) => {
+			console.log(liveTrack);
 			console.log(livePlaygroup);
 			console.log(tracks);
 
@@ -73,6 +74,7 @@ function useSetCurrentSong() {
 
 			audio.volume = ((volume + 0.1) * 0.7).toFixed(2); //UI issues at 0
 
+			console.log(audio);
 			setIsPlaying(true);
 			setCurrentSong(audio);
 			setIsCurrentTrack(currentSongIndex);
@@ -84,10 +86,8 @@ function useSetCurrentSong() {
 	);
 
 	useEffect(() => {
-		if (
-			currentSongNumber >= livePlaygroup?.liveTracks?.length ||
-			currentSongNumber < 0
-		) {
+		if (currentSongNumber >= livePlaygroup?.liveTracks?.length) {
+			console.log(livePlaygroup.liveTracks);
 			setIsPlaying(false);
 		} else {
 			console.log(livePlaygroup?.liveTracks);

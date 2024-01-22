@@ -49,9 +49,6 @@ import { openModalState } from "../../atoms/modalAtom";
 import fetchPlaygroupData from "../../util/getPlaygroupData";
 import Header from "../../components/Header";
 import debounce from "lodash/debounce";
-import useAudioPlayback from "../../hooks/useAudioPlayback";
-import useCurrentSongEffect from "../../hooks/useSetCurrentSong";
-import useSetCurrentSong from "../../hooks/useSetCurrentSong";
 
 const { successStyle, errorStyle, warningStyle, infoStyle } = alertStyles;
 
@@ -174,22 +171,40 @@ const PlaylistPage = () => {
 
 	// DEBOUNCE HANDLE CLICK, SOLVE MULTI-GLITCHY PLAYS?
 	const handleClickTrack = debounce((clickedSongIndex) => {
-		console.log("liveTrack size--", livePlaygroup?.liveTracks.length);
-
 		// If liveplaygroup's liveTracks[] !== tracks[] --> Set Live Playgroup to match
+
+		console.log(JSON.stringify(livePlaygroup.liveTracks));
+		console.log(JSON.stringify(tracks));
+		console.log(livePlaygroup.liveTracks === tracks);
+		console.log(
+			JSON.stringify(livePlaygroup.liveTracks) === JSON.stringify(tracks)
+		);
+		console.log(liveTrack);
+		console.log(clickedSongIndex);
+
+		// Same Song Index, different pages - bug scenario
+		if (
+			clickedSongIndex === currentSongNumber &&
+			JSON.stringify(livePlaygroup.liveTracks) !== JSON.stringify(tracks)
+		) {
+			//
+			console.log("the issue");
+
+			handleTrackPlay(clickedSongIndex, tracks, theyTracks);
+		}
 
 		if (JSON.stringify(livePlaygroup.liveTracks) !== JSON.stringify(tracks)) {
 			setLivePlaygroup(() => ({
 				liveTracks: tracks,
 				liveTheyTracks: theyTracks,
 			}));
+			console.log(JSON.stringify(livePlaygroup.liveTracks));
 			console.log(livePlaygroup.liveTracks === tracks);
 			console.log("Live Track did change ---");
 
-			// handleTrackPlay(clickedSongIndex, tracks, theyTracks);
-
 			setCurrentSongNumber(clickedSongIndex);
 		} else {
+			console.log("abc");
 			setCurrentSongNumber(clickedSongIndex);
 		}
 	}, 300);
@@ -393,8 +408,8 @@ const PlaylistPage = () => {
 								{currentPlaylist?.groupImage ? (
 									<Image
 										className={styles.playlistImage}
-										width={200}
-										height={200}
+										width={1000}
+										height={1000}
 										src={currentPlaylist?.groupImage}
 										priority
 										alt="Playlist image"

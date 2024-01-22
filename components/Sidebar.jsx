@@ -62,7 +62,7 @@ const Sidebar = ({ isDrawer }) => {
 	return (
 		<nav
 			style={{
-				animation: isPlaying ? "hue-animation 10s infinite" : "none",
+				animation: isPlaying ? "hue-animation 30s infinite" : "none",
 			}}
 			className={isDrawer ? "sidebar sidebar-drawer" : "sidebar"}
 		>
@@ -95,14 +95,14 @@ const Sidebar = ({ isDrawer }) => {
 				</li>
 				<li>
 					<Link href="#">
-						<BiLibrary size={24} />
-						<span>Liked songs</span>
+						<TfiHelpAlt size={24} />
+						<span>How it works ?</span>
 					</Link>
 				</li>
 
 				<li>
 					<Link href="/about">
-						<TfiHelpAlt size={24} />
+						<BsPeople size={24} />
 						<span>About</span>
 					</Link>
 				</li>

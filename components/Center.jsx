@@ -101,7 +101,7 @@ const Center = () => {
 				type="playgroup"
 				loading={isLoading}
 				category={playgroups}
-				title="WHAT THEY DO"
+				title="WHAT THEY PLAY"
 			/>
 			{/* Shuffle the Suggested Top Tracks for the Tracks category */}
 			<PlaylistCategories
