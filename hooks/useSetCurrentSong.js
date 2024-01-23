@@ -48,7 +48,7 @@ function useSetCurrentSong() {
 				await currentSong.pause();
 			}
 
-			//check if the track's preview sound is available
+			//check if the track's preview sound is available //TODO: Alert bug proper fix
 			if (
 				theyTracks[currentSongIndex] &&
 				!tracks[currentSongIndex]?.preview_url &&

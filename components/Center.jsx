@@ -112,19 +112,15 @@ const Center = () => {
 				title="SUGGESTED TRACKS (FOR YOU)"
 			/>
 			{/* <PlaylistCategories
-				key={2}
-				type="playlist"
-				loading={isLoading}
-				category={playlists}
-				title="YOUR PLAYLISTS"
-			/> */}
-			{/* <PlaylistCategories
 				key={3}
 				type="playlist"
 				loading={isLoading}
 				category={topArtists}
 				title="YOUR TOP ARTISTS (BONUS)"
 			/> */}
+			<footer className="center-footer">
+				Copyright © 2024 Yusuf Abdulhafeez — All Rights Reserved
+			</footer>
 		</div>
 	);
 };

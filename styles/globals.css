@@ -803,7 +803,7 @@ main {
 	/* prev 190px max */
 	grid-gap: 2rem;
 	padding: 0rem 2.5rem;
-	padding-bottom: 1rem;
+	padding-bottom: 6rem;
 	width: auto;
 }
 
@@ -1006,6 +1006,15 @@ main {
 	background-color: rgba(122, 122, 122, 0.9);
 }
 
+.center-footer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 0.8rem;
+	color: rgba(214, 210, 210, 0.744);
+	margin-bottom: 2rem;
+}
+
 /* Animations  */
 @keyframes hue-animation {
 	0% {
@@ -1057,6 +1066,8 @@ main {
 		stroke-dashoffset: 2.11827;
 	}
 }
+
+/* MEDIA QUERIES */
 
 /* EXTRA-LARGE SCREENS */
 @media screen and (min-width: 1800px) {
@@ -1122,7 +1133,7 @@ main {
 		grid-template-columns: repeat(auto-fit, minmax(150px, 45%));
 		grid-gap: 1rem;
 		padding: 0rem 1rem;
-		padding-bottom: 1rem;
+		padding-bottom: 10rem;
 		width: auto;
 	}
 
