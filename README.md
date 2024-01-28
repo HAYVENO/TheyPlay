@@ -1,6 +1,6 @@
 # TheyPlay
 
-![TheyPlay Music App Teaser](https://res.cloudinary.com/detye5zx5/image/upload/v1682695340/TheyPlay-teaser-home_sc9wtl.png)
+![TheyPlay Music App Teaser](https://res.cloudinary.com/detye5zx5/image/upload/v1706484015/Screenshot_2024-01-29_at_00.16.19.png)
 [![Website qeep.vercel.app](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](http://qeep.vercel.app/)
 [![GitHub license](https://badgen.net/github/license/Naereen/Strapdown.js)](https://github.com/HAYVENO/theyPlay/blob/main/LICENSE)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/hayveno/theyPlay/graphs/commit-activity)
