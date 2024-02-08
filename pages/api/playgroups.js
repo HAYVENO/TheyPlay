@@ -27,7 +27,11 @@ export default async function handler(req, res) {
 	} else {
 		// if no playgroup specified, get all playgroups
 		try {
-			const playgroups = await prisma.playgroup.findMany();
+			const playgroups = await prisma.playgroup.findMany({
+				orderBy: {
+					name: "desc",
+				},
+			});
 			// console.log(playgroups);
 			res.status(200).json(playgroups);
 		} catch (err) {
