@@ -23,6 +23,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { isPlayingState } from "../atoms/trackAtom";
 import { openModalState, playgroupsState } from "../atoms/modalAtom";
 import LinkPreview from "./util-components/LinkPreview";
+import shuffle from "lodash/shuffle";
 
 const Sidebar = ({ isDrawer }) => {
 	const router = useRouter();
@@ -42,7 +43,8 @@ const Sidebar = ({ isDrawer }) => {
 				.then((response) => response.json())
 				.then((playgroups) => {
 					console.log(playgroups);
-					setPlaygroups(playgroups);
+					const shuffledPlaygroups = shuffle(playgroups);
+					setPlaygroups(shuffledPlaygroups);
 				});
 
 			// setPlaylists(playgroupsData);

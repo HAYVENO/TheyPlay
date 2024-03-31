@@ -14,12 +14,7 @@ import Avatar from "@mui/material/Avatar";
 import shuffle from "lodash/shuffle";
 import getInitials from "../util/getInitials";
 import PlaylistCategories from "./PlaylistCategories";
-import {
-	useRecoilState,
-	waitForAll,
-	waitForAllSettled,
-	waitForAny,
-} from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import {
 	openModalState,
 	openChildModalState,
@@ -36,7 +31,7 @@ const Center = () => {
 	const { data: session, status } = useSession();
 
 	//global states
-	const [playgroups, setPlaygroups] = useRecoilState(playgroupsState);
+	const playgroups = useRecoilValue(playgroupsState);
 	const [openModal, setOpenModal] = useRecoilState(openModalState);
 	const [openChildModal, setOpenChildModal] =
 		useRecoilState(openChildModalState);
