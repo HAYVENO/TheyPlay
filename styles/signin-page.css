@@ -172,31 +172,62 @@
 
 /* bg-[#18D860] text-white p-5 rounded-full */
 
+.sibs-wrapper {
+	display: flex;
+	gap: 1rem;
+}
+
+.sign-in-button.see-demo-button {
+	background-color: #6b4494;
+	color: white;
+}
+
+/* see demo modal */
+.see-demo-modal {
+	background-color: rgba(17, 10, 30, 0.588);
+	backdrop-filter: blur(100px);
+	/* filter: blur(30px); */
+	border: 1px solid var(--mauve8);
+	box-shadow: var(--backlight);
+	border-radius: 5px;
+
+	position: absolute;
+	z-index: 999999999999999999;
+	top: 50%;
+	left: 50%;
+
+	transform: translate(-50%, -50%);
+	width: 80%;
+	max-width: 800px;
+}
+
 .sign-in-button {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	gap: 1rem;
+	gap: 0.5rem;
 	font-size: 1rem;
 	margin-top: 1.5rem;
-	font-weight: 600;
-	background-color: #1db954;
+	font-weight: 500;
+	/* background-color: #1ba44b; */
+	background-color: #207e41;
 	color: white;
 	border: none;
-	border-radius: 6px;
+	border-radius: 4px;
 	cursor: pointer;
+	padding: 0.8rem 2.6rem;
+	min-width: 250px;
 
-	padding: 1.1rem 5rem;
 	/* transition: all 0.4s ease; */
 }
 
-.sign-in-button:hover {
+/* .sign-in-button:hover {
 	background-color: rgb(31, 185, 106);
 	transform: scale(1.05);
-}
+} */
 
 .sign-in-button:active {
-	background-color: rgb(2, 142, 70);
+	background-color: rgb(43, 43, 43);
 }
 
 .s-footer {
@@ -320,6 +351,8 @@
 	.sign-in-button {
 		font-weight: 500;
 		font-size: 1rem;
+		min-width: fit-content;
+		padding: 0.6rem 1.2rem;
 	}
 
 	.s-footer {

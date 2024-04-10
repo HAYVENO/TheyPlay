@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import logoZero from "../public/logo-zero.svg";
-import { BsSpotify } from "react-icons/bs";
+import { BsFillPlayCircleFill, BsSpotify } from "react-icons/bs";
 import { SlSocialTwitter } from "react-icons/sl";
 
 import { getProviders, signIn } from "next-auth/react";
@@ -13,6 +13,9 @@ import Skeleton from "@mui/material/Skeleton";
 import Tooltip from "@mui/material/Tooltip";
 import "animate.css";
 import WordsRotator from "../components/util-components/WordsRotator";
+import YouTubeModal from "../components/VideoModal";
+
+const DEMO_VIDEO_URL = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1";
 
 export async function getServerSideProps() {
 	const providers = await getProviders();
@@ -30,6 +33,7 @@ const SignIn = () => {
 
 	const [providers, setProviders] = useState([]);
 	const [showTooltip, setShowTooltip] = useState(false);
+	const [videoModalModal, setVideoModalOpen] = useState(false);
 
 	useEffect(() => {
 		async function getTheProviders() {
@@ -131,7 +135,7 @@ const SignIn = () => {
 						<>
 							<div className="heading-container">
 								<h1 className="heading-primary  ">
-									Discover and Share only the Best Songs of Life with{" "}
+									Discover and Share only the best of songs with{" "}
 									<span className="mobile_fallback-word">
 										everyone!
 									</span>{" "}
@@ -154,7 +158,7 @@ const SignIn = () => {
 								</h2>
 							</div>
 							{Object.values(providers).map((provider) => (
-								<div key={provider.name}>
+								<div className="sibs-wrapper" key={provider.name}>
 									<Tooltip
 										arrow
 										open={showTooltip}
@@ -162,7 +166,7 @@ const SignIn = () => {
 										title={
 											<span className="tooltip-title">
 												Kindly note that TheyPlay is still in Dev
-												mode. To access the full functionality, send
+												mode (closed Beta). To gain access, send
 												mail to <b>haythepen@gmail.com</b> with the
 												title: <br />{" "}
 												<b>"Request TheyPlay access"</b>
@@ -177,10 +181,21 @@ const SignIn = () => {
 												signIn(provider.id, { callbackUrl: "/" })
 											}
 										>
-											Continue with {provider.name}{" "}
-											<BsSpotify size={22} />
+											Sign in with {provider.name}{" "}
+											<BsSpotify size={21} />
 										</button>
 									</Tooltip>
+									{/* SEE DEMO BUTTON */}
+									<button
+										className="see-demo-button sign-in-button animate__animated animate__bounceIn animate__delay-1s "
+										onClick={() => {
+											setVideoModalOpen(true);
+											setShowTooltip(false);
+										}}
+									>
+										See Demo
+										<BsFillPlayCircleFill size={21} />
+									</button>
 								</div>
 							))}
 							<footer className="s-footer">
@@ -225,6 +240,12 @@ const SignIn = () => {
 						""
 					)}
 				</div>
+				{/* DEMO YOUTUBE VIDEO MODAL */}
+				<YouTubeModal
+					videoModalOpen={videoModalModal}
+					onClose={() => setVideoModalOpen(false)}
+					youtubeUrl="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
+				/>
 			</div>
 		</>
 	);
