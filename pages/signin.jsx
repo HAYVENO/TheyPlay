@@ -157,9 +157,10 @@ const SignIn = () => {
 									They play ♫
 								</h2>
 							</div>
-							{Object.values(providers).map((provider) => (
-								<div className="sibs-wrapper" key={provider.name}>
+							<div className="sibs-wrapper">
+								{Object.values(providers).map((provider) => (
 									<Tooltip
+										key={provider.name}
 										arrow
 										open={showTooltip}
 										placement="bottom"
@@ -185,19 +186,19 @@ const SignIn = () => {
 											<BsSpotify size={21} />
 										</button>
 									</Tooltip>
-									{/* SEE DEMO BUTTON */}
-									<button
-										className="see-demo-button sign-in-button animate__animated animate__bounceIn animate__delay-1s "
-										onClick={() => {
-											setVideoModalOpen(true);
-											setShowTooltip(false);
-										}}
-									>
-										See Demo
-										<BsFillPlayCircleFill size={21} />
-									</button>
-								</div>
-							))}
+								))}
+								{/* SEE DEMO BUTTON */}
+								<button
+									className="see-demo-button sign-in-button animate__animated animate__bounceIn animate__delay-1s "
+									onClick={() => {
+										setVideoModalOpen(true);
+										setShowTooltip(false);
+									}}
+								>
+									See Demo
+									<BsFillPlayCircleFill size={21} />
+								</button>
+							</div>
 							<footer className="s-footer">
 								<div style={{ margin: 0 }}>
 									Built with 🤍 by{" "}
