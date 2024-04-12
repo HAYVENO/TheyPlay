@@ -25,11 +25,11 @@ Router.events.on("routeChangeComplete", () => NProgress.done());
 Router.events.on("routeChangeError", () => NProgress.done());
 
 // Remove CONSOLE LOGS from Production
-if (process.env.NODE_ENV === "production") {
-	console.log = () => {};
-	console.warn = () => {};
-	// console.error = () => {};
-}
+// if (process.env.NODE_ENV === "production") {
+// 	console.log = () => {};
+// 	console.warn = () => {};
+// 	// console.error = () => {};
+// }
 const queryClient = new QueryClient();
 
 const MyApp = ({ Component, pageProps: { session, ...pageProps } }) => {
