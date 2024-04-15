@@ -6,19 +6,15 @@ export async function middleware(req) {
 
 	if (req.nextUrl.pathname.startsWith("/_next")) return NextResponse.next();
 
-	//TODO: Review this check
-	//check if user is trying to authenticate or they have a token -
-
+	//check if user is trying to authenticate or they have a token
 	if (req.nextUrl.pathname.includes("/api/auth") || token) {
 		return NextResponse.next();
 	}
 
 	// check if they don't have a token and the request is for an auth-required route
-	if (
-		!token &&
-		!["/signin", "/about", "/privacy-policy"].includes(req.nextUrl.pathname)
-	) {
+	if (!token && req.nextUrl.pathname !== "/signin") {
 		const url = req.nextUrl.clone();
+
 		url.pathname = "/signin";
 		return NextResponse.rewrite(url);
 	}
