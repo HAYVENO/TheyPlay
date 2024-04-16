@@ -85,8 +85,7 @@ const SignIn = () => {
 								style={{ borderRight: "1px solid white" }}
 							></strong>
 							<strong
-								// onClick={() => signIn("spotify", { callbackUrl: "/" })}
-								onClick={() => signIn()}
+								onClick={() => signIn("spotify", { callbackUrl: "/" })}
 								className="sign-in-text"
 							>
 								sign in

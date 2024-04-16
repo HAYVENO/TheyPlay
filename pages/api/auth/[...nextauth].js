@@ -78,7 +78,7 @@ export default NextAuth({
 
 		async signIn({ user }) {
 			// Check if user exists in the database
-			console.log(user);
+			console.log("logged in user --", user);
 			const existingUser = await prisma.user.findUnique({
 				where: { id: user.id },
 			});
@@ -98,10 +98,10 @@ export default NextAuth({
 			return true;
 		},
 
-		async redirect({ baseUrl }) {
-			console.log("you have been redirect home here -", baseUrl);
-			return baseUrl;
-		},
+		// async redirect({ baseUrl }) {
+		// 	console.log("you have been redirect home here -", baseUrl);
+		// 	return baseUrl;
+		// },
 
 		// 		async redirect() {
 		//     // Replace '/homepage' with the actual URL of your homepage
