@@ -20,7 +20,7 @@ const PlaylistCategories = ({ category, title, type, loading }) => {
 			<ul ref={categoryContainerRef} className={`category__${type}s`}>
 				{/* PLAYLIST CARDS  */}
 				{loading ? (
-					<PlaylistCardSkeleton cards={6} />
+					<PlaylistCardSkeleton cards={3} />
 				) : (
 					<>
 						{category?.map((item, index) => {
