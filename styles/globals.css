@@ -1070,9 +1070,10 @@ main {
 /* MEDIA QUERIES */
 
 /* EXTRA-LARGE SCREENS */
-@media screen and (min-width: 1800px) {
+@media screen and (min-width: 1700px) {
 	.category__playgroups {
-		grid-template-columns: repeat(auto-fit, minmax(160px, 300px));
+		grid-template-columns: repeat(auto-fit, minmax(160px, 400px));
+		place-content: center;
 	}
 }
 
