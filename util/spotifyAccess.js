@@ -19,16 +19,20 @@ import SpotifyWebApi from "spotify-web-api-node";
 // ].join(",");
 
 const scopes = [
-	"user-read-email",
-	"playlist-read-collaborative",
-	"user-read-private",
-	"user-library-read",
-	"user-top-read",
-	"user-read-recently-played",
+	"ugc-image-upload",
 	"playlist-modify-public",
 	"playlist-modify-private",
-	"user-library-modify",
-	"ugc-image-upload",
+	"user-follow-modify",
+	"user-top-read",
+	"user-read-recently-played",
+	"user-read-email",
+	"user-read-private",
+
+	//
+	// "user-follow-read",
+	// "playlist-read-collaborative",
+	// "user-library-read",
+	// "user-library-modify",
 ].join(",");
 
 const params = {

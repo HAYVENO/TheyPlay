@@ -60,7 +60,7 @@ const About = () => {
 								</div>
 							</div>
 							<div className="about_profile-right">
-								<h2>ABOUT THE CREATOR</h2>
+								<h2>ABOUT THE FOUNDER</h2>
 								<p>
 									Yusuf Abdulhafeez is a passionate developer with a
 									keen interest in creating innovative web solutions.
@@ -81,7 +81,7 @@ const About = () => {
 							</div>
 						</div>
 						<p>
-							That's why I created TheyPlay — an open-sourced
+							That's why I built TheyPlay — an open-sourced
 							community-driven music discovery app, where music
 							enthusiasts like you and I can{" "}
 							<b>
