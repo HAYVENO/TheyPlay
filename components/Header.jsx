@@ -107,7 +107,7 @@ const Header = ({ isLoading, playgroupName = null }) => {
 									onClick={() => signOut()}
 									className="dropdown-btn"
 								>
-									<span>Log out</span>
+									<span>Sign out</span>
 									<BiLogOut size={18} />
 								</button>
 							</Link>

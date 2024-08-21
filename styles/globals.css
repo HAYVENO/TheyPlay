@@ -272,6 +272,10 @@ main {
 	font-weight: 400;
 }
 
+.sidebar-nav a {
+	padding-left: 4px;
+}
+
 .line {
 	margin: 1.2rem 1.5rem;
 	border: 0.1px solid var(--mauve8);

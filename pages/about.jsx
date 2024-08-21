@@ -150,10 +150,10 @@ const About = () => {
 							</li>
 
 							<li>
-								<strong>Gamified Experience:</strong>
+								<strong>Gamification:</strong>
 								<ul>
 									<li>
-										TheyPlay adds a fun twist to music sharing. Earn
+										TheyPlay intends to add a ranking system. Earn
 										points based on likes and how many users add your
 										chosen song to their libraries. Your points
 										contribute to your user level.

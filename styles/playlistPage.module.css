@@ -278,7 +278,7 @@
 /* TABLET */
 @media screen and (max-width: 900px) {
 	.listGrid {
-		grid-template-columns: [SN] 20px [title] 6fr [item1] 2fr [item2] 2fr;
+		grid-template-columns: [SN] auto [title] 6fr [item1] 2fr [item2] 2fr;
 	}
 
 	.submittedAtBox {
@@ -292,7 +292,19 @@
 /* MOBILE */
 @media screen and (max-width: 650px) {
 	.listGrid {
-		grid-template-columns: [SN] 20px [title] 6fr [item1] 1.5fr;
+		grid-template-columns: [title] 5fr [addedBy] 1fr;
+	}
+
+	.titleHeading {
+		padding-left: 1rem;
+	}
+
+	.snHeading {
+		display: none;
+	}
+
+	.SN {
+		display: none;
 	}
 
 	.playlistDetails {
@@ -308,7 +320,7 @@
 
 	.playlistName {
 		order: -2;
-		font-size: 3rem;
+		font-size: 2.3rem;
 	}
 
 	.playlistDescription {

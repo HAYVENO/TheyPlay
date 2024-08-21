@@ -159,33 +159,16 @@ const SignIn = () => {
 							</div>
 							<div className="sibs-wrapper">
 								{Object.values(providers).map((provider) => (
-									<Tooltip
-										key={provider.name}
-										arrow
-										open={showTooltip}
-										placement="bottom"
-										title={
-											<span className="tooltip-title">
-												Kindly note that TheyPlay is still in Dev
-												mode (closed Beta). To gain access, send
-												mail to <b>haythepen@gmail.com</b> with the
-												title: <br />{" "}
-												<b>"Request TheyPlay access"</b>
-											</span>
+									<button
+										key={provider?.name}
+										className="sign-in-button animate__animated animate__bounceIn animate__delay-1s "
+										onClick={() =>
+											signIn(provider.id, { callbackUrl: "/" })
 										}
-										onMouseEnter={() => setShowTooltip(true)}
-										onMouseLeave={() => setShowTooltip(false)}
 									>
-										<button
-											className="sign-in-button animate__animated animate__bounceIn animate__delay-1s "
-											onClick={() =>
-												signIn(provider.id, { callbackUrl: "/" })
-											}
-										>
-											Sign in with {provider.name}{" "}
-											<BsSpotify size={21} />
-										</button>
-									</Tooltip>
+										Sign in with {provider.name}{" "}
+										<BsSpotify size={21} />
+									</button>
 								))}
 								{/* SEE DEMO BUTTON */}
 								<button

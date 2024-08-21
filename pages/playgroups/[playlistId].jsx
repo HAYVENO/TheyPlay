@@ -448,7 +448,7 @@ const PlaylistPage = () => {
 								)}
 
 								{currentPlaylist?.name ? (
-									<h1 className={styles.playlistName}>
+									<h1 className={styles?.playlistName}>
 										{currentPlaylist.name}
 									</h1>
 								) : (
@@ -457,14 +457,14 @@ const PlaylistPage = () => {
 										animation="wave"
 										width={330}
 									>
-										<h1 className={styles.playlistName}></h1>
+										<h1 className={styles?.playlistName}></h1>
 									</Skeleton>
 								)}
 
 								{currentPlaylist?.description ? (
 									<p
-										className={styles.playlistDescription}
-									>{`  ${currentPlaylist?.description}  •  Daily limit: ${currentPlaylist?.dailyLimit} tracks`}</p>
+										className={styles?.playlistDescription}
+									>{`${currentPlaylist?.description}  •  Daily limit: ${currentPlaylist?.dailyLimit} tracks`}</p>
 								) : (
 									<Skeleton
 										className="my__custom-skeleton"
