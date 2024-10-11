@@ -298,7 +298,7 @@ main {
 
 .sidebar__playlists {
 	margin-top: 0;
-	min-height: fit-content;
+	/* min-height: fit-content; */
 	max-height: 17rem;
 	padding: 0 1.7rem;
 	font-size: 0.8rem;

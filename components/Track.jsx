@@ -13,6 +13,10 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import Link from "next/link";
 import formatToSentence from "../util/formatToSentence";
+import { MdEditNote, MdOutlineNotes } from "react-icons/md";
+import { VscNote } from "react-icons/vsc";
+import { FaCommentAlt, FaRegComment } from "react-icons/fa";
+import { RiQuillPenFill } from "react-icons/ri";
 dayjs.extend(relativeTime);
 
 const Track = ({ track, theyTrack, index, onClick, isCurrentTrack }) => {
@@ -39,7 +43,7 @@ const Track = ({ track, theyTrack, index, onClick, isCurrentTrack }) => {
 
 						currentSong?.src === track?.preview_url ||
 						currentSong?.src === theyTrack?.addedSong?.previewUrl
-							? "rgb(110 47 167 / 25%"
+							? "rgb(64 31 62)"
 							: "",
 				}}
 				className={styles.listGrid}
@@ -70,6 +74,10 @@ const Track = ({ track, theyTrack, index, onClick, isCurrentTrack }) => {
 							{track?.artists &&
 								formatToSentence(track?.artists, "name")}
 						</p>
+					</div>
+					<div>
+						<FaRegComment size={24} color="rgb(204 204 204)" />
+						{/* <MdOutlineNotes size={28} /> */}
 					</div>
 				</div>
 				<div className={styles.addedByBox}>

@@ -96,7 +96,7 @@ const Center = () => {
 				type="playgroup"
 				loading={isLoading}
 				category={playgroups}
-				title="WHAT THEY PLAY"
+				title="PUBLIC PLAYGROUPS"
 			/>
 			{/* Shuffle the Suggested Top Tracks for the Tracks category */}
 			<PlaylistCategories
