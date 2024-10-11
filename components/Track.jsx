@@ -75,10 +75,11 @@ const Track = ({ track, theyTrack, index, onClick, isCurrentTrack }) => {
 								formatToSentence(track?.artists, "name")}
 						</p>
 					</div>
-					<div>
+					{/* VIEW  PLAYGROUP DETAILS ICON */}
+					{/* <div>
 						<FaRegComment size={24} color="rgb(204 204 204)" />
-						{/* <MdOutlineNotes size={28} /> */}
-					</div>
+					
+					</div> */}
 				</div>
 				<div className={styles.addedByBox}>
 					<p>{theyTrack?.addedBy?.name?.split(" ")[0]}</p>

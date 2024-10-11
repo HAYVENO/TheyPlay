@@ -387,15 +387,15 @@ const PlaylistPage = () => {
 			<main>
 				<Header isLoading={false} playgroupName={currentPlaygroup?.name} />
 				<div
-					style={{
-						"--playlist-hue": themeColor,
-						animation:
-							isPlaying &&
-							JSON.stringify(livePlaygroup?.liveTracks) ===
-								JSON.stringify(tracks)
-								? "hue-animation 60s infinite"
-								: "none",
-					}}
+					// style={{
+					// 	"--playlist-hue": themeColor,
+					// 	animation:
+					// 		isPlaying &&
+					// 		JSON.stringify(livePlaygroup?.liveTracks) ===
+					// 			JSON.stringify(tracks)
+					// 			? "hue-animation 60s infinite"
+					// 			: "none",
+					// }}
 					className={styles.playlistContainer}
 				>
 					<div
