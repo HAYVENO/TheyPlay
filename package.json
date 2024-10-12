@@ -50,7 +50,7 @@
 		"react-spinners": "^0.13.8",
 		"react-wrap-balancer": "^1.0.0",
 		"recoil": "^0.7.6",
-		"sharp": "^0.32.0",
+		"sharp": "^0.32.6",
 		"spotify-web-api-node": "^5.0.2",
 		"uuid": "^9.0.0"
 	},
