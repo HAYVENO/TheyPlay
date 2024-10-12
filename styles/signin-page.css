@@ -199,6 +199,8 @@
 	transform: translate(-50%, -50%);
 	width: 80%;
 	max-width: 800px;
+
+	/* height: 1rem; */
 }
 
 .sign-in-button {
@@ -337,7 +339,6 @@
 		height: 100%;
 		padding: 2rem 0;
 		padding-bottom: 3rem;
-		filter: blur(10px);
 	}
 
 	.s-header {

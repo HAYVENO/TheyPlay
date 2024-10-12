@@ -228,7 +228,7 @@ const SignIn = () => {
 				<YouTubeModal
 					videoModalOpen={videoModalModal}
 					onClose={() => setVideoModalOpen(false)}
-					youtubeUrl="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
+					youtubeUrl="https://www.youtube.com/embed/KNkjzz_cqf8?autoplay=1"
 				/>
 			</div>
 		</>
