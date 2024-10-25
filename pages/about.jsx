@@ -40,7 +40,7 @@ const About = () => {
 							<b>
 								moments, times, emotions, and our individual experiences
 							</b>
-							. And while headphones, earbuds and streaming services
+							. And while headphones, airpods and streaming services
 							might seem to isolate us more everyday, they also offer an
 							extraordinary means to connect with music in a deeply
 							personal way.
@@ -62,11 +62,13 @@ const About = () => {
 							<div className="about_profile-right">
 								<h2>ABOUT THE FOUNDER</h2>
 								<p>
-									Yusuf Abdulhafeez is a passionate developer with a
-									keen interest in creating innovative web solutions.
-									With expertise in technologies like React, Node.js,
-									and more, Abdulhafeez has a track record of building
-									robust and scalable applications.
+									Yusuf Abdulhafeez is a software developer and
+									technical writer with a keen interest in building and
+									communicating the essence of innovative software
+									solutions. With expertise in technologies like React,
+									Node.js, Typescript, amongst others, Abdulhafeez has
+									a track record of building and maintaining robust and
+									scalable applications.
 								</p>
 
 								<a
@@ -97,7 +99,7 @@ const About = () => {
 
 						<p>
 							TheyPlay is a platform that helps you forge deeper
-							connections through the magic of music, be it family,
+							connections through the magic of music, be it with family,
 							friends, or colleagues, or the rest of the world. Here, you
 							can{" "}
 							<b>

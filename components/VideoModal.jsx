@@ -13,8 +13,9 @@ const YouTubeModal = ({ youtubeUrl, videoModalOpen, onClose }) => {
 			>
 				<div className="see-demo-modal">
 					<iframe
+						// 16:9
 						width="100%"
-						height="480"
+						height="563"
 						src={youtubeUrl}
 						title="YouTube video player"
 						frameBorder="0"

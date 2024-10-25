@@ -5,13 +5,15 @@ export default function Document() {
 	return (
 		<Html lang="en">
 			<Head>
+				<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
 				<meta
 					name="title"
-					content="TheyPlay: Explore New Music with Your Playgroup"
+					content="TheyPlay — Discover and share the music you love with everyone."
 				/>
 				<meta
 					name="description"
-					content="Empowering community members to share and discover the music they love for a fun, engaging, and personalized music experience."
+					content="Discover and share the music you love with everyone."
 				/>
 				<meta property="og:type" content="website" />
 				<meta property="og:url" content="https://they-play.vercel.app/" />
@@ -21,11 +23,11 @@ export default function Document() {
 				/>
 				<meta
 					property="og:description"
-					content="Empowering community members to share and discover the music they love for a fun, engaging, and personalized music experience."
+					content="Discover and share the music you love with everyone."
 				/>
 				<meta
 					property="og:image"
-					content="https://res.cloudinary.com/detye5zx5/image/upload/v1682695340/TheyPlay-teaser-home_sc9wtl.png"
+					content="https://res.cloudinary.com/detye5zx5/image/upload/v1711741717/Frame_29_2.png"
 				/>
 				<meta property="twitter:card" content="summary_large_image" />
 				<meta
@@ -38,13 +40,12 @@ export default function Document() {
 				/>
 				<meta
 					property="twitter:description"
-					content="Empowering community members to share and discover the music they love for a fun, engaging, and personalized music experience."
+					content="Discover and share the music you love with everyone."
 				/>
 				<meta
 					property="twitter:image"
-					content="https://res.cloudinary.com/detye5zx5/image/upload/v1682695340/TheyPlay-teaser-home_sc9wtl.png"
+					content="https://res.cloudinary.com/detye5zx5/image/upload/v1711741717/Frame_29_2.png"
 				/>
-				<link rel="icon" href="/favicon.ico" />
 
 				{/* GOOGLE ANALYTICS */}
 				<Script
