@@ -44,7 +44,8 @@ npm start
 
 The application will be available on `http://localhost:3000` (or the port specified in the project configuration).
 
-### Features
+## Features
+
 TheyPlay offers:
 - **Sharing your musical journey**: Share songs with the stories and feelings behind them.
 - **Exploring playgroups**: Discover music from groups with shared tastes, curated around moods, memories, and experiences.
