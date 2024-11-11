@@ -112,5 +112,5 @@ As the sole maintainer at this time, I aim to review all pull requests within 48
 
 ## Conclusion
 
-Thank you for your interest in TheyPlay. I eagerly look forward to hearing about your experience and working together to make this app an incredible music discovery platform for everyone. Let's play, discover, and enjoy music together with TheyPlay!
+Thank you for exploring TheyPlay. I look forward to hearing about your experience and collaborating to make this app an exceptional music discovery platform. Let’s play, discover, and enjoy music with TheyPlay!
 
