@@ -110,7 +110,7 @@ Feel free to open an issue for:
 
 As the sole maintainer at this time, I aim to review all pull requests within 48 hours. I'm excited to grow the team and welcome more contributors to TheyPlay.
 
-## Thank You!
+## Conclusion
 
 Thank you for your interest in TheyPlay. I eagerly look forward to hearing about your experience and working together to make this app an incredible music discovery platform for everyone. Let's play, discover, and enjoy music together with TheyPlay!
 
